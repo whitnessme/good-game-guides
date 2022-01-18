@@ -1,9 +1,22 @@
 include utils.pug
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet' href='stylesheets/login-signup.css')
+    title #{title}
+  body
 
-img(src="")
+    img(src="")
 
-form(action="/users/login" method="post")
-  input(type="hidden" name="csrf" value=csrfToken)
-  +field("Email Address", "emailAddress", emailAddress)
-  +field("Password", "password", null, "password")
-  button(type='submit') Login
+    form(action="/users/login" method="post")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      h1 Log in to GoodGameGuides
+      +field("Email Address", "email", email)
+      +field("Password", "password", null, "password")
+      button(type='submit') Login
+      button(type="submit") Demo Login
+      div
+        span Not a member?
+          a(href="") Sign Up
