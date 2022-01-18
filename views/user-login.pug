@@ -1,0 +1,9 @@
+include utils.pug
+
+img(src="")
+
+form(action="/users/login" method="post")
+  input(type="hidden" name="csrf" value=csrfToken)
+  +field("Email Address", "emailAddress", emailAddress)
+  +field("Password", "password", null, "password")
+  button(type='submit') Login

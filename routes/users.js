@@ -9,7 +9,12 @@ const { loginUser, logoutUser } = require("../auth");
 router.get("/signup", csrfProtection, (req, res) => {});
 router.post("/signup", csrfProtection, (req, res) => {});
 
-router.get("/login");
+router.get("/login", csrfProtection, (req, res) => {
+  res.render("user-login", {
+    title: "Login",
+    csrfToken: req.csrfToken(),
+  });
+});
 router.post("/login");
 
 router.post("/logout", (req, res) => {
