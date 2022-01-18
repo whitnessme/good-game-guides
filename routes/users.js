@@ -8,7 +8,7 @@ const { loginUser, logoutUser } = require("../auth");
 
 router.get("/signup", csrfProtection, (req, res) => {
   const user = db.User.build();
-  res.render('user-register', {
+  res.render('user-signup', {
     title: 'Sign Up',
     user,
     csrfToken: req.csrfToken()
