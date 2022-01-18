@@ -6,7 +6,15 @@ const { csrfProtection, asyncHandler } = require("../utils");
 const bcrypt = require("bcryptjs");
 const { loginUser, logoutUser } = require("../auth");
 
-router.get("/signup", csrfProtection, (req, res) => {});
+router.get("/signup", csrfProtection, (req, res) => {
+  const user = db.User.build();
+  res.render('user-register', {
+    title: 'Sign Up',
+    user,
+    csrfToken: req.csrfToken()
+  });
+});
+
 router.post("/signup", csrfProtection, (req, res) => {});
 
 router.get("/login");
