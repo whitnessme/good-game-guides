@@ -10,7 +10,7 @@ router.get("/signup", csrfProtection, (req, res) => {});
 router.post("/signup", csrfProtection, (req, res) => {});
 
 const loginValidators = [
-  check("emailAddress")
+  check("email")
     .exists({ checkFalsy: true })
     .withMessage("Please provide a value for email address"),
   check("password")
@@ -31,14 +31,14 @@ router.post(
   loginValidators,
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-
+    console.log(email, password);
     let errors = [];
     const validatorErrors = validationResult(req);
 
     if (validatorErrors.isEmpty()) {
       const user = await db.User.findOne({ where: { email } });
 
-      if (user !== null) {
+      if (user) {
         const passwordMatch = await bcrypt.compare(
           password,
           user.hashedPassword.toString()
@@ -50,7 +50,7 @@ router.post(
         }
       }
 
-      errors.push("Login failed for the provided email address and password.");
+      errors.push("Login failed for the provided email address and password");
     } else {
       errors = validatorErrors.array().map((error) => error.msg);
     }
