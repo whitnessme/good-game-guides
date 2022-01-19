@@ -1,0 +1,32 @@
+include utils.pug
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    link(rel='stylesheet' href='../stylesheets/login-signup.css')
+    script(src="../javascripts/demoUser.js")
+    title #{title}
+  body
+    div(class="wrapper")
+      div(class="page-content")
+        div(class="logo")
+          a(href="")
+            img(src="" alt="GoodGameGuides logo")
+      div(class="content-box")
+        h1 Log in to GoodGameGuides
+        form(action="/users/login" method="post" id="email-form")
+          fieldset
+            input(type="hidden" name="_csrf" value=csrfToken)
+            div(class="fieldEle")
+              +field("Email Address", "email", email, "email", "you@yours.com")
+            div(class="fieldEle")
+              +field("Password", "password", null, "password")
+            div(class="fieldEle" id="demoDiv")
+              input(name="demo-user" id="demo-user-box" type="checkbox")
+              label(for="demo-user") Login with Demo User Credentials?
+            div(class="submitEle")
+              button(type='submit' class="submit-button submit-button--large") Login
+              div(class="signUpOption")
+                span Not a member?
+                  a(href="") Sign Up
