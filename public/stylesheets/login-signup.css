@@ -5,6 +5,11 @@ body {
   line-height: 18px;
 }
 
+a {
+  text-decoration: none;
+  color: #00635d;
+}
+
 .content-box {
   border: 1px solid #d0d0c8;
   background-color: white;
@@ -25,6 +30,31 @@ h1 {
   margin-bottom: 15px;
   color: #382110;
   line-height: 24px;
+}
+
+fieldset {
+  border: none;
+  width: 300px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: left;
+}
+
+label {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+  width: 100%;
+}
+
+input {
+  display: block;
+}
+
+.submitEle {
+  margin-top: 20px;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .submit-button {
@@ -48,4 +78,9 @@ h1 {
 .submit-button--large {
   font-size: 16px;
   padding: 12px 24px;
+}
+
+.signUpOption {
+  text-align: center;
+  margin-top: 24px;
 }

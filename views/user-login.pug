@@ -10,7 +10,8 @@ html
     div(class="wrapper")
       div(class="page-content")
         div(class="logo")
-          img(src="" alt="GoodGameGuides logo")
+          a(href="")
+            img(src="" alt="GoodGameGuides logo")
       div(class="content-box")
         h1 Log in to GoodGameGuides
         form(action="/users/login" method="post" id="email-form")
@@ -20,7 +21,8 @@ html
               +field("Email Address", "email", email)
             div(class="fieldEle")
               +field("Password", "password", null, "password")
-            button(type='submit' class="submit-button submit-button--large") Login
-          div
-            span Not a member?
-              a(href="") Sign Up
+            div(class="submitEle")
+              button(type='submit' class="submit-button submit-button--large") Login
+              div(class="signUpOption")
+                span Not a member?
+                  a(href="") Sign Up
