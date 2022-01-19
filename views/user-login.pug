@@ -18,9 +18,12 @@ html
           fieldset
             input(type="hidden" name="_csrf" value=csrfToken)
             div(class="fieldEle")
-              +field("Email Address", "email", email)
+              +field("Email Address", "email", email, "email", "you@yours.com")
             div(class="fieldEle")
               +field("Password", "password", null, "password")
+            div(class="fieldEle" id="demoDiv")
+              input(name="demo-user" id="demo-user" type="checkbox")
+              label(for="demo-user" id="demo-user") Login with Demo User Credentials?
             div(class="submitEle")
               button(type='submit' class="submit-button submit-button--large") Login
               div(class="signUpOption")

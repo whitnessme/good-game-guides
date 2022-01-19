@@ -40,6 +40,15 @@ fieldset {
   text-align: left;
 }
 
+.fieldEle {
+  margin-bottom: 10px;
+}
+
+#demoDiv > input {
+  display: inline;
+  width: auto;
+}
+
 label {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: left;
@@ -50,6 +59,16 @@ label {
 
 input {
   display: block;
+  font-size: 15px;
+  padding: 10px 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0px 2px 2px #333 #ccc;
+  font-weight: bold;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 300px;
+  color: #333;
+  box-sizing: border-box;
 }
 
 .submitEle {
