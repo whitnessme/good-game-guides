@@ -1,15 +1,12 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Review = sequelize.define(
-    "Review",
+  const StatusShelf = sequelize.define(
+    "StatusShelf",
     {
-      rating: {
+      statusId: {
         allowNull: false,
         type: DataTypes.INTEGER,
-      },
-      reviewText: {
-        allowNull: false,
-        type: DataTypes.TEXT,
+        references: { model: "Statuses" },
       },
       userId: {
         allowNull: false,
@@ -24,8 +21,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Review.associate = function (models) {
-    Review.belongsTo(models.User, { foreignKey: "userId" });
+  StatusShelf.associate = function (models) {
+    StatusShelf.belongsTo(models.User, { foreignKey: "userId" });
+    StatusShelf.belongsTo(models.Status, { foreignKey: "statusId" });
+    StatusShelf.belongsTo(models.GameGuide, { foreignKey: "gameGuideId" });
   };
-  return Review;
+  return StatusShelf;
 };
