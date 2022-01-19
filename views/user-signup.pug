@@ -1,20 +1,30 @@
-extends layout.pug
-
 include utils.pug
 
+block head
+    link(rel='stylesheet' href='../stylesheets/login-signup.css')
+    script(src="../javascripts/demoUser.js")
+    title #{title}
+
 block content
-    a(href='/') GoodGameGuides
-    h1 Sign up for GoodGameGuides
-    p Sign up to see what your friends are playing, explore guides that will help you get those achievements, and join the world's largest guild of questers.
-    +validationErrorSummary(errors)
-    form(method='post' action='/users/signup')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Name', 'fullName', user.fullName, 'text', 'Name')
-        +field('Email address', 'email', user.email, 'email', 'you@yours.com')
-        +field('Password', 'password', user.password, 'password')
-        div
-            button(type='submit') Sign up
-            span Already a member?
-                a(href='/users/login') Sign in
-        button Demo User
-    p By clicking "Sign up" I agree to the GoodGameGuides Terms of Service and confirm that I am at least 13 years of age.
+    a(href='/')
+        img(src="/images/ggg_logo_black.png" alt="GoodGameGuides logo")
+    div(class="content-box")
+        h1 Sign up for GoodGameGuides
+        p Sign up to see what your friends are playing, explore guides that will help you get those achievements, and join the world's largest guild of questers.
+        if errors
+            div(class='error-box')
+                +validationErrorSummary(errors)
+        form(method='post' action='/users/signup')
+            fieldset
+                input(type='hidden' name='_csrf' value=csrfToken)
+                div(class="fieldEle")
+                    +field('Name', 'fullName', user.fullName, 'text', 'Name')
+                div(class="fieldEle")
+                    +field('Email Address', 'email', user.email, 'email', 'you@yours.com')
+                div(class="fieldEle")
+                    +field('Password', 'password', user.password, 'password')
+                div(class="submitEle")
+                    button(type='submit' class="submit-button submit-button--large") Sign Up
+                    span(class='signInOption') Already a member?
+                        a(href='/users/login') Sign In
+            p By clicking "Sign Up" I agree to the GoodGameGuides Terms of Service and confirm that I am at least 13 years of age.

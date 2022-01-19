@@ -32,6 +32,16 @@ h1 {
   line-height: 24px;
 }
 
+.error-box {
+  border: 1px solid #FA604A;
+  background-color: #fdb7ad;
+  border-radius: 4px;
+  padding: 12px;
+  width: auto;
+  margin: 16px;
+  text-align: start;
+}
+
 fieldset {
   border: none;
   width: 300px;
@@ -102,6 +112,14 @@ input {
 .signUpOption {
   text-align: center;
   margin-top: 24px;
+}
+
+.signInOption {
+  margin-left: 24px;
+}
+
+.signInOption > a {
+  margin-left: 10px;
 }
 
 img {
