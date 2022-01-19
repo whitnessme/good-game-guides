@@ -1,6 +1,8 @@
 body {
   background-color: antiquewhite;
   font-size: 12px;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 18px;
 }
 
 .content-box {
