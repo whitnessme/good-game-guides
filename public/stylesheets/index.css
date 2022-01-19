@@ -1,3 +1,13 @@
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.not-auth{
+    display: block;
+}
+
 .homegrid{
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -16,12 +26,41 @@
     grid-area: want;
 }
 
-.all-shelves{
-    grid-area: shelves;
+
+.middle-guides-container{
+    grid-area: guides;
 }
 
-.guides-container{
-    grid-area: guides;
+.list-shelves{
+    grid-area: shelves;
+    display: block;
+}
+
+.shelves-container{
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
+}
+
+.shelves-counts{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 3px;
+}
+
+.shelves-names{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 3px;
+}
+
+
+
+.guide-img{
+    object-fit: cover;
+    object-position: top;
+    width: 100px;
+    height: 120px;
 }
 
 

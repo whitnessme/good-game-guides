@@ -9,12 +9,37 @@ append head
 block content
     div.homegrid
         span.current-play
-            h3 Currently Playing
+            h4 Currently Playing
+            if locals.authenticated
+                ul#curr-guides
+                    each guide in currentGuides
+                        li: img.small-square(src=`${guide.coverImg}`)
+            else
+                p.not-auth Please login to view your saved guides
         span.want-play
-            h3 Want to Play
-        span.all-shelves
-            h3 Shelves
-        div.guides-container
+            h4 Want to Play
+            if locals.authenticated
+                ul#want-guides
+                    each guide in wantToGuides
+                        li: img.small-square(src=`${guide.coverImg}`)
+            else
+                p.not-auth Please login to view your saved guides
+        span.list-shelves
+            h4 Shelves
+            span.shelves-container
+                if locals.authenticated
+                    div.shelves-counts
+                        a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") 0
+                        a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") 0
+                        a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") 0
+                    div.shelves-names
+                        a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
+                        a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing
+                        a.shelves-link#play(href="/my-game-guides/status-shelves/3") Played
+                else
+                    p.not-auth Please login to view your saved guides
+
+        div.middle-guides-container
             table.all-guides
                 thead
                     tr 
@@ -24,8 +49,8 @@ block content
                 tbody
                     each guide in guides
                         tr
-                            td
-                                a(href='??')
+                            td.img-container
+                                a(href=`/game-guides/${guide.id}`)
                                     img.guide-img(src=`${guide.coverImg}`)
                             td=guide.title 
                             td=guide.author
