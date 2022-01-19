@@ -22,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     User.hasMany(models.CustomShelf, { foreignKey: "userId" });
     User.hasMany(models.Review, { foreignKey: "userId" });
+    User.hasMany(models.StatusShelf, { foreignKey: "userId" });
   };
   return User;
 };
