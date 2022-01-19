@@ -1,43 +1,43 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('GameGuides', {
+    return queryInterface.createTable("GameGuides", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       title: {
         type: Sequelize.STRING(255),
-        allowNull: false
+        allowNull: false,
       },
       author: {
-        type: Sequelize.STRING(100)
+        type: Sequelize.STRING(100),
       },
       releaseDate: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATEONLY,
       },
       publisher: {
-        type: Sequelize.STRING(255)
+        type: Sequelize.STRING(255),
       },
       summary: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
       },
       coverImg: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('GameGuides');
-  }
+    return queryInterface.dropTable("GameGuides");
+  },
 };
