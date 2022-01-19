@@ -1,3 +1,29 @@
-h1 {
-    color: #555555;
+.homegrid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "current guides ads"
+    "want guides ads"
+    "shelves guides ads";
+}
+
+.current-play{
+    grid-area: current;
+}
+
+.want-play{
+    grid-area: want;
+}
+
+.all-shelves{
+    grid-area: shelves;
+}
+
+.guides-container{
+    grid-area: guides;
+}
+
+.socials{
+    grid-area: ads;
 }
