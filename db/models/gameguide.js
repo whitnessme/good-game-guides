@@ -1,18 +1,22 @@
-'use strict';
+"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const GameGuide = sequelize.define('GameGuide', {
-    title: {
-      type: DataTypes.STRING(255),
-      allowNull: false
+  const GameGuide = sequelize.define(
+    "GameGuide",
+    {
+      title: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+      },
+      author: DataTypes.STRING(100),
+      releaseDate: DataTypes.DATEONLY,
+      publisher: DataTypes.STRING(255),
+      summary: DataTypes.TEXT,
+      coverImg: DataTypes.STRING,
     },
-    author: DataTypes.STRING(100),
-    releaseDate: DataTypes.DATEONLY,
-    publisher: DataTypes.STRING(255),
-    summary: DataTypes.TEXT,
-    coverImg: DataTypes.STRING
-  }, {});
+    {}
+  );
   GameGuide.associate = function (models) {
-    // associations can be defined here
+    GameGuide.hasMany(models.CustomShelf, { foreignKey: "gameGuideId" });
   };
   return GameGuide;
 };
