@@ -6,13 +6,15 @@ block content
     a(href='/') GoodGameGuides
     h1 Sign up for GoodGameGuides
     p Sign up to see what your friends are playing, explore guides that will help you get those achievements, and join the world's largest guild of questers.
+    //- +validationErrorSummary(errors)
     form(method='post' action='/users/signup')
         input(type='hidden' name='_csrf' value=csrfToken)
         +field('Name', 'fullName', user.fullName, 'text', 'Name')
         +field('Email address', 'email', user.email, 'email', 'you@yours.com')
-        +field('Password', 'hashedPassword', user.hashedPassword, 'password')
+        +field('Password', 'hashedPassword', user.password, 'password')
         div
             button(type='submit') Sign up
             span Already a member?
                 a(href='/users/login') Sign in
+        button Demo User
     p By clicking "Sign up" I agree to the GoodGameGuides Terms of Service and confirm that I am at least 13 years of age.
