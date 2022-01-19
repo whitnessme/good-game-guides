@@ -18,7 +18,6 @@ module.exports = {
         references: { model: "Users" },
       },
       gameGuideId: {
-        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "GameGuides" },
       },
