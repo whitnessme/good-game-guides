@@ -1,9 +1,75 @@
 nav {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    background-color: antiquewhite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button, #login-button {
+    background-color: rgb(156, 33, 33);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 1em;
+    color: white
+}
+
+#signup-button > a {
+    color: rgb(156, 33, 33);
+    font-weight: bold;
+}
+
+#login-button > a {
+    color: white
+}
+
+a {
+    text-decoration: none;
+    color: #382110;
+    font-style: normal;
+    /* padding: 10px; */
+}
+
+ul {
+    padding: 0px;
+}
+
+li {
+    list-style: none;
+}
+
+.user-nav > li {
+    color: #382110;
+    padding: 10px;
+}
+
+.nav-links > li > a {
+    padding: 10px;
+}
+
+.nav-links > li > a:hover {
+    background-color: #382110;
+    color: white;
 }
 
 #logo {
     height: 30px;
     width: auto;
+}
+
+.left-nav, .right-nav, ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#user-name {
+    font-style: italic;
+}
+
+#signup-button {
+    font-size: 11px;
 }

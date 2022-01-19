@@ -9,13 +9,21 @@ html
       div.left-nav
         a(href="") 
           img#logo(src="/images/ggg_logo_black.png", alt="Good-Game-Guides Logo")
-        span.nav-links
-          ul
-            li#home-button: a(href="") Home
-            li#my-guides-button: a(href="") My Guides
+        span
+          ul.nav-links
+            li#home-button: a(href="/") Home
+            if locals.authenticated
+              li#my-guides-button: a(href="/my-game-guides") My Game Guides
+            else 
+              li#my-guides-button: a(href="/login") My Game Guides
       div.right-nav
-        ul 
-          li#user-name #{user.fullName}
-          li
-            include includes/logout.pug
+        ul.user-nav
+          if locals.authenticated
+            li#user-name #{user.fullName}
+            li
+              include includes/logout.pug
+          else 
+            li#login-button: a(href="/users/login") Login 
+            li#signup-button Not a member?  
+             a(href="/users/signup") Sign Up
     block content
