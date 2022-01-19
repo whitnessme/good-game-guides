@@ -13,15 +13,19 @@ const userValidators = [
   check('fullName')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for the Name')
+    .bail()
     .isLength({ max: 100 })
     .withMessage('Name must not be more than 100 characters'),
   check('email')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for the Email address')
+    .bail()
     .isLength({ max: 50 })
     .withMessage('Email address must not be more than 50 characters')
+    .bail()
     .isEmail()
     .withMessage('Email address is not a valid email')
+    .bail()
     .custom((value) => {
       return db.User.findOne({ where: { email: value } })
         .then((user) => {
@@ -33,8 +37,10 @@ const userValidators = [
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for the Password')
+    .bail()
     .isLength({ max: 50 })
     .withMessage('Password must not be more than 50 characters long')
+    .bail()
     .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/, 'g')
     .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")')
 ];

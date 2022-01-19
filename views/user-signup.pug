@@ -11,8 +11,9 @@ block content
     div(class="content-box")
         h1 Sign up for GoodGameGuides
         p Sign up to see what your friends are playing, explore guides that will help you get those achievements, and join the world's largest guild of questers.
-        div(class='error-box')
-            +validationErrorSummary(errors)
+        if errors
+            div(class='error-box')
+                +validationErrorSummary(errors)
         form(method='post' action='/users/signup')
             fieldset
                 input(type='hidden' name='_csrf' value=csrfToken)
