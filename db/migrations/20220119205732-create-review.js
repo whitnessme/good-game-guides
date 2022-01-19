@@ -24,6 +24,7 @@ module.exports = {
       gameGuideId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        references: { model: "GameGuides" },
       },
       createdAt: {
         allowNull: false,

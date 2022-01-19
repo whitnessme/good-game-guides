@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   GameGuide.associate = function (models) {
     GameGuide.hasMany(models.CustomShelf, { foreignKey: "gameGuideId" });
+    GameGuide.hasMany(models.Review, { foreignKey: "gameGuideId" });
   };
   return GameGuide;
 };
