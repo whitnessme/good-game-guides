@@ -1,3 +1,38 @@
-h1 {
-    color: #555555;
+.homegrid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "current guides laura"
+    "want guides whit"
+    "shelves guides alex";
+}
+
+.current-play{
+    grid-area: current;
+}
+
+.want-play{
+    grid-area: want;
+}
+
+.all-shelves{
+    grid-area: shelves;
+}
+
+.guides-container{
+    grid-area: guides;
+}
+
+
+#laura{
+    grid-area: laura;
+}
+
+#whit{
+    grid-area: whit;
+}
+
+#alex{
+    grid-area: alex;
 }
