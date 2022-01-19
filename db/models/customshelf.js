@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         references: { model: "Users" },
       },
       gameGuideId: {
-        allowNull: false,
         type: DataTypes.INTEGER,
         references: { model: "GameGuides" },
       },
