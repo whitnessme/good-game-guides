@@ -3,7 +3,12 @@ const router = express.Router();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Good Game Guides" });
+  const guides = [
+    {title: 'Coming soon', author: "demo"},
+    {title: 'Coming soon', author: "demo"}
+  ]
+  // const guides = await db.GameGuide.findAll()
+  res.render("index", { title: "Home", guides});
 });
 
 module.exports = router;

@@ -3,9 +3,9 @@
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-rows: auto;
     grid-template-areas:
-    "current guides ads"
-    "want guides ads"
-    "shelves guides ads";
+    "current guides laura"
+    "want guides whit"
+    "shelves guides alex";
 }
 
 .current-play{
@@ -24,6 +24,15 @@
     grid-area: guides;
 }
 
-.socials{
-    grid-area: ads;
+
+#laura{
+    grid-area: laura;
+}
+
+#whit{
+    grid-area: whit;
+}
+
+#alex{
+    grid-area: alex;
 }
