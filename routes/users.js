@@ -1,11 +1,14 @@
 const express = require("express");
-const router = express.Router();
 const { check, validationResult } = require("express-validator");
-const db = require("../db/models");
-const { csrfProtection, asyncHandler } = require("../utils");
 const bcrypt = require("bcryptjs");
-const { loginUser, logoutUser } = require("../auth");
 
+const { csrfProtection, asyncHandler } = require("../utils");
+const { loginUser, logoutUser } = require("../auth");
+const db = require("../db/models");
+
+const router = express.Router();
+
+// Validators:
 const userValidators = [
   check('fullName')
     .exists({ checkFalsy: true })
@@ -20,7 +23,7 @@ const userValidators = [
     .isEmail()
     .withMessage('Email address is not a valid email')
     .custom((value) => {
-      return db.User.findOne({ where: { emailAddress: value } })
+      return db.User.findOne({ where: { email: value } })
         .then((user) => {
           if (user) {
             return Promise.reject('The provided Email Address is already in use by another account');
@@ -36,6 +39,17 @@ const userValidators = [
     .withMessage('Password must contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")')
 ];
 
+const loginValidators = [
+  check("email")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for email address"),
+  check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a value for password"),
+];
+
+
+// Routes
 router.get("/signup", csrfProtection, (req, res) => {
   const user = db.User.build();
   res.render('user-signup', {
@@ -69,14 +83,6 @@ router.post("/signup", csrfProtection, userValidators, asyncHandler(async (req, 
   }
 }));
 
-const loginValidators = [
-  check("email")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a value for email address"),
-  check("password")
-    .exists({ checkFalsy: true })
-    .withMessage("Please provide a value for password"),
-];
 
 router.get("/login", csrfProtection, (req, res) => {
   res.render("user-login", {
@@ -128,4 +134,6 @@ router.post("/logout", (req, res) => {
   logoutUser(req, res);
   res.redirect("/users/login");
 });
+
+
 module.exports = router;
