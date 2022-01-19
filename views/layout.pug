@@ -3,5 +3,19 @@ html
   head
       block head
         title #{title}
+        link(rel="stylesheet" href="/stylesheets/nav.css")
   body
+    nav 
+      div.left-nav
+        a(href="") 
+          img#logo(src="/images/ggg_logo_black.png", alt="Good-Game-Guides Logo")
+        span.nav-links
+          ul
+            li#home-button: a(href="") Home
+            li#my-guides-button: a(href="") My Guides
+      div.right-nav
+        ul 
+          li#user-name #{user.fullName}
+          li
+            include includes/logout.pug
     block content

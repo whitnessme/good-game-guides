@@ -3,9 +3,11 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const { sequelize } = require("./db/models");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
+const { sequelize } = require("./db/models");
+const { restoreUser } = require('./auth');
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 
@@ -29,12 +31,14 @@ app.use(
     store,
     saveUninitialized: false,
     resave: false,
+    name: 'ggg.sid'
   })
 );
 
 // create Session table if it doesn't already exist
 store.sync();
 
+app.use(restoreUser);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
