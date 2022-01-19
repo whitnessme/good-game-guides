@@ -103,3 +103,8 @@ input {
   text-align: center;
   margin-top: 24px;
 }
+
+img {
+  height: 30px;
+  width: auto;
+}
