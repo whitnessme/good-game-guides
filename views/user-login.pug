@@ -5,6 +5,7 @@ html
     meta(charset='utf-8')
     meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
     link(rel='stylesheet' href='../stylesheets/login-signup.css')
+    script(src="../javascripts/demoUser.js")
     title #{title}
   body
     div(class="wrapper")
@@ -22,8 +23,8 @@ html
             div(class="fieldEle")
               +field("Password", "password", null, "password")
             div(class="fieldEle" id="demoDiv")
-              input(name="demo-user" id="demo-user" type="checkbox")
-              label(for="demo-user" id="demo-user") Login with Demo User Credentials?
+              input(name="demo-user" id="demo-user-box" type="checkbox")
+              label(for="demo-user") Login with Demo User Credentials?
             div(class="submitEle")
               button(type='submit' class="submit-button submit-button--large") Login
               div(class="signUpOption")
