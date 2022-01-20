@@ -1,0 +1,170 @@
+body {
+    background-color: #FFFFFF;
+    color: #181818;
+    display: block;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 100%;
+    line-height: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.mainContentContainer {
+    margin-top: 10px;
+    padding-bottom: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+.mainContent {
+    background: #FFFFFF;
+    margin: 0px auto;
+    text-align: left;
+    width: 970px;
+}
+
+.myGuidesPage {
+    font-size: 14px;
+}
+
+#leftCol {
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 200px;
+}
+
+#side {
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.sectionHeader {
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.smallText {
+    color: #00635d;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 11px;
+    line-height: 14px;
+}
+
+.stacked {
+    margin-bottom: 10px;
+}
+
+.userShelf a {
+    color: #00635d;
+}
+
+.divider {
+    border-bottom: 1px solid #D8D8D8;
+    display: none;
+    margin: 0.5em 0;
+}
+
+.selectedShelf a {
+    color: #777777
+}
+
+#addShelfBtn {
+    background-color: #F4F1EA;
+    border: 1px solid #D6D0C4;
+    border-radius: 3px;
+    color: #333333;
+    display: inline-block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 11px;
+    line-height: 1;
+    padding: 4px 12px;
+}
+
+#newShelfForm {
+    display: none;
+    height: 23px;
+    margin-top: 18px;
+    padding-bottom: 15px;
+}
+
+.add-shelf-form {
+    display: block;
+    margin-top: 0em;
+}
+
+.add-shelf-form label {
+    font-weight: bold;
+    margin-right: 3px;
+}
+
+#addShelfInput {
+    display: flex;
+    align-items: center;
+}
+
+#addShelfInput #addShelf {
+    background: #FFFFFF;
+    border: #DCD6CC 1px solid;
+    border-radius: 3px;
+    color: #333333;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    height: 15px;
+    padding: 2px;
+    width: 100px;
+}
+
+#addShelfInput #addShelf:focus {
+    border-color: #B9AD99;
+    box-shadow: 0 0 4px rgb(185 173 153 / 50%);
+    outline: 0px;
+}
+
+#addShelfInput button {
+    background-color: #F4F1EA;
+    border: 1px solid #D6D0C4;
+    border-radius: 3px;
+    color: #333333;
+    display: inline-block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 11px;
+    line-height: 1;
+    margin-left: 3px;
+    padding: 4px 12px;
+}
+
+#rightCol {
+    float: left;
+    margin-bottom: 10px;
+    width: 750px;
+}
+
+#guides {
+    border-collapse: collapse;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+}
+
+#guidesHeader {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#guides th {
+    border-bottom: 2px solid #EBE8D5;
+    color: #382110;
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: bottom;
+}
+
+#guides .cover {
+    float: none;
+    margin: 0;
+    padding: 12px 5px 5px 0;
+    width: 50px;
+}

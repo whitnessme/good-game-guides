@@ -1,8 +1,7 @@
 //- Interpolate userId
 form(class='add-shelf-form' action='/users/:userId/customShelves' method='post')
     input(type='hidden' name='_csrf' value=csrfToken)
-    div
-        label(for='addShelf') Add a Shelf:
-    div
-        input(type='text' name='addShelf')
-    button(type='submit') Add
+    label(for='addShelf') Add a Shelf:
+    div(id='addShelfInput')
+        input(type='text' name='addShelf' id='addShelf')
+        button(type='submit') Add
