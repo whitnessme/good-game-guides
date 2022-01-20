@@ -1,4 +1,4 @@
-const db = require("../db/models");
+const db = require("./db/models");
 
 function findStatusShelfEntries(userId, statusId){
     return db.StatusShelf.findAll({
@@ -34,7 +34,7 @@ function findCustomShelfEntries(userId, name) {
             name
         }
     })
-    
+
     if(result) {
         return result
     } else return null
