@@ -1,0 +1,25 @@
+extends layout.pug
+
+append head
+  //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/game-guides-id.css")
+
+block content
+  div(class="main-content-container")
+    div(class="main-content")
+      div(class="left-container")
+        div(id="topcol")
+          div(id="imagecol")
+            div(class="book-cover-container")
+              img(src="")
+          div(class="wtp-button-container")
+            div(class="wtr-button")
+              //- form() for destroying from shelf
+              span(title="Want to Play") Want to Play
+            div(class="shelf-dropdown-button")
+              //- form() for adding to shelf
+              button(class="wtp-shelf-button")
+              div(class="wtp-shelf-menu")
+                div(class="wtp-shelf-list")
+                  ul(class="wtp-exclusive-shelves")
+                    li(name="played")

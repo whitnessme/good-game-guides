@@ -8,4 +8,28 @@ const db = require("../db/models");
 
 const router = express.Router();
 
+// List Page
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    // TBD
+  })
+);
+
+// Detail Page
+router.get(
+  "/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const gameGuideId = parseInt(req.params.id, 10);
+    const gameGuide = await db.GameGuide.findByPk(gameGuideId);
+
+    let title = gameGuide.title;
+
+    res.render("game-guides-id", {
+      title,
+      gameGuide,
+    });
+  })
+);
+
 module.exports = router;
