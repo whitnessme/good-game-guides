@@ -3,7 +3,7 @@ extends layout.pug
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/game-guides-id.css")
-  script(src="../javascripts/demoUser.js" defer)
+  script(src="../javascripts/game-guides-id.js")
 
 block content
   div(class="main-content-container")
@@ -22,7 +22,7 @@ block content
                 div(class="shelf-dropdown-button")
                   //- form() for adding to shelf
                   button(class="wtp-shelf-button") 🔽
-                  div(class="wtp-shelf-menu" style="display: none")
+                  div(class="wtp-shelf-menu" style="display: none; left: -18px")
                     div(class="wtp-shelf-list")
                       ul(class="wtp-exclusive-shelves")
                         li(name="played")
