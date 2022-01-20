@@ -30,4 +30,32 @@ block content
                                     include includes/shelf-add-form.pug
                 div(id='rightCol')
                     div(class='shelfTableContainer')
-                        include includes/my-game-guides-list.pug
+                        table(id='guides' class='table stacked')
+                            thead
+                                tr(id='guidesHeader')
+                                    //- Can nest anchor tags to perform sorting queries if wanted/able
+                                    th(class='cover') Cover
+                                    th(class='title') Title
+                                    th(class='author') Author
+                                    th(class='avgRating') Avg Rating
+                                    th(class='rating') Rating
+                                    th(class='shelves') Shelves
+                                    th(class='review') Review
+                                    th(class='datePlayed') Date Played
+                                    th(class='dateAdded') Date Added
+                                    th(class='actions')
+                            tbody(id='guidesBody')
+                                 //- if guides
+                                    //- each guides in guides
+                                        tr
+                                            td(class='cover')
+                                            td(class='title')
+                                            td(class='author')
+                                            td(class='avgRating')
+                                            td(class='rating')
+                                            td(class='shelves')
+                                            td(class='review')
+                                            td(class='datePlayed')
+                                            td(class='dateAdded')
+                                            td(class='actions')
+                        div(class='noContent') No guides have been added yet!
