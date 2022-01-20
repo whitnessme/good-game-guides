@@ -1,38 +1,102 @@
-.homegrid{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "current guides laura"
-    "want guides whit"
-    "shelves guides alex";
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.current-play{
+h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+.not-auth{
+    display: block;
+}
+
+.homegrid{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+/* .current-play{
     grid-area: current;
 }
 
 .want-play{
     grid-area: want;
+} */
+
+.left-home{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
 }
 
-.all-shelves{
-    grid-area: shelves;
+.left-shelves {
+    height: 200px;
 }
 
-.guides-container{
-    grid-area: guides;
+.middle-guides-container{
+    /* grid-area: guides; */
+    display: flex;
+    flex-direction: column;
 }
 
-
-#laura{
-    grid-area: laura;
+.list-shelves{
+    /* grid-area: shelves; */
+    display: block;
 }
 
-#whit{
-    grid-area: whit;
+.shelves-container{
+    display: flex;
+    flex-direction: row;
+    padding: 0px;
 }
 
-#alex{
-    grid-area: alex;
+.shelves-counts{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 3px;
+}
+
+.shelves-names{
+    display: flex;
+    flex-direction: column;
+    padding: 0px 3px;
+}
+
+.guide-img{
+    object-fit: cover;
+    object-position: top;
+    width: 100px;
+    height: 120px;
+}
+
+.ads {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(175, 35, 35, 0.288);
+    justify-content: center;
+    align-items: center;
+}
+
+.socials > a {
+    padding: 5px;
+}
+
+.social-img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
