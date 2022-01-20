@@ -22,12 +22,14 @@ router.get(
   asyncHandler(async (req, res) => {
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
+    const { userId } = req.session.auth;
 
     let title = gameGuide.title;
 
     res.render("game-guides-id", {
       title,
       gameGuide,
+      userId,
     });
   })
 );

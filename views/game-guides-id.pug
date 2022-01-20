@@ -3,9 +3,10 @@ extends layout.pug
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/game-guides-id.css")
-  script(src="../javascripts/game-guides-id.js")
+  script(src="../javascripts/game-guides-id.js" type="module")
 
 block content
+  div(style="display: none" id="userId") #{userId}
   div(class="main-content-container")
     div(class="main-content")
       div(class="main-content-float")
@@ -14,11 +15,11 @@ block content
           div(id="topcol")
             div(id="imagecol")
               div(class="book-cover-container")
-                img(src="#" id="cover-img" alt="guide cover image")
+                img(src=`${gameGuide.coverImg}` id="cover-img" alt="guide cover image")
               div(class="wtp-button-container")
                 div(class="wtp-button")
                   //- form() for destroying from shelf
-                  span(title="Want to Play") Want to Play
+                  span(title="Want to Play" class="current-selected-status") Want to Play
                 div(class="shelf-dropdown-button")
                   //- form() for adding to shelf
                   button(class="wtp-shelf-button") 🔽
@@ -26,14 +27,11 @@ block content
                     div(class="wtp-shelf-list")
                       ul(class="wtp-exclusive-shelves")
                         li(name="played")
-                          button(class="wtp-exclusive-shelf" type=submit value="played")
-                            span(class="progress-trigger") Played
+                          button(class="wtp-exclusive-shelf" type=submit value="played" id="statusId1") Played
                         li(name="currently-playing")
-                          button(class="wtp-exclusive-shelf" type=submit value="currently-playing")
-                            span(class="progress-trigger") Currently Playing
+                          button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
                         li(name="want-to-play")
-                          button(class="wtp-exclusive-shelf" type=submit value="want-to-play")
-                            span(class="progress-trigger") Want to Play
+                          button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Want to Play
                       ul(class="wtp-non-exclusive-shelves")
                         //- variable list
                         li(name="")

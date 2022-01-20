@@ -184,6 +184,10 @@ ul.wtp-exclusive-shelves > li > button {
   cursor: pointer;
 }
 
+.current-selected-status {
+  font-size: 12px;
+}
+
 .rating-stars {
   text-align: center;
 }
