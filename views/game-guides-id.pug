@@ -15,7 +15,7 @@ block content
               div(class="book-cover-container")
                 img(src="#" id="cover-img" alt="guide cover image")
               div(class="wtp-button-container")
-                div(class="wtr-button")
+                div(class="wtp-button")
                   //- form() for destroying from shelf
                   span(title="Want to Play") Want to Play
                 div(class="shelf-dropdown-button")
@@ -51,7 +51,7 @@ block content
               h1(id="game-guide-title") #{title}
               div(id="guide-authors")
                 span(class="by") by
-                span(id="author-name") #{" " + gameGuide.author}
+                span(id="author-name") #{" " + gameGuide.author + " " + "("+gameGuide.publisher+")"}
               div(id="guide-meta")
                 span(class="stars static-stars")
                   span(class="static-star")
@@ -60,14 +60,14 @@ block content
                   span(class="static-star")
                   span(class="static-star")
                 span(class="grey-text") 4.72
-                span(class="number-ratings")
-                span(class="number-reviews")
+                span(class="grey-text") 500 ratings
+                span(class="grey-text") 500 reviews
               div(id="description-container")
                 div(id="description-box")
                   p(id="description-text") #{gameGuide.summary}
           div(class="my-review-box")
             div(class="h2-container")
-              h2(class="brown-background") My Review
+              h2(class="my-review-header") My Review
             div(class="review-box-content")
               table(class="my-reviews" cellspacing="1" border="0" width="100%")
                 tbody

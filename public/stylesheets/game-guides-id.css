@@ -62,7 +62,7 @@
   position: relative;
 }
 
-.wtr-button {
+.wtp-button {
   border-width: 1px;
   padding: 6px 0 7px 8px;
   width: 105px;
@@ -81,6 +81,7 @@
   text-align: left;
   word-wrap: normal;
   white-space: nowrap;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .shelf-dropdown-button {
@@ -166,4 +167,145 @@
   clear: both;
   color: #f2f2f2;
   font-size: 85%;
+}
+
+.stars {
+  white-space: nowrap;
+  display: inline-block;
+  color: #aaa;
+  overflow: hidden;
+  width: 75px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.star {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  float: left;
+  font-size: 0 !important;
+}
+
+.star.off {
+  background-image: url("../images/review-stars.png");
+  background-size: 15px;
+}
+
+a {
+  color: #00635d;
+  text-decoration: none;
+}
+
+#textcol {
+  width: 455px;
+  margin-right: 0px;
+}
+
+#game-guide-title {
+  margin-bottom: 0;
+  width: 100%;
+  font-family: "Merriweather", "Georgia", serif;
+  font-weight: bold;
+  line-height: 1.25;
+  font-size: 24px;
+  color: #333333;
+}
+
+#guide-authors {
+  margin-bottom: 8px;
+  line-height: 18px;
+  font-size: 16px;
+}
+
+#guide-meta {
+  position: relative;
+}
+
+.static-stars {
+  height: 15px;
+  font-size: 0;
+  background-repeat: no-repeat;
+  vertical-align: top;
+}
+
+.grey-text {
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  margin: 0 5px;
+}
+
+#description-container {
+  border-bottom: 1px solid #ddd;
+}
+
+#description-box {
+  right: 0;
+  line-height: 21px;
+  font-family: "Merriweather", "Georgia", serif;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.my-review-box {
+  width: 100%;
+  padding-bottom: 10px;
+}
+.h2-container {
+  padding-top: 10px;
+  width: 100%;
+}
+
+.my-review-header {
+  display: block;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 2px 0;
+  width: auto;
+  height: 24px;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: transparent;
+  border-bottom: 1px solid #ddd;
+}
+
+.review-box-content {
+  padding: 10px 0 10px 0;
+}
+
+.my-reviews {
+  table-layout: fixed;
+}
+
+table {
+  border-collapse: separate;
+  text-indent: initial;
+  border-spacing: 2px;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.my-reviews td {
+  font-size: 14px;
+}
+
+.my-review-label {
+  padding: 4px 0;
+  vertical-align: top;
+  width: 125px;
+}
+
+td {
+  margin: 0;
 }
