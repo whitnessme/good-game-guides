@@ -10,7 +10,11 @@ const { sequelize } = require("./db/models");
 const { restoreUser } = require("./auth");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+<<<<<<< HEAD
 const gameGuidesRouter = require("./routes/game-guides");
+=======
+const myGameGuidesRouter = require('./routes/my-game-guides');
+>>>>>>> main
 
 const app = express();
 
@@ -42,7 +46,11 @@ store.sync();
 app.use(restoreUser);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+<<<<<<< HEAD
 app.use("/game-guides", gameGuidesRouter);
+=======
+app.use('/my-game-guides', myGameGuidesRouter);
+>>>>>>> main
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
