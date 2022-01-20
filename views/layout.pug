@@ -1,9 +1,9 @@
 doctype html
 html
   head
+      link(rel="stylesheet" href="/stylesheets/nav.css")
       block head
         title #{title}
-        link(rel="stylesheet" href="/stylesheets/nav.css")
   body
     nav
       div.left-nav
@@ -14,16 +14,16 @@ html
             li#home-button: a(href="/") Home
             if locals.authenticated
               li#my-guides-button: a(href="/my-game-guides") My Game Guides
-            else 
-              li#my-guides-button: a(href="/login") My Game Guides
+            else
+              li#my-guides-button: a(href="/users/login") My Game Guides
       div.right-nav
         ul.user-nav
           if locals.authenticated
             li#user-name #{user.fullName}
             li
               include includes/logout.pug
-          else 
-            li#login-button: a(href="/users/login") Login 
-            li#signup-button Not a member?  
+          else
+            li#login-button: a(href="/users/login") Login
+            li#signup-button Not a member?
              a(href="/users/signup") Sign Up
     block content

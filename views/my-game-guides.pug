@@ -1,0 +1,48 @@
+extends layout.pug
+
+block head
+    title #{user.fullName}'s Guides on GoodGameGuides
+
+block content
+    div(class='mainContentContainer')
+        div(class='mainContent')
+            div(id='columnContainer' class='myGuidesPage')
+                div(id='leftCol' class='col')
+                    div(id='sidewrapper')
+                        div(id='side')
+                            div(id='shelvesSection')
+                                div(class='sectionHeader') Guide Shelves
+                                    a(class='smallText' href='/my-game-guides/custom-shelves/edit') (Edit)
+                                div(id='shelfList' class='stacked')
+                                    //- Insert interpolated number for # of games tied to user in database
+                                    div(class='userShelf selectedShelf'): a(href='/my-game-guides') All ()
+                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played ()
+                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing ()
+                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play ()
+                                    div(class='divider')
+                                    //- Check if user has custom shelves, if yes, display them here
+                            div(class='stacked')
+                                button(id='addShelfBtn') Add Shelf
+                                //- Don't display form until Add Shelf has been clicked
+                                div(id='newShelfForm')
+                                    include includes/shelf-add-form.pug
+                div(id='rightCol' class='col')
+                    div(class='shelfTableContainer')
+                        table(id='guides' class='table stacked')
+                            thead
+                                tr(id='guidesHeader')
+                                    //- Can nest anchor tags to perform sorting queries if wanted/able
+                                    th Cover
+                                    th Title
+                                    th Author
+                                    th Avg Rating
+                                    th Rating
+                                    th Shelves
+                                    th Review
+                                    th Date Played
+                                    th Date Added
+                                    th
+                            tbody(id='guidesBody')
+                                //- each guides in guides
+                                    tr
+                                        td
