@@ -1,0 +1,169 @@
+.main-content-container {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.main-content-float {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto;
+  float: left;
+  width: 960px;
+  margin-top: 15px;
+  margin-left: 5px;
+  font-size: 12px;
+  min-height: 400px;
+  background: #ffffff;
+}
+
+.main-content {
+  margin: 0px auto;
+  text-align: left;
+  width: 970px;
+  background: #ffffff;
+}
+
+.left-container {
+  float: left;
+  width: 625px;
+  padding-right: 10px;
+  padding-left: 8px;
+}
+
+#topcol {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#imagecol {
+  width: 150px;
+  text-align: center;
+  float: left;
+  margin: 0 20px 10px 0;
+}
+
+.book-cover-container {
+  position: relative;
+  text-align: center;
+}
+
+#cover-img {
+  max-width: 150px;
+  margin: 0 auto 10px;
+}
+
+.wtp-button-container {
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 67px;
+  width: 140px;
+  position: relative;
+}
+
+.wtr-button {
+  border-width: 1px;
+  padding: 6px 0 7px 8px;
+  width: 105px;
+  font-size: 13px;
+  background-color: #f2f2f2;
+  border-color: #dddddd;
+  color: #181818;
+  line-height: 100%;
+  text-overflow: ellipsis;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-style: solid;
+  font-weight: bold;
+  overflow: hidden;
+  float: left;
+  text-align: left;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+
+.shelf-dropdown-button {
+  background-color: #409d69;
+  color: #fff;
+  border-width: 0px;
+  width: 27px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  border-left: 1px solid #38883d;
+  margin-right: -10px;
+  padding: 0;
+  float: left;
+}
+
+.wtp-shelf-button {
+  height: 27px;
+  padding: 5px;
+  width: 28px;
+  box-sizing: border-box;
+  background-color: transparent;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 8px 4px;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  margin: auto;
+  text-align: inherit;
+  min-width: 0 !important;
+}
+
+.wtp-shelf-menu {
+  background: #ffffff;
+  border-color: #cccccc;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  max-height: 250px;
+  overflow: hidden;
+  padding: 0;
+  right: 0;
+  text-align: left;
+  top: 28px;
+  width: 180px;
+  position: absolute;
+  box-shadow: 0 3px 4px -3px rgb(0 0 0 / 50%);
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+.wtp-shelf-list {
+  margin: 2px 0 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: 2px;
+  max-height: 215px;
+}
+
+/* There will be other css here to style drop down forms */
+
+.rating-stars {
+  text-align: center;
+}
+
+.myrating-text {
+  color: #999999;
+  box-sizing: content-box;
+  display: block;
+  font-size: 11px;
+  height: 16px;
+  line-height: 14px;
+  margin: 0 auto;
+  padding: 3px 6px 0 6px;
+  width: 100px;
+}
+
+.wtp-rating {
+  clear: both;
+  color: #f2f2f2;
+  font-size: 85%;
+}

@@ -7,91 +7,93 @@ append head
 block content
   div(class="main-content-container")
     div(class="main-content")
-      div(class="left-container")
-        div(id="topcol")
-          div(id="imagecol")
-            div(class="book-cover-container")
-              img(src="")
-            div(class="wtp-button-container")
-              div(class="wtr-button")
-                //- form() for destroying from shelf
-                span(title="Want to Play") Want to Play
-              div(class="shelf-dropdown-button")
-                //- form() for adding to shelf
-                button(class="wtp-shelf-button")
-                div(class="wtp-shelf-menu")
-                  div(class="wtp-shelf-list")
-                    ul(class="wtp-exclusive-shelves")
-                      li(name="played")
-                        button(class="wtp-exclusive-shelf" type=submit value="played")
-                          span(class="progress-trigger") Played
-                      li(name="currently-playing")
-                        button(class="wtp-exclusive-shelf" type=submit value="currently-playing")
-                          span(class="progress-trigger") Currently Playing
-                      li(name="want-to-play")
-                        button(class="wtp-exclusive-shelf" type=submit value="want-to-play")
-                          span(class="progress-trigger") Want to Play
-                    ul(class="wtp-non-exclusive-shelves")
-                      //- variable list
-                      li(name="")
-                        label(for="")
-                          input(type="checkbox" value="")
-              div(class="rating-stars wtp-rating")
-                div(class="myrating-text") Rate this book
-                //- need other info about user id and such
-                div(class="stars")
-                  a(class="star off" title="did not like it" href="#") 1 of 5 stars
-                  a(class="star off" title="it was ok" href="#") 2 of 5 stars
-                  a(class="star off" title="liked it" href="#") 3 of 5 stars
-                  a(class="star off" title="really liked it" href="#") 4 of 5 stars
-                  a(class="star off" title="it was amazing" href="#") 5 of 5 stars
-          div(id="textcol")
-            h1(id="game-guide-title") Title Here
-            div(id="guide-authors") \
-              span(class="by") by
-              span(id="author-name") author name here
-            div(id="guide-meta")
-              span(class="stars static-stars")
-                span(class="static-star")
-                span(class="static-star")
-                span(class="static-star")
-                span(class="static-star")
-                span(class="static-star")
-              span(class="grey-text") 4.72
-              span(class="number-ratings")
-              span(class="number-reviews")
-            div(id="description-container")
-              div(id="description-box")
-                p(id="description-text") sample text description of guide here
-        div(class="my-review-box")
-          div(class="h2-container")
-            h2(class="brown-background") My Review
-          div(class="review-box-content")
-            table(class="my-reviews" cellspacing="1" border="0" width="100%")
-              tbody
-                tr
-                  td(valign="top" class="my-review_label") Review of
-                  td(colspan="2") title of book
-                tr
-                  td(valign="top" class="my-review_label") Rating
-                  td(colspan="2") title of book
-                tr
-                  td(valign="top" class="my-review_label") Shelves
-                  td(colspan="2") shelves
-                tr
-                  td(valign="top" class="my-review_label") Review
-                  td(colspan="2") write a review button or your text review
-        div(class="community-review-box")
-          div stuff
-          div stuff
-          div stuff
-      div(class="right-container")
-        div(class="right-container-header")
-          h2(class="right-container-header-h2") Players Also Enjoyed:
-        div(class="guide-recommendations-container")
-          //- each something in something
-          div(class="single-recommendation-container")
-            div(class="guide-title-container")
-              h3(class="guide-title") guide title
-            div(class="guide-img-container")
-              img(src="#" alt="guide image cover art")
+      div(class="main-content-float")
+
+        div(class="left-container")
+          div(id="topcol")
+            div(id="imagecol")
+              div(class="book-cover-container")
+                img(src="#" id="cover-img" alt="guide cover image")
+              div(class="wtp-button-container")
+                div(class="wtr-button")
+                  //- form() for destroying from shelf
+                  span(title="Want to Play") Want to Play
+                div(class="shelf-dropdown-button")
+                  //- form() for adding to shelf
+                  button(class="wtp-shelf-button") 🔽
+                  div(class="wtp-shelf-menu" style="display: none")
+                    div(class="wtp-shelf-list")
+                      ul(class="wtp-exclusive-shelves")
+                        li(name="played")
+                          button(class="wtp-exclusive-shelf" type=submit value="played")
+                            span(class="progress-trigger") Played
+                        li(name="currently-playing")
+                          button(class="wtp-exclusive-shelf" type=submit value="currently-playing")
+                            span(class="progress-trigger") Currently Playing
+                        li(name="want-to-play")
+                          button(class="wtp-exclusive-shelf" type=submit value="want-to-play")
+                            span(class="progress-trigger") Want to Play
+                      ul(class="wtp-non-exclusive-shelves")
+                        //- variable list
+                        li(name="")
+                          label(for="")
+                            input(type="checkbox" value="")
+                div(class="rating-stars wtp-rating")
+                  div(class="myrating-text") Rate this book
+                  //- need other info about user id and such
+                  div(class="stars")
+                    a(class="star off" title="did not like it" href="#") 1 of 5 stars
+                    a(class="star off" title="it was ok" href="#") 2 of 5 stars
+                    a(class="star off" title="liked it" href="#") 3 of 5 stars
+                    a(class="star off" title="really liked it" href="#") 4 of 5 stars
+                    a(class="star off" title="it was amazing" href="#") 5 of 5 stars
+            div(id="textcol")
+              h1(id="game-guide-title") #{title}
+              div(id="guide-authors")
+                span(class="by") by
+                span(id="author-name") #{" " + gameGuide.author}
+              div(id="guide-meta")
+                span(class="stars static-stars")
+                  span(class="static-star")
+                  span(class="static-star")
+                  span(class="static-star")
+                  span(class="static-star")
+                  span(class="static-star")
+                span(class="grey-text") 4.72
+                span(class="number-ratings")
+                span(class="number-reviews")
+              div(id="description-container")
+                div(id="description-box")
+                  p(id="description-text") #{gameGuide.summary}
+          div(class="my-review-box")
+            div(class="h2-container")
+              h2(class="brown-background") My Review
+            div(class="review-box-content")
+              table(class="my-reviews" cellspacing="1" border="0" width="100%")
+                tbody
+                  tr
+                    td(valign="top" class="my-review_label") Review of
+                    td(colspan="2") #{title}
+                  tr
+                    td(valign="top" class="my-review_label") Rating
+                    td(colspan="2") title of book
+                  tr
+                    td(valign="top" class="my-review_label") Shelves
+                    td(colspan="2") shelves
+                  tr
+                    td(valign="top" class="my-review_label") Review
+                    td(colspan="2") write a review button or your text review
+          div(class="community-review-box")
+            div stuff
+            div stuff
+            div stuff
+        div(class="right-container")
+          div(class="right-container-header")
+            h2(class="right-container-header-h2") Players Also Enjoyed:
+          div(class="guide-recommendations-container")
+            //- each something in something
+            div(class="single-recommendation-container")
+              div(class="guide-title-container")
+                h3(class="guide-title") guide title
+              div(class="guide-img-container")
+                img(src="#" alt="guide image cover art")
