@@ -1,20 +1,28 @@
 const db = require("../db/models");
 
+function findStatusShelfEntries(userId, statusId){
+    return db.StatusShelf.findAll({
+        where: {
+            userId,
+            statusId
+        }
+    })
+}
+
 function addStatusShelfEntry(statusId, gameguideId, userId) {
-    const statusShelfExists = db.StatusShelf.findAll({
+    // Check if gameGuide is in any of the 3 status shelves:
+    const guideStatusCheck = db.StatusShelf.findAll({
         where: {
             gameguideId,
             userId
         }
     })
-
-    if(statusShelfExists) {
-        if(statusShelfExists[0].statusId === statusId) {
-            statusShelfExists[0].destroy();
-        } else {
-            statusShelfExists[0].statusId = statusId
-        }
+    // If it is in a status shelf already:
+    if(guideStatusCheck) {
+        // Change it to be in the selected status shelf
+        entries[0].statusId = statusId
     } else {
+        // If the guide isn't in any status shelf:
         db.StatusShelf.create({statusId, gameguideId, userId})
     }
 }
@@ -26,9 +34,9 @@ function findCustomShelfEntries(userId, name) {
             name
         }
     })
-
+    
     if(result) {
-    return result
+        return result
     } else return null
 }
 
@@ -54,10 +62,35 @@ function addGuideToCustomShelf(name, userId, gameGuideId) {
     }
 }
 
+function checkCountOfShelfEntries(shelf, userId){
+    let count;
+    // If shelf is a custom shelf name:
+    if(typeof shelf === "string"){
+        count = db.CustomShelf.findAndCountAll({
+            where: {
+                userId,
+                name: shelf
+            }
+        })
+    }
+    // If shelf is a status shelf id:
+    if(typeof shelf === "number"){
+        count = db.CustomShelf.findAndCountAll({
+            where: {
+                userId,
+                statusId: shelf
+            }
+        })
+    }
+    return count
+}
+
 module.exports = {
     addStatusShelfEntry,
+    findStatusShelfEntries,
     findCustomShelfEntries,
     addCustomShelfName,
     checkIfCustomNameExists,
-    addGuideToCustomShelf
+    addGuideToCustomShelf,
+    checkCountOfShelfEntries
 }
