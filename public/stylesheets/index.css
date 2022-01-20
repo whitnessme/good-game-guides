@@ -4,35 +4,47 @@ h4 {
     margin-bottom: 10px;
 }
 
+h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
 .not-auth{
     display: block;
 }
 
 .homegrid{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "current guides laura"
-    "want guides whit"
-    "shelves guides alex";
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
 }
 
-.current-play{
+/* .current-play{
     grid-area: current;
 }
 
 .want-play{
     grid-area: want;
+} */
+
+.left-home{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
 }
 
+.left-shelves {
+    height: 200px;
+}
 
 .middle-guides-container{
-    grid-area: guides;
+    /* grid-area: guides; */
+    display: flex;
+    flex-direction: column;
 }
 
 .list-shelves{
-    grid-area: shelves;
+    /* grid-area: shelves; */
     display: block;
 }
 
@@ -54,8 +66,6 @@ h4 {
     padding: 0px 3px;
 }
 
-
-
 .guide-img{
     object-fit: cover;
     object-position: top;
@@ -63,15 +73,30 @@ h4 {
     height: 120px;
 }
 
-
-#laura{
-    grid-area: laura;
+.ads {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
 }
 
-#whit{
-    grid-area: whit;
+.socials {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(175, 35, 35, 0.288);
+    justify-content: center;
+    align-items: center;
 }
 
-#alex{
-    grid-area: alex;
+.socials > a {
+    padding: 5px;
+}
+
+.social-img {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }

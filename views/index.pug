@@ -8,38 +8,42 @@ append head
 
 block content
     div.homegrid
-        span.current-play
-            h4 Currently Playing
-            if locals.authenticated
-                ul#curr-guides
-                    each guide in currentGuides
-                        li: img.small-square(src=`${guide.coverImg}`)
-            else
-                p.not-auth Please login to view your saved guides
-        span.want-play
-            h4 Want to Play
-            if locals.authenticated
-                ul#want-guides
-                    each guide in wantToGuides
-                        li: img.small-square(src=`${guide.coverImg}`)
-            else
-                p.not-auth Please login to view your saved guides
-        span.list-shelves
-            h4 Shelves
-            span.shelves-container
+        div.left-home
+            span.left-shelves#current-play
+                h4 Currently Playing
                 if locals.authenticated
-                    div.shelves-counts
-                        a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") 0
-                        a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") 0
-                        a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") 0
-                    div.shelves-names
-                        a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
-                        a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing
-                        a.shelves-link#play(href="/my-game-guides/status-shelves/3") Played
+                    ul#curr-guides
+                        each guide in currentGuides
+                            li: img.small-square(src=`${guide.coverImg}`)
                 else
                     p.not-auth Please login to view your saved guides
+            span.left-shelves#want-play
+                h4 Want to Play
+                if locals.authenticated
+                    ul#want-guides
+                        each guide in wantToGuides
+                            li: img.small-square(src=`${guide.coverImg}`)
+                else
+                    p.not-auth Please login to view your saved guides
+            span.list-shelves
+                h4 Shelves
+                span.shelves-container
+                    if locals.authenticated
+                        div.shelves-counts
+                            a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") 0
+                            a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") 0
+                            a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") 0
+                        div.shelves-names
+                            a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
+                            a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing
+                            a.shelves-link#play(href="/my-game-guides/status-shelves/3") Played
+                    else
+                        p.not-auth Please login to view your saved guides
 
         div.middle-guides-container
+            div.welcome
+                p Welcome to our goodreads clone, goodgameguides! Once you have logged in, you can add guides to your shelves to save, review, and keep track of guides you've played through!
+            h3 Browse Guides
             table.all-guides
                 thead
                     tr 
@@ -54,9 +58,13 @@ block content
                                     img.guide-img(src=`${guide.coverImg}`)
                             td=guide.title 
                             td=guide.author
-        div.socials#whit
-          a(href="https://github.com/whitnessme") Whitney
-        div.socials#alex
-          a(href="https://github.com/alexsmaldone") Alex
-        div.socials#laura
-          a(href="https://github.com/lrmaser") Laura
+        div.ads
+            div.socials#whit
+                img.social-img(src="https://i.pinimg.com/550x/f2/68/76/f26876965d8b787fc1738a460a9c31a8.jpg", alt="Retro illustration of Nintendo 64, playing Legend of Zelda")
+                a(href="https://github.com/whitnessme") Whitney
+            div.socials#alex
+                img.social-img(src="https://www.techrepublic.com/a/hub/i/r/2020/07/24/0491b437-24cf-4129-bfe3-12db15f17d8e/resize/1200x900/0ddd34fe229eac17e2c0a38da331f3e5/zoljo.jpg", alt="Purple arcade illustration")
+                a(href="https://github.com/alexsmaldone") Alex
+            div.socials#laura
+                img.social-img(src="https://64.media.tumblr.com/45d8d9457a835696558ed8a75c56da3e/7a2938d030429248-07/s500x750/15c6c56bdac00e14fb331573adba55e7eed1b5a8.png", alt="Animal Crossing character in field of flowers")
+                a(href="https://github.com/lrmaser") Laura
