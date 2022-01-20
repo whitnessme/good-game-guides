@@ -1,4 +1,4 @@
-body {
+.mainContentContainer {
     background-color: #FFFFFF;
     color: #181818;
     display: block;
@@ -6,13 +6,8 @@ body {
     font-size: 12px;
     height: 100%;
     line-height: 18px;
-    margin: 0;
-    padding: 0;
-}
-
-.mainContentContainer {
-    margin-top: 10px;
-    padding-bottom: 25px;
+    margin: 10px 0 0 0;
+    padding: 0 0 25px 0;
     text-align: center;
     width: 100%;
 }
@@ -159,12 +154,63 @@ body {
     color: #382110;
     font-size: 12px;
     font-weight: bold;
+    height: 36px;
+    line-height: 18px;
+    margin: 0;
+    text-align: left;
     vertical-align: bottom;
+    width: 960px;
 }
 
 #guides .cover {
-    float: none;
-    margin: 0;
     padding: 12px 5px 5px 0;
     width: 50px;
+}
+
+#guides .title {
+    padding: 12px 5px 5px 0;
+    width: 25%;
+}
+
+#guides .author {
+    padding: 12px 5px 5px 0;
+}
+
+#guides .avgRating {
+    padding: 12px 5px 5px 0;
+}
+
+#guides .rating {
+    padding: 12px 5px 5px 0;
+}
+
+#guides .shelves {
+    padding: 12px 5px 5px 0;
+}
+
+#guides .review {
+    padding: 12px 5px 5px 0;
+    width: 100%;
+}
+
+#guides .datePlayed {
+    padding: 12px 5px 5px 0;
+}
+
+#guides .dateAdded {
+    padding: 12px 5px 5px 0;
+}
+
+/* Cannot get this to display properly, adjusts height of other headers to be 1px more */
+#guides .actions {
+    display: inline-block;
+    padding: 12px 5px 5px 0;
+    width: 40px;
+}
+
+.noContent {
+    color: #999999;
+    margin-bottom: 10px;
+    padding: 20px;
+    text-align: center;
 }
