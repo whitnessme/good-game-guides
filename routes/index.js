@@ -20,7 +20,8 @@ router.get("/", asyncHandler(async (req, res, next) => {
   let count1;
   let count2;
   let count3;
-  let customCounts;
+
+  let customCounts = [];
 
   if (req.session.auth) {
     const { userId } = req.session.auth;
@@ -54,8 +55,14 @@ router.get("/", asyncHandler(async (req, res, next) => {
     count2 = await checkCountOfShelfEntries(2, userId);
     count3 = await checkCountOfShelfEntries(3, userId);
 
-
+    for (let shelf of customShelves) {
+      let shelfName = shelf.name
+      const result = await checkCountOfShelfEntries(shelfName, userId);
+      customCounts.push({count: result, name: shelfName})
+    }
   }
+  console.log("HERE: ", customCounts)
+  console.log('Hello???? ', customShelves)
 
   if (!currentGuides.length) {
     noCurr.push("Please add guides to view them here")
@@ -74,7 +81,8 @@ router.get("/", asyncHandler(async (req, res, next) => {
     customShelves,
     count1,
     count2,
-    count3
+    count3,
+    customCounts,
   });
 }));
 

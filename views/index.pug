@@ -14,10 +14,11 @@ block content
                 if locals.authenticated
                     ul#curr-guides
                         each guide in currentGuides
-                            li
-                                img.curr-rec(src=`${guide.GameGuide.coverImg}`)
-                                a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
-                                    h5 #{guide.GameGuide.title}
+                            a(href=`/game-guides/${guide.id}`)
+                                li
+                                    img.curr-rec(src=`${guide.GameGuide.coverImg}`)
+                                    a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
+                                        h5 #{guide.GameGuide.title}
                         each list in noCurr
                             li.no-guides #{list}
                 else
@@ -29,7 +30,8 @@ block content
                         each list in noWant
                             li.no-guides #{list}
                         each guide in wantToGuides
-                            li: img.want-square(src=`${guide.GameGuide.coverImg}`)
+                            a(href=`/game-guides/${guide.id}`)
+                                li: img.want-square(src=`${guide.GameGuide.coverImg}`)
                 else
                     p.not-auth Please login to view your saved guides
             span.list-shelves
@@ -40,6 +42,8 @@ block content
                             a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") #{count1}
                             a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") #{count2}
                             a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") #{count3}
+                            each count in customCounts 
+                                a.shelves-link.custom-num(href=`/my-game-guides/custom-shelves/${count.name}`) #{count.count}
                         div.shelves-names
                             a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
                             a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing

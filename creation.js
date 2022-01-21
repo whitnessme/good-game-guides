@@ -68,12 +68,25 @@ async function checkCountOfShelfEntries(shelf, userId){
     let count;
     // If shelf is a custom shelf name:
     if(typeof shelf === "string"){
-        count = await db.CustomShelf.findAndCountAll({
+        result = await db.CustomShelf.findAndCountAll({
             where: {
                 userId,
                 name: shelf
             }
         })
+
+        if (result.count === 1) {
+            const one = await db.CustomShelf.findAll({
+                where: {
+                    userId,
+                    name: shelf
+                }
+            })
+            if (!one.GameGuide) {
+                result.count = 0
+            }
+        }
+        count = result;
     }
     // If shelf is a status shelf id:
     if(typeof shelf === "number"){
