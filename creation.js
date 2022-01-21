@@ -5,7 +5,8 @@ function findStatusShelfEntries(userId, statusId){
         where: {
             userId,
             statusId
-        }
+        },
+        include: db.GameGuide
     })
 }
 
@@ -32,7 +33,8 @@ function findCustomShelfEntries(userId, name) {
         where: {
             userId,
             name
-        }
+        },
+        include: db.GameGuide
     })
 
     if(result) {
@@ -85,6 +87,15 @@ function checkCountOfShelfEntries(shelf, userId){
     return count
 }
 
+function allStatusShelfEntries(userId){
+    return db.StatusShelf.findAll({
+        where: {
+            userId
+        }
+    })
+ }
+
+
 module.exports = {
     addStatusShelfEntry,
     findStatusShelfEntries,
@@ -92,5 +103,6 @@ module.exports = {
     addCustomShelfName,
     checkIfCustomNameExists,
     addGuideToCustomShelf,
-    checkCountOfShelfEntries
+    checkCountOfShelfEntries,
+    allStatusShelfEntries
 }
