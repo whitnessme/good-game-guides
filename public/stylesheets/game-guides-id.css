@@ -352,11 +352,16 @@ td {
 }
 
 .single-recommendation-container {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.right-container-header-h2 {
+  color: #333333;
+  font-family: "Merriweather", "Georgia", serif;
 }
 
 .guide-title {
-  margin-bottom: 0;
+  margin-bottom: 5px;
   width: 100%;
   font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;

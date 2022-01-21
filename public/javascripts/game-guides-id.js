@@ -1,6 +1,3 @@
-import { addStatusShelfEntry } from "./creation.js";
-// const db = require("../../db/models");
-
 window.addEventListener("DOMContentLoaded", (e) => {
   // GLOBAL VARIABLES
 
@@ -21,12 +18,12 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
   // updating status shelf
   const shelf = document.querySelector(".wtp-exclusive-shelves");
-  function updateStatus(e) {
+  function updateStatusInDom(e) {
     const currentStatus = document.querySelector(".current-selected-status");
     const newlySelectedStatus = e.target.innerText;
     currentStatus.innerText = newlySelectedStatus;
   }
-  shelf.addEventListener("click", updateStatus);
+  shelf.addEventListener("click", updateStatusInDom);
 
-  //
+  // Update shelf status of book
 });
