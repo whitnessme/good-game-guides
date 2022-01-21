@@ -33,7 +33,7 @@ router.get('/status-shelves/:id(\\d+)', asyncHandler(async (req, res) => {
 
     const guides = await findStatusShelfEntries(userId, shelfId);
 
-    res.render('my-game-guides-status', { guides });
+    res.render('my-game-guides', { guides });
 }));
 
 // Custom shelves will be strings of the name

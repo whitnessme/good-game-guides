@@ -6,7 +6,15 @@ function findStatusShelfEntries(userId, statusId){
             userId,
             statusId
         },
-        include: db.GameGuide
+        include: [
+            {
+                model: db.Status
+            },
+            {
+                model: db.GameGuide,
+                include: db.Review
+            }
+        ]
     })
 }
 
