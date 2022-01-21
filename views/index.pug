@@ -37,13 +37,15 @@ block content
                 span.shelves-container
                     if locals.authenticated
                         div.shelves-counts
-                            a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") 0
-                            a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") 0
-                            a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") 0
+                            a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") #{count1}
+                            a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") #{count2}
+                            a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") #{count3}
                         div.shelves-names
                             a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
                             a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing
                             a.shelves-link#play(href="/my-game-guides/status-shelves/3") Played
+                            each shelf in customShelves
+                                a.shelves-link.custom-shelf(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}
                     else
                         p.not-auth Please login to view your saved guides
 
