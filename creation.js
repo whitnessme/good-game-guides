@@ -1,6 +1,7 @@
 const db = require("./db/models");
+const { sequelize } = require("./db/models");
 
-function findStatusShelfEntries(userId, statusId){
+function findStatusShelfEntries(userId, statusId) {
     return db.StatusShelf.findAll({
         where: {
             userId,
@@ -19,21 +20,21 @@ function findStatusShelfEntries(userId, statusId){
 }
 
 function addStatusShelfEntry(statusId, gameguideId, userId) {
-  // Check if gameGuide is in any of the 3 status shelves:
-  const guideStatusCheck = db.StatusShelf.findAll({
-    where: {
-      gameguideId,
-      userId,
-    },
-  });
-  // If it is in a status shelf already:
-  if (guideStatusCheck) {
-    // Change it to be in the selected status shelf
-    entries[0].statusId = statusId;
-  } else {
-    // If the guide isn't in any status shelf:
-    db.StatusShelf.create({ statusId, gameguideId, userId });
-  }
+    // Check if gameGuide is in any of the 3 status shelves:
+    const guideStatusCheck = db.StatusShelf.findAll({
+        where: {
+            gameguideId,
+            userId,
+        },
+    });
+    // If it is in a status shelf already:
+    if (guideStatusCheck) {
+        // Change it to be in the selected status shelf
+        entries[0].statusId = statusId;
+    } else {
+        // If the guide isn't in any status shelf:
+        db.StatusShelf.create({ statusId, gameguideId, userId });
+    }
 }
 
 function findCustomShelfEntries(userId, name) {
@@ -48,37 +49,37 @@ function findCustomShelfEntries(userId, name) {
         }
     })
 
-    if(result) {
+    if (result) {
         return result
     } else return null
 }
 
 function checkIfCustomNameExists(name, userId) {
-  const shelf = findCustomShelfEntries(userId, name);
-  if (shelf) return true;
-  else return false;
+    const shelf = findCustomShelfEntries(userId, name);
+    if (shelf) return true;
+    else return false;
 }
 
 function addCustomShelfName(name, userId) {
-  db.CustomShelf.create({ name, userId });
+    db.CustomShelf.create({ name, userId });
 }
 
 function addGuideToCustomShelf(name, userId, gameGuideId) {
-  const shelf = findCustomShelfEntries(userId, name);
-  // Check if one entry w/ name & if gameguideId is null.
-  if (shelf.length === 1 && shelf[0].gameGuideId === null) {
-    shelf[0].gameGuideId = gameGuideId;
-  } else if (shelf) {
-    db.CustomShelf.create({ name, userId, gameGuideId });
-  } else {
-    throw new Error("something broke with adding guide to custom shelf");
-  }
+    const shelf = findCustomShelfEntries(userId, name);
+    // Check if one entry w/ name & if gameguideId is null.
+    if (shelf.length === 1 && shelf[0].gameGuideId === null) {
+        shelf[0].gameGuideId = gameGuideId;
+    } else if (shelf) {
+        db.CustomShelf.create({ name, userId, gameGuideId });
+    } else {
+        throw new Error("something broke with adding guide to custom shelf");
+    }
 }
 
-function checkCountOfShelfEntries(shelf, userId){
+function checkCountOfShelfEntries(shelf, userId) {
     let count;
     // If shelf is a custom shelf name:
-    if(typeof shelf === "string"){
+    if (typeof shelf === "string") {
         count = db.CustomShelf.findAndCountAll({
             where: {
                 userId,
@@ -87,7 +88,7 @@ function checkCountOfShelfEntries(shelf, userId){
         })
     }
     // If shelf is a status shelf id:
-    if(typeof shelf === "number"){
+    if (typeof shelf === "number") {
         count = db.StatusShelf.findAndCountAll({
             where: {
                 userId,
@@ -98,7 +99,7 @@ function checkCountOfShelfEntries(shelf, userId){
     return count
 }
 
-function allStatusShelfEntries(userId){
+function allStatusShelfEntries(userId) {
     return db.StatusShelf.findAll({
         where: {
             userId
@@ -113,7 +114,16 @@ function allStatusShelfEntries(userId){
             }
         ]
     })
- }
+}
+
+function findAvgRating(gameGuideId) {
+    return db.Review.findOne({
+        where: {
+            gameGuideId
+        },
+        attributes: [sequelize.fn('AVG', sequelize.col('rating'))]
+    });
+};
 
 
 module.exports = {
@@ -124,5 +134,6 @@ module.exports = {
     checkIfCustomNameExists,
     addGuideToCustomShelf,
     checkCountOfShelfEntries,
-    allStatusShelfEntries
+    allStatusShelfEntries,
+    findAvgRating
 }

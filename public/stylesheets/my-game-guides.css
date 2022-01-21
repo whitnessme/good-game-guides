@@ -184,6 +184,30 @@
     padding: 12px 5px 5px 0;
 }
 
+.stars {
+    white-space: nowrap;
+    display: inline-block;
+    color: #aaa;
+    overflow: hidden;
+    width: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.star {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    height: 15px;
+    width: 15px;
+    float: left;
+    font-size: 0 !important;
+}
+
+.star.off {
+    background-image: url("../images/review-stars.png");
+    background-size: 15px;
+}
+
 #guides .shelves {
     padding: 12px 5px 5px 0;
 }

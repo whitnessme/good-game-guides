@@ -44,14 +44,19 @@ block content
                                     th(class='dateAdded') Date Added
                                     th(class='action')
                             tbody(id='guidesBody')
-                                if guides
+                                if guides.length > 0
                                     each guide in guides
                                         tr
                                             td(class='cover'): a(href=`/game-guides/${guide.GameGuide.id}`): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
                                             td(class='title'): a(href=`/game-guides/${guide.GameGuide.id}`)= guide.GameGuide.title
                                             td(class='author')= guide.GameGuide.author
                                             td(class='avgRating') ???
-                                            td(class='rating') *****
+                                            td(class='rating'): div(class="stars")
+                                                a(class="star off" title="did not like it" href="#") 1 of 5 stars
+                                                a(class="star off" title="it was ok" href="#") 2 of 5 stars
+                                                a(class="star off" title="liked it" href="#") 3 of 5 stars
+                                                a(class="star off" title="really liked it" href="#") 4 of 5 stars
+                                                a(class="star off" title="it was amazing" href="#") 5 of 5 stars
                                             td(class='shelves'): a(href=`/my-game-guides/status-shelves/${guide.Status.id}`)= guide.Status.name
                                             if guide.GameGuide.Reviews[0]
                                                 td(class='review')= guide.GameGuide.Reviews[0].reviewText
@@ -59,5 +64,5 @@ block content
                                                 td(class='review'): a(href=`/games-guides/${guide.GameGuide.id}/reviews/new`) Write a Review
                                             td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
                                             td(class='action'): a(href='#') X
-                        if !guides
+                        if guides.length === 0
                             div(class='noContent') No guides have been added yet!

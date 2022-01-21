@@ -11,7 +11,8 @@ const {
     checkIfCustomNameExists,
     addGuideToCustomShelf,
     checkCountOfShelfEntries,
-    allStatusShelfEntries
+    allStatusShelfEntries,
+    findAvgRating
 } = require('../creation');
 
 const router = express.Router();
@@ -26,7 +27,6 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 // /my-game-guides/status-shelves/:id
-// Status shelves will be integers
 router.get('/status-shelves/:id(\\d+)', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const shelfId = parseInt(req.params.id, 10);
@@ -36,8 +36,16 @@ router.get('/status-shelves/:id(\\d+)', asyncHandler(async (req, res) => {
     res.render('my-game-guides', { guides });
 }));
 
-// Custom shelves will be strings of the name
-router.get('/custom-shelves/:id(\\d+)');
+// /my-game-guides/custom-shelves/:id
+// :id can contain 1 or more letters (lower or uppercase), digits, underscore, dash, or space
+router.get('/custom-shelves/:id([\\w\- ]+)', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+    const shelfName = req.params.id;
+
+    const guides = await findCustomShelfEntries(userId, shelfName);
+
+    res.render('my-game-guides', { guides });
+}));
 
 router.get('/custom-shelves/edit');
 
