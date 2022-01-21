@@ -19,10 +19,8 @@ const router = express.Router();
 // /my-game-guides/
 router.get('/', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
-    const guides = await db.StatusShelf.findAll({
-        where: { userId },
-        include: db.GameGuide
-    });
+    const guides = await allStatusShelfEntries(userId);
+
 
     res.render('my-game-guides', { guides });
 }));

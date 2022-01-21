@@ -1,62 +1,62 @@
-extends layout.pug
+//- extends layout.pug
 
-block head
-    link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
-    title #{user.fullName}'s Guides on GoodGameGuides
+//- block head
+//-     link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
+//-     title #{user.fullName}'s Guides on GoodGameGuides
 
-block content
-    div(class='mainContentContainer')
-        div(class='mainContent')
-            div(id='columnContainer' class='myGuidesPage')
-                div(id='leftCol')
-                    div(id='sidewrapper')
-                        div(id='side')
-                            div(id='shelvesSection')
-                                div(class='sectionHeader') Guide Shelves
-                                    a(class='smallText' href='/my-game-guides/custom-shelves/edit') (Edit)
-                                div(id='shelfList' class='stacked')
-                                    //- Insert interpolated number for # of games tied to user in database
-                                    //- Use scripts to remove/add selectedShelf class to change color depending on which page you're on
-                                    div(class='userShelf selectedShelf'): a(href='/my-game-guides') All ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play ()
-                                    //- Check if user has custom shelves, if yes, display them here
-                                    div(class='divider')
-                            div(class='stacked')
-                                a(id='addShelfBtn' href='#') Add Shelf
-                                //- Don't display form until Add Shelf has been clicked
-                                div(id='newShelfForm')
-                                    include includes/shelf-add-form.pug
-                div(id='rightCol')
-                    div(class='shelfTableContainer')
-                        table(id='guides' class='table stacked')
-                            thead
-                                tr(id='guidesHeader')
-                                    //- Can nest anchor tags to perform sorting queries if wanted/able
-                                    th(class='cover') Cover
-                                    th(class='title') Title
-                                    th(class='author') Author
-                                    th(class='avgRating') Avg Rating
-                                    th(class='rating') Rating
-                                    th(class='shelves') Shelves
-                                    th(class='review') Review
-                                    th(class='datePlayed') Date Played
-                                    th(class='dateAdded') Date Added
-                                    th(class='actions')
-                            tbody(id='guidesBody')
-                                if guides
-                                    each guide in guides
-                                        tr
-                                            td(class='cover'): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
-                                            td(class='title')= guide.GameGuide.title
-                                            td(class='author')= guide.GameGuide.author
-                                            td(class='avgRating') ???
-                                            td(class='rating')
-                                            td(class='shelves') ???
-                                            td(class='review') ???
-                                            td(class='datePlayed') ???
-                                            td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
-                                            td(class='actions') ???
-                        if !guides
-                            div(class='noContent') No guides have been added yet!
+//- block content
+//-     div(class='mainContentContainer')
+//-         div(class='mainContent')
+//-             div(id='columnContainer' class='myGuidesPage')
+//-                 div(id='leftCol')
+//-                     div(id='sidewrapper')
+//-                         div(id='side')
+//-                             div(id='shelvesSection')
+//-                                 div(class='sectionHeader') Guide Shelves
+//-                                     a(class='smallText' href='/my-game-guides/custom-shelves/edit') (Edit)
+//-                                 div(id='shelfList' class='stacked')
+//-                                     //- Insert interpolated number for # of games tied to user in database
+//-                                     //- Use scripts to remove/add selectedShelf class to change color depending on which page you're on
+//-                                     div(class='userShelf selectedShelf'): a(href='/my-game-guides') All ()
+//-                                     div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played ()
+//-                                     div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing ()
+//-                                     div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play ()
+//-                                     //- Check if user has custom shelves, if yes, display them here
+//-                                     div(class='divider')
+//-                             div(class='stacked')
+//-                                 a(id='addShelfBtn' href='#') Add Shelf
+//-                                 //- Don't display form until Add Shelf has been clicked
+//-                                 div(id='newShelfForm')
+//-                                     include includes/shelf-add-form.pug
+//-                 div(id='rightCol')
+//-                     div(class='shelfTableContainer')
+//-                         table(id='guides' class='table stacked')
+//-                             thead
+//-                                 tr(id='guidesHeader')
+//-                                     //- Can nest anchor tags to perform sorting queries if wanted/able
+//-                                     th(class='cover') Cover
+//-                                     th(class='title') Title
+//-                                     th(class='author') Author
+//-                                     th(class='avgRating') Avg Rating
+//-                                     th(class='rating') Rating
+//-                                     th(class='shelves') Shelves
+//-                                     th(class='review') Review
+//-                                     th(class='datePlayed') Date Played
+//-                                     th(class='dateAdded') Date Added
+//-                                     th(class='actions')
+//-                             tbody(id='guidesBody')
+//-                                 if guides
+//-                                     each guide in guides
+//-                                         tr
+//-                                             td(class='cover'): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
+//-                                             td(class='title')= guide.GameGuide.title
+//-                                             td(class='author')= guide.GameGuide.author
+//-                                             td(class='avgRating') ???
+//-                                             td(class='rating')
+//-                                             td(class='shelves') ???
+//-                                             td(class='review') ???
+//-                                             td(class='datePlayed') ???
+//-                                             td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
+//-                                             td(class='actions') ???
+//-                         if !guides
+//-                             div(class='noContent') No guides have been added yet!

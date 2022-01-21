@@ -202,7 +202,7 @@
 }
 
 /* Cannot get this to display properly, adjusts height of other headers to be 1px more */
-#guides .actions {
+#guides .action {
     padding: 12px 5px 5px 0;
     width: 40px;
 }
