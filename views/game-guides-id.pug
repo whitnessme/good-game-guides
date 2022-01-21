@@ -6,7 +6,8 @@ append head
   script(src="../javascripts/game-guides-id.js" type="module")
 
 block content
-  div(style="display: none" id="userId") #{userId}
+  if userId
+    div(style="display: none" id="userId") #{userId}
   div(class="main-content-container")
     div(class="main-content")
       div(class="main-content-float")
@@ -23,24 +24,29 @@ block content
                 else
                   div(class="wtp-button unselected")
                     span(title="Want to Play" class="current-selected-status") Want to Play
-                div(class="shelf-dropdown-button")
-                  button(class="wtp-shelf-button") 🔽
-                  div(class="wtp-shelf-menu" style="display: none; left: -18px")
-                    div(class="wtp-shelf-list")
-                      ul(class="wtp-exclusive-shelves")
-                        li(name="played")
-                          button(class="wtp-exclusive-shelf" type=submit value="played" id="statusId1") Want to Play
-                        li(name="currently-playing")
-                          button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
-                        li(name="want-to-play")
-                          button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
-                      ul(class="wtp-non-exclusive-shelves")
-                        //- variable list
-                        li(name="")
-                          label(for="")
-                            input(type="checkbox" value="")
+                if !userId
+                  a(href="/users/login")
+                    div(class="shelf-dropdown-button")
+                      button(class="wtp-shelf-button") 🔽
+                else
+                  div(class="shelf-dropdown-button")
+                    button(class="wtp-shelf-button") 🔽
+                    div(class="wtp-shelf-menu" style="display: none; left: -18px")
+                      div(class="wtp-shelf-list")
+                        ul(class="wtp-exclusive-shelves")
+                          li(name="played")
+                            button(class="wtp-exclusive-shelf" type=submit value="played" id="statusId1") Want to Play
+                          li(name="currently-playing")
+                            button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
+                          li(name="want-to-play")
+                            button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
+                        ul(class="wtp-non-exclusive-shelves")
+                          //- variable list
+                          li(name="")
+                            label(for="")
+                              input(type="checkbox" value="")
                 div(class="rating-stars wtp-rating")
-                  div(class="myrating-text") Rate this book
+                  div(class="myrating-text") Rate this guide
                   //- need other info about user id and such
                   div(class="stars")
                     a(class="star off" title="did not like it" href="#") 1 of 5 stars

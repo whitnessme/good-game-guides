@@ -16,7 +16,6 @@ router.get(
   asyncHandler(async (req, res) => {
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
-    const { userId } = req.session.auth;
     const guides = await db.GameGuide.findAll();
 
     let statusObj = {
@@ -25,29 +24,40 @@ router.get(
       3: "Played",
     };
 
-    const guideStatusCheck = await db.StatusShelf.findAll({
-      where: {
-        gameGuideId,
+    if (req.session.auth) {
+      const { userId } = req.session.auth;
+      const guideStatusCheck = await db.StatusShelf.findAll({
+        where: {
+          gameGuideId,
+          userId,
+        },
+      });
+
+      let currentStatus;
+      if (guideStatusCheck.length) {
+        currentStatus = statusObj[guideStatusCheck[0].statusId];
+      }
+
+      console.log("=========TEST", currentStatus);
+
+      let title = gameGuide.title;
+
+      res.render("game-guides-id", {
+        title,
+        gameGuide,
         userId,
-      },
-    });
+        guides,
+        currentStatus,
+      });
+    } else {
+      let title = gameGuide.title;
 
-    let currentStatus;
-    if (guideStatusCheck.length) {
-      currentStatus = statusObj[guideStatusCheck[0].statusId];
+      res.render("game-guides-id", {
+        title,
+        gameGuide,
+        guides,
+      });
     }
-
-    console.log("=========TEST", currentStatus);
-
-    let title = gameGuide.title;
-
-    res.render("game-guides-id", {
-      title,
-      gameGuide,
-      userId,
-      guides,
-      currentStatus,
-    });
   })
 );
 

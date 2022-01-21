@@ -33,19 +33,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
   }
   shelf.addEventListener("click", updateStatusInDom);
 
-  // Update shelf status of book
-  /* Click button
-  - grab id of button
-  - if button.id = "text", then statusId = number
-  - const res = await fetc("long url of api route",
-  {
-    method: post,
-    body: statusId
-  }
-  )
-
-  */
-
   const wantToPlayButton = document.querySelector("#statusId1");
   const currentlyPlayingButton = document.querySelector("#statusId2");
   const playedButton = document.querySelector("#statusId3");
