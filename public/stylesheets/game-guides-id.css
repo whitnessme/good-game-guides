@@ -350,3 +350,24 @@ tr {
 td {
   margin: 0;
 }
+
+.single-recommendation-container {
+  margin-top: 10px;
+}
+
+.guide-title {
+  margin-bottom: 0;
+  width: 100%;
+  font-family: "Merriweather", "Georgia", serif;
+  font-weight: bold;
+  line-height: 1.25;
+  font-size: 12px;
+  color: #333333;
+}
+
+.guide-img {
+  object-fit: cover;
+  object-position: top;
+  width: 100px;
+  height: 120px;
+}

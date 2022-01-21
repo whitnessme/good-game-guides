@@ -1,3 +1,4 @@
+import { addStatusShelfEntry } from "./creation.js";
 // const db = require("../../db/models");
 
 window.addEventListener("DOMContentLoaded", (e) => {
@@ -25,11 +26,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
     const newlySelectedStatus = e.target.innerText;
     currentStatus.innerText = newlySelectedStatus;
   }
-
   shelf.addEventListener("click", updateStatus);
-  // add eventlistner to ul
-  // grab the target innertext
-  // grab the current-selected-status class
-  // set innertext of c-s-s class to innertext of target
+
   //
 });

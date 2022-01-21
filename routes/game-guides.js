@@ -23,6 +23,7 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const { userId } = req.session.auth;
+    const guides = await db.GameGuide.findAll();
 
     let title = gameGuide.title;
 
@@ -30,6 +31,7 @@ router.get(
       title,
       gameGuide,
       userId,
+      guides,
     });
   })
 );
