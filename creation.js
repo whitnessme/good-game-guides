@@ -42,7 +42,10 @@ function findCustomShelfEntries(userId, name) {
             userId,
             name
         },
-        include: db.GameGuide
+        include: {
+            model: db.GameGuide,
+            include: db.Review
+        }
     })
 
     if(result) {
