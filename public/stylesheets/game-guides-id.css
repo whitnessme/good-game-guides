@@ -84,6 +84,11 @@
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.wtp-button.unselected {
+  background-color: #409d69;
+  color: white;
+}
+
 .shelf-dropdown-button {
   background-color: #409d69;
   color: #fff;

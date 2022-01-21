@@ -19,6 +19,26 @@ router.get(
     const { userId } = req.session.auth;
     const guides = await db.GameGuide.findAll();
 
+    let statusObj = {
+      1: "Want to Play",
+      2: "Currently Playing",
+      3: "Played",
+    };
+
+    const guideStatusCheck = await db.StatusShelf.findAll({
+      where: {
+        gameGuideId,
+        userId,
+      },
+    });
+
+    let currentStatus;
+    if (guideStatusCheck.length) {
+      currentStatus = statusObj[guideStatusCheck[0].statusId];
+    }
+
+    console.log("=========TEST", currentStatus);
+
     let title = gameGuide.title;
 
     res.render("game-guides-id", {
@@ -26,6 +46,7 @@ router.get(
       gameGuide,
       userId,
       guides,
+      currentStatus,
     });
   })
 );

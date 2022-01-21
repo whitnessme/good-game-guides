@@ -19,9 +19,17 @@ window.addEventListener("DOMContentLoaded", (e) => {
   // updating status shelf
   const shelf = document.querySelector(".wtp-exclusive-shelves");
   function updateStatusInDom(e) {
+    const selectedButton = document.querySelector(".wtp-button");
     const currentStatus = document.querySelector(".current-selected-status");
-    const newlySelectedStatus = e.target.innerText;
-    currentStatus.innerText = newlySelectedStatus;
+    if (selectedButton) {
+      selectedButton.style.backgroundColor = "#f2f2f2";
+      selectedButton.style.color = "#181818";
+      const newlySelectedStatus = e.target.innerText;
+      currentStatus.innerText = newlySelectedStatus;
+    } else {
+      const newlySelectedStatus = e.target.innerText;
+      currentStatus.innerText = newlySelectedStatus;
+    }
   }
   shelf.addEventListener("click", updateStatusInDom);
 

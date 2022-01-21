@@ -17,11 +17,13 @@ block content
               div(class="book-cover-container")
                 img(src=`${gameGuide.coverImg}` id="cover-img" alt="guide cover image")
               div(class="wtp-button-container")
-                div(class="wtp-button")
-                  //- form() for destroying from shelf
-                  span(title="Want to Play" class="current-selected-status") Want to Play
+                if currentStatus
+                  div(class="wtp-button")
+                    span(title="Want to Play" class="current-selected-status") #{currentStatus}
+                else
+                  div(class="wtp-button unselected")
+                    span(title="Want to Play" class="current-selected-status") Want to Play
                 div(class="shelf-dropdown-button")
-                  //- form() for adding to shelf
                   button(class="wtp-shelf-button") 🔽
                   div(class="wtp-shelf-menu" style="display: none; left: -18px")
                     div(class="wtp-shelf-list")

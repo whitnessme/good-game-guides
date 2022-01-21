@@ -49,6 +49,15 @@ router.post(
       res.json({ statusEntry });
     } else {
       console.log("UPDATE");
+      const status = await db.StatusShelf.findOne({
+        where: {
+          gameGuideId,
+          userId,
+        },
+      });
+
+      await status.update({ statusId });
+      res.json({ status });
     }
   })
 );
