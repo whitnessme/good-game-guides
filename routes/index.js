@@ -9,9 +9,12 @@ router.get("/", asyncHandler(async(req, res, next) => {
   let currentGuides;
   let wantToGuides;
   const guides = await db.GameGuide.findAll()
+  let noCurr = []
+  let noWant = []
   
   if(req.session.auth) {
     const { userId } = req.session.auth;
+
     currentGuides = await db.StatusShelf.findAll({
       where: {
         userId,
@@ -29,7 +32,15 @@ router.get("/", asyncHandler(async(req, res, next) => {
       }
     })
   }
-    res.render("index", { title: "Home", guides, currentGuides, wantToGuides});
+
+  if (!currentGuides.length) {
+    noCurr.push("Please add guides to view them here")
+  }
+  console.log(noCurr.length)
+  if (!wantToGuides.length) {
+    noWant.push("Please add guides to view them here")
+  }
+  res.render("index", { title: "Home", guides, currentGuides, wantToGuides, noCurr, noWant});
 }));
 
 module.exports = router;

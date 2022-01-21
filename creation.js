@@ -75,7 +75,7 @@ function checkCountOfShelfEntries(shelf, userId){
     }
     // If shelf is a status shelf id:
     if(typeof shelf === "number"){
-        count = db.CustomShelf.findAndCountAll({
+        count = db.StatusShelf.findAndCountAll({
             where: {
                 userId,
                 statusId: shelf

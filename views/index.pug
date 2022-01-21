@@ -14,15 +14,22 @@ block content
                 if locals.authenticated
                     ul#curr-guides
                         each guide in currentGuides
-                            li: img.small-square(src=`${guide.coverImg}`)
+                            li
+                                img.curr-rec(src=`${guide.GameGuide.coverImg}`)
+                                a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
+                                    h5 #{guide.GameGuide.title}
+                        each list in noCurr
+                            li.no-guides #{list}
                 else
                     p.not-auth Please login to view your saved guides
             span.left-shelves#want-play
                 h4 Want to Play
                 if locals.authenticated
                     ul#want-guides
+                        each list in noWant
+                            li.no-guides #{list}
                         each guide in wantToGuides
-                            li: img.small-square(src=`${guide.coverImg}`)
+                            li: img.want-square(src=`${guide.GameGuide.coverImg}`)
                 else
                     p.not-auth Please login to view your saved guides
             span.list-shelves
