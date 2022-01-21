@@ -1,8 +1,11 @@
 extends layout.pug
 
 block head
-    link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
     title #{user.fullName}'s Guides on GoodGameGuides
+
+append head
+    link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
+    script(src='../javascripts/my-game-guides.js' type='module' defer)
 
 block content
     div(class='mainContentContainer')
@@ -32,12 +35,12 @@ block content
                                         div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
                                     else
                                         div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
-                                    //- Check if user has custom shelves, if yes, display them here
+                                    //- Check if user has custom shelves, if yes, display them here with divider
                                     div(class='divider')
                             div(class='stacked')
-                                a(id='addShelfBtn' href='#') Add Shelf
+                                button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked
-                                div(id='newShelfForm')
+                                div(type='button' id='newShelfForm')
                                     include includes/shelf-add-form.pug
                 div(id='rightCol')
                     div(class='shelfTableContainer')
