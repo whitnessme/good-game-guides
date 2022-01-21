@@ -7,18 +7,18 @@ const db = require("../db/models");
 
 const router = express.Router();
 
-router.get(
-  "/users/:id(\\d+)/game-guides/:id(\\d+)/status/:id(\\d+)",
-  asyncHandler(async (req, res) => {
-    let url = req.url.split("/");
-    let userId = parseInt(url[2]);
-    let gameGuideId = parseInt(url[4]);
-    let statusId = parseInt(url[6]);
+// router.get(
+//   "/users/:id(\\d+)/game-guides/:id(\\d+)/status/:id(\\d+)",
+//   asyncHandler(async (req, res) => {
+//     let url = req.url.split("/");
+//     let userId = parseInt(url[2]);
+//     let gameGuideId = parseInt(url[4]);
+//     let statusId = parseInt(url[6]);
 
-    const status = await db.StatusShelf.findByPk(statusId);
-    res.json(status);
-  })
-);
+//     const status = await db.StatusShelf.findByPk(statusId);
+//     res.json(status);
+//   })
+// );
 
 router.post(
   "/users/:id(\\d+)/game-guides/:id(\\d+)/status/:id(\\d+)",
@@ -30,6 +30,7 @@ router.post(
       statusId,
       gameGuideId,
     });
+    res.json({ statusEntry });
   })
 );
 

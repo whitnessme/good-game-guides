@@ -26,4 +26,42 @@ window.addEventListener("DOMContentLoaded", (e) => {
   shelf.addEventListener("click", updateStatusInDom);
 
   // Update shelf status of book
+  /* Click button
+  - grab id of button
+  - if button.id = "text", then statusId = number
+  - const res = await fetc("long url of api route",
+  {
+    method: post,
+    body: statusId
+  }
+  )
+
+  */
+
+  const wantToPlayButton = document.querySelector("#statusId1");
+  const currentlyPlayingButton = document.querySelector("#statusId2");
+  const playedButton = document.querySelector("#statusId3");
+
+  async function updatePlayStatus(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 1;
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
+  wantToPlayButton.addEventListener("click", updatePlayStatus);
+  currentlyPlayingButton.addEventListener("click", updatePlayStatus);
+  playedButton.addEventListener("click", updatePlayStatus);
 });
