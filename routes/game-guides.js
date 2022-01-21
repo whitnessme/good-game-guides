@@ -9,12 +9,6 @@ const db = require("../db/models");
 const router = express.Router();
 
 // List Page
-router.get(
-  "/",
-  asyncHandler(async (req, res) => {
-    // TBD
-  })
-);
 
 // Detail Page
 router.get(

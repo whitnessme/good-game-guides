@@ -353,6 +353,8 @@ td {
 
 .single-recommendation-container {
   margin-top: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 }
 
 .right-container-header-h2 {

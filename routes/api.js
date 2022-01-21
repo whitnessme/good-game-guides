@@ -11,11 +11,25 @@ router.get(
   "/users/:id(\\d+)/game-guides/:id(\\d+)/status/:id(\\d+)",
   asyncHandler(async (req, res) => {
     let url = req.url.split("/");
-    let userId = parseInt(url[2])
-    let gameGuideId = parseInt(url[4])
-    let statusId = parseInt(url[6])
+    let userId = parseInt(url[2]);
+    let gameGuideId = parseInt(url[4]);
+    let statusId = parseInt(url[6]);
 
-    console.log(userId, gameGuideId, statusId)
+    const status = await db.StatusShelf.findByPk(statusId);
+    res.json(status);
+  })
+);
+
+router.post(
+  "/users/:id(\\d+)/game-guides/:id(\\d+)/status/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const { userId, statusId, gameGuideId } = req.body;
+
+    const statusEntry = await db.StatusShelf.create({
+      userId,
+      statusId,
+      gameGuideId,
+    });
   })
 );
 
