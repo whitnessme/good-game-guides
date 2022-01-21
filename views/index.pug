@@ -51,7 +51,7 @@ block content
             div.welcome
                 div.welcome-img
                 p#welcome-text Welcome to our goodreads clone, goodgameguides! Once you have logged in, you can add guides to your shelves to save, review, and keep track of guides you've played through!
-            h3 Browse Guides
+            h3 BROWSE GUIDES:
             table.all-guides
                 thead
                     tr 
@@ -64,20 +64,21 @@ block content
                             td.img-container
                                 a(href=`/game-guides/${guide.id}`)
                                     img.guide-img(src=`${guide.coverImg}`)
-                            td=guide.title 
+                            td.title=guide.title 
                             td=guide.author
         div.ads
             h4 THE DREAM TEAM
             div.socials#whit
-                a(href="https://github.com/whitnessme")
+                a(href="https://github.com/whitnessme" target="_blank")
                     img.social-img(src="https://i.pinimg.com/550x/f2/68/76/f26876965d8b787fc1738a460a9c31a8.jpg", alt="Retro illustration of Nintendo 64, playing Legend of Zelda")
-                a(href="https://github.com/whitnessme") WHIT MINSON
+                a(href="https://github.com/whitnessme" target="_blank") WHIT MINSON
             div.socials#alex
                 a(href="https://github.com/alexsmaldone")
                     img.social-img(src="https://www.techrepublic.com/a/hub/i/r/2020/07/24/0491b437-24cf-4129-bfe3-12db15f17d8e/resize/1200x900/0ddd34fe229eac17e2c0a38da331f3e5/zoljo.jpg", alt="Purple arcade illustration")
-                a(href="https://github.com/alexsmaldone") ALEX SMALDONE
+                a(href="https://github.com/alexsmaldone" target="_blank") ALEX SMALDONE
             div.socials#laura
-                a(href="https://github.com/lrmaser")
+                a(href="https://github.com/lrmaser" target="_blank")
                     img.social-img(src="https://64.media.tumblr.com/45d8d9457a835696558ed8a75c56da3e/7a2938d030429248-07/s500x750/15c6c56bdac00e14fb331573adba55e7eed1b5a8.png", alt="Animal Crossing character in field of flowers")
-                a(href="https://github.com/lrmaser") LAURA MASER
-            div.ads-head
+                a(href="https://github.com/lrmaser" target="_blank") LAURA MASER
+            a(href="https://github.com/alexsmaldone/good-game-guides" target="_blank") 
+                div.ads-head

@@ -3,7 +3,11 @@ nav {
     flex-direction: row;
     justify-content: space-around;
     background-color: antiquewhite;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace;
+    position: sticky;
+    top: 0;
+    height: 80px;
+    width: 100%;
 }
 
 button, #login-button {

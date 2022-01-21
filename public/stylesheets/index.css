@@ -5,7 +5,6 @@ body {
 
 h4 {
     text-align: left;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     font-family: monospace;
     display: block;
     margin-bottom: 10px;
@@ -14,9 +13,10 @@ h4 {
 
 h3 {
     text-align: left;
-    font-family: 'Courier New', Courier, monospace;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: monospace;
     text-align: center;
+    color: rgb(126, 43, 43);
+    font-style: oblique;
 }
 
 .not-auth{
@@ -68,6 +68,27 @@ h3 {
 
 #welcome-text{
     padding: 2px 15px;
+}
+
+
+th, td {
+    border-bottom: 2px solid rgba(132, 115, 207, 0.2);
+    border-left: 1px solid rgb(132, 115, 207, 0.2);
+    border-right: 1px solid rgb(132, 115, 207, 0.2);
+    font-family: monospace;
+    padding: 10px 5px;
+}
+
+th {
+    color: white;
+    position: sticky;
+    top: 80px;
+    background-color: rgb(132, 115, 207);
+}
+
+.all-guides {
+    border-spacing: 0;
+    border-radius: 10px;
 }
 
 .list-shelves{
