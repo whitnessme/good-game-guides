@@ -25,12 +25,31 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId, statusId, gameGuideId } = req.body;
 
-    const statusEntry = await db.StatusShelf.create({
-      userId,
-      statusId,
-      gameGuideId,
+    // const status = await StatusShelf.findByPk(statusId);
+    // console.log("==============TEST", status);
+
+    // console.log("==============TEST", guideStatusCheck.length);
+
+    const guideStatusCheck = await db.StatusShelf.findAll({
+      where: {
+        gameGuideId,
+        userId,
+      },
     });
-    res.json({ statusEntry });
+
+    console.log("========TEST", guideStatusCheck[0]);
+
+    if (!guideStatusCheck.length) {
+      const statusEntry = await db.StatusShelf.create({
+        userId,
+        statusId,
+        gameGuideId,
+      });
+
+      res.json({ statusEntry });
+    } else {
+      console.log("UPDATE");
+    }
   })
 );
 

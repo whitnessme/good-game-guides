@@ -42,9 +42,48 @@ window.addEventListener("DOMContentLoaded", (e) => {
   const currentlyPlayingButton = document.querySelector("#statusId2");
   const playedButton = document.querySelector("#statusId3");
 
-  async function updatePlayStatus(e) {
+  async function updateStatusWantToPlay(e) {
     console.log("HELLOOOOOOOOOOOOOOOOOO");
     let statusId = 1;
+
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+  async function updateStatusCurrentlyPlaying(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 2;
+
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+  async function updateStatusPlayed(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 3;
+
     const res = await fetch(
       `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
       {
@@ -61,7 +100,10 @@ window.addEventListener("DOMContentLoaded", (e) => {
     );
   }
 
-  wantToPlayButton.addEventListener("click", updatePlayStatus);
-  currentlyPlayingButton.addEventListener("click", updatePlayStatus);
-  playedButton.addEventListener("click", updatePlayStatus);
+  wantToPlayButton.addEventListener("click", updateStatusWantToPlay);
+  currentlyPlayingButton.addEventListener(
+    "click",
+    updateStatusCurrentlyPlaying
+  );
+  playedButton.addEventListener("click", updateStatusPlayed);
 });
