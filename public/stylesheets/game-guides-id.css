@@ -191,6 +191,28 @@ ul.wtp-exclusive-shelves > li > button {
   cursor: pointer;
 }
 
+ul.wtp-non-exclusive-shelves {
+  display: block;
+}
+
+ul.wtp-non-exclusive-shelves li {
+  margin-left: 0;
+  overflow: hidden;
+  padding-left: 15px;
+  color: #181818;
+  text-align: left;
+}
+ul.wtp-non-exclusive-shelves label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+}
+
+ul.wtp-non-exclusive-shelves input {
+  margin-left: 0;
+}
+
 .current-selected-status {
   font-size: 12px;
 }

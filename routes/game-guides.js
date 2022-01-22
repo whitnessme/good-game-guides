@@ -44,8 +44,6 @@ router.get(
         currentStatus = statusObj[guideStatusCheck[0].statusId];
       }
 
-      console.log("=========TEST", currentStatus);
-
       let title = gameGuide.title;
 
       res.render("game-guides-id", {
