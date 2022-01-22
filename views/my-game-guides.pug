@@ -1,8 +1,11 @@
 extends layout.pug
 
 block head
-    link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
     title #{user.fullName}'s Guides on GoodGameGuides
+
+append head
+    link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
+    script(src='/javascripts/my-game-guides.js' type='module' defer)
 
 block content
     div(class='mainContentContainer')
@@ -16,17 +19,31 @@ block content
                                     a(class='smallText' href='/my-game-guides/custom-shelves/edit') (Edit)
                                 div(id='shelfList' class='stacked')
                                     //- Insert interpolated number for # of games tied to user in database
-                                    //- Use scripts to remove/add selectedShelf class to change color depending on which page you're on
-                                    div(class='userShelf selectedShelf'): a(href='/my-game-guides') All ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing ()
-                                    div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play ()
-                                    //- Check if user has custom shelves, if yes, display them here
-                                    div(class='divider')
+                                    if url === '/my-game-guides'
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides') All (?)
+                                    else
+                                        div(class='userShelf'): a(href='/my-game-guides') All (?)
+                                    if url === '/my-game-guides/status-shelves/3'
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
+                                    else
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
+                                    if url === '/my-game-guides/status-shelves/2'
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
+                                    else
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
+                                    if url === '/my-game-guides/status-shelves/1'
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
+                                    else
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
+                                    //- Check if user has custom shelves, if yes, display them here with divider
+                                    if customShelves
+                                        div(class='divider')
+                                            each shelf in customShelves
+                                                div(class='userShelf'): a(href='#')= shelf.name
                             div(class='stacked')
-                                a(id='addShelfBtn' href='#') Add Shelf
+                                button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked
-                                div(id='newShelfForm')
+                                div(type='button' id='newShelfForm')
                                     include includes/shelf-add-form.pug
                 div(id='rightCol')
                     div(class='shelfTableContainer')
@@ -41,22 +58,28 @@ block content
                                     th(class='rating') Rating
                                     th(class='shelves') Shelves
                                     th(class='review') Review
-                                    th(class='datePlayed') Date Played
                                     th(class='dateAdded') Date Added
-                                    th(class='actions')
+                                    th(class='action')
                             tbody(id='guidesBody')
-                                if guides
+                                if guides.length > 0
                                     each guide in guides
                                         tr
-                                            td(class='cover'): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
-                                            td(class='title')= guide.GameGuide.title
+                                            td(class='cover'): a(href=`/game-guides/${guide.GameGuide.id}`): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
+                                            td(class='title'): a(href=`/game-guides/${guide.GameGuide.id}`)= guide.GameGuide.title
                                             td(class='author')= guide.GameGuide.author
                                             td(class='avgRating') ???
-                                            td(class='rating')
-                                            td(class='shelves') ???
-                                            td(class='review') ???
-                                            td(class='datePlayed') ???
+                                            td(class='rating'): div(class="stars")
+                                                a(class="star off" title="did not like it" href="#") 1 of 5 stars
+                                                a(class="star off" title="it was ok" href="#") 2 of 5 stars
+                                                a(class="star off" title="liked it" href="#") 3 of 5 stars
+                                                a(class="star off" title="really liked it" href="#") 4 of 5 stars
+                                                a(class="star off" title="it was amazing" href="#") 5 of 5 stars
+                                            td(class='shelves'): a(href=`/my-game-guides/status-shelves/${guide.Status.id}`)= guide.Status.name
+                                            if guide.GameGuide.Reviews[0]
+                                                td(class='review')= guide.GameGuide.Reviews[0].reviewText
+                                            else
+                                                td(class='review'): a(href=`/games-guides/${guide.GameGuide.id}/reviews/new`) Write a Review
                                             td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
-                                            td(class='actions') ???
-                        if !guides
+                                            td(class='action'): a(href='#') X
+                        if guides.length === 0
                             div(class='noContent') No guides have been added yet!
