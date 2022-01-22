@@ -49,7 +49,15 @@ function findCustomShelfEntries(userId, name) {
         },
         include: {
             model: db.GameGuide,
-            include: db.Review
+            include: [
+                {
+                    model: db.Review
+                },
+                {
+                    model: db.StatusShelf,
+                    include: db.Status
+                }
+            ]
         }
     })
 
