@@ -64,11 +64,11 @@ router.get("/", asyncHandler(async (req, res, next) => {
   console.log("HERE: ", customCounts)
   console.log('Hello???? ', customShelves)
 
-  if (!currentGuides.length) {
+  if (currentGuides && !currentGuides.length) {
     noCurr.push("Please add guides to view them here")
   }
  
-  if (!wantToGuides.length) {
+  if (wantToGuides && !wantToGuides.length) {
     noWant.push("Please add guides to view them here")
   }
   res.render("index", {
