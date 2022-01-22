@@ -1,18 +1,22 @@
 body {
     text-align: center;
+    background-color: rgb(253, 245, 245);
 }
 
 h4 {
     text-align: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace;
     display: block;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 h3 {
     text-align: left;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: monospace;
     text-align: center;
+    color: rgb(126, 43, 43);
+    font-style: oblique;
 }
 
 .not-auth{
@@ -26,19 +30,11 @@ h3 {
     width: 75%;
 }
 
-/* .current-play{
-    grid-area: current;
-}
-
-.want-play{
-    grid-area: want;
-} */
-
 .left-home{
     display: flex;
     flex-direction: column;
-    width: 35%;
-    margin-right: 15px;
+    width: 40%;
+    margin-right: 25px;
 }
 
 .left-shelves {
@@ -49,9 +45,50 @@ h3 {
 }
 
 .middle-guides-container{
-    /* grid-area: guides; */
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+
+.welcome{
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid lightgrey;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.welcome-img{
+    box-sizing: border-box;
+    background-image: url("https://i.pinimg.com/736x/f5/81/ed/f581ed2cb2711454b0b62acf93004c6e.jpg");
+    background-position: 100% 15%;
+    height: 200px;
+    width: 100%;
+}
+
+#welcome-text{
+    padding: 2px 15px;
+}
+
+
+th, td {
+    border-bottom: 2px solid rgba(132, 115, 207, 0.2);
+    border-left: 1px solid rgb(132, 115, 207, 0.2);
+    border-right: 1px solid rgb(132, 115, 207, 0.2);
+    font-family: monospace;
+    padding: 10px 5px;
+}
+
+th {
+    color: white;
+    position: sticky;
+    top: 80px;
+    background-color: rgb(132, 115, 207);
+}
+
+.all-guides {
+    border-spacing: 0;
+    border-radius: 10px;
 }
 
 .list-shelves{
@@ -71,6 +108,11 @@ h3 {
     padding: 0px 3px;
 }
 
+.shelves-link{
+    font-family: monospace;
+    text-align: left;
+}
+
 .shelves-names{
     display: flex;
     flex-direction: column;
@@ -86,9 +128,25 @@ h3 {
 
 .ads {
     display: flex;
+    overflow: hidden;
     flex-direction: column;
-    width: 20%;
-    margin-left: 15px;
+    width: 40%;
+    margin-left: 25px;
+}
+
+.ads-head {
+    box-sizing: border-box;
+    background-image: url("../images/computer-retro.png");
+    background-position: center;
+    background-size: cover;
+    height: 180px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ads-head:hover {
+    background-image: url("../images/computer-retro-gif.gif");
 }
 
 .socials {
@@ -102,8 +160,25 @@ h3 {
     align-items: center;
 }
 
+.social-img:hover {
+    filter: opacity(50%);
+    box-shadow: 0px 0px 10px 2px limegreen;
+}
+
+#whit {
+    margin-top: 20px;
+    border-top: 2px solid rgba(175, 35, 35, 0.288);
+    padding-top: 10px;
+}
+
 .socials > a {
+    font-family: monospace;
+    color: rgb(175, 35, 35);
     padding: 5px;
+}
+
+.socials > a:hover {
+    color: rgb(73, 207, 73);
 }
 
 .social-img {
@@ -111,6 +186,7 @@ h3 {
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    border: 3px solid white
 }
 
 #want-guides, #curr-guides{

@@ -15,6 +15,9 @@ html
             img(src="/images/ggg_logo_black.png" alt="GoodGameGuides logo")
       div(class="content-box")
         h1 Log in to GoodGameGuides
+        if errors
+          div(class="error-box")
+            +validationErrorSummary(errors)
         form(action="/users/login" method="post" id="email-form")
           fieldset
             input(type="hidden" name="_csrf" value=csrfToken)

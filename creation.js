@@ -1,6 +1,7 @@
 const db = require("./db/models");
 const { sequelize } = require("./db/models");
 
+
 function findStatusShelfEntries(userId, statusId) {
     return db.StatusShelf.findAll({
         where: {
@@ -17,6 +18,7 @@ function findStatusShelfEntries(userId, statusId) {
             }
         ]
     })
+
 }
 
 function addStatusShelfEntry(statusId, gameguideId, userId) {
@@ -38,6 +40,7 @@ function addStatusShelfEntry(statusId, gameguideId, userId) {
 }
 
 function findCustomShelfEntries(userId, name) {
+
     const result = db.CustomShelf.findAll({
         where: {
             userId,
@@ -52,6 +55,7 @@ function findCustomShelfEntries(userId, name) {
     if (result) {
         return result
     } else return null
+
 }
 
 function checkIfCustomNameExists(name, userId) {
@@ -75,6 +79,7 @@ function addGuideToCustomShelf(name, userId, gameGuideId) {
         throw new Error("something broke with adding guide to custom shelf");
     }
 }
+
 
 function checkCountOfShelfEntries(shelf, userId) {
     let count;
@@ -137,3 +142,4 @@ module.exports = {
     allStatusShelfEntries,
     findAvgRating
 }
+

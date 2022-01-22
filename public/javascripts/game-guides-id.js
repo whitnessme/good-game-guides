@@ -1,6 +1,3 @@
-import { addStatusShelfEntry } from "./creation.js";
-// const db = require("../../db/models");
-
 window.addEventListener("DOMContentLoaded", (e) => {
   // GLOBAL VARIABLES
 
@@ -21,12 +18,87 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
   // updating status shelf
   const shelf = document.querySelector(".wtp-exclusive-shelves");
-  function updateStatus(e) {
+  function updateStatusInDom(e) {
+    const selectedButton = document.querySelector(".wtp-button");
     const currentStatus = document.querySelector(".current-selected-status");
-    const newlySelectedStatus = e.target.innerText;
-    currentStatus.innerText = newlySelectedStatus;
+    if (selectedButton) {
+      selectedButton.style.backgroundColor = "#f2f2f2";
+      selectedButton.style.color = "#181818";
+      const newlySelectedStatus = e.target.innerText;
+      currentStatus.innerText = newlySelectedStatus;
+    } else {
+      const newlySelectedStatus = e.target.innerText;
+      currentStatus.innerText = newlySelectedStatus;
+    }
   }
-  shelf.addEventListener("click", updateStatus);
+  shelf.addEventListener("click", updateStatusInDom);
 
-  //
+  const wantToPlayButton = document.querySelector("#statusId1");
+  const currentlyPlayingButton = document.querySelector("#statusId2");
+  const playedButton = document.querySelector("#statusId3");
+
+  async function updateStatusWantToPlay(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 1;
+
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+  async function updateStatusCurrentlyPlaying(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 2;
+
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+  async function updateStatusPlayed(e) {
+    console.log("HELLOOOOOOOOOOOOOOOOOO");
+    let statusId = 3;
+
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/status/${statusId}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          statusId,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
+  wantToPlayButton.addEventListener("click", updateStatusWantToPlay);
+  currentlyPlayingButton.addEventListener(
+    "click",
+    updateStatusCurrentlyPlaying
+  );
+  playedButton.addEventListener("click", updateStatusPlayed);
 });
