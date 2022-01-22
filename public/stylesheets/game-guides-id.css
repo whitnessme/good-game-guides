@@ -32,6 +32,9 @@
 }
 
 #topcol {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -266,6 +269,16 @@ ul.wtp-non-exclusive-shelves input {
   background-image: url("../images/heart-icon-color.png");
 }
 
+.hide {
+  display: block;
+  color: transparent;
+}
+
+.star-rating:hover + .hide {
+  display: block;
+  color: #181818;
+}
+
 a {
   color: #00635d;
   text-decoration: none;
@@ -278,6 +291,7 @@ a {
 }
 
 #game-guide-title {
+  margin-top: 0;
   margin-bottom: 0;
   width: 100%;
   font-family: "Merriweather", "Georgia", serif;
