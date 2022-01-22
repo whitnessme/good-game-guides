@@ -42,10 +42,10 @@ block content
                           li(name="want-to-play")
                             button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
                         ul(class="wtp-non-exclusive-shelves")
-                          each shelf in customShelves
-                            li(name=`${shelf.name}`)
-                              label(for="") #{shelf.name}
-                                input(type="checkbox" value=`${shelf.name}`)
+                        each shelf in customShelves
+                          li(name=`${shelf.name}`)
+                            label(for="") #{shelf.name}
+                              input(type="checkbox" value=`${shelf.name}`)
                 div(class="rating-stars wtp-rating")
                   div(class="myrating-text") Rate this guide
                   //- need other info about user id and such
