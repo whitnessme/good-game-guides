@@ -49,7 +49,9 @@
 }
 
 #cover-img {
-  max-width: 150px;
+  object-fit: cover;
+  width: 150px;
+  height: 216px;
   margin: 0 auto 10px;
 }
 

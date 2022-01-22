@@ -1,6 +1,7 @@
 body {
     text-align: center;
     background-color: rgb(253, 245, 245);
+    margin-bottom: 70px;
 }
 
 h4 {
@@ -21,6 +22,12 @@ h3 {
 
 .not-auth{
     display: block;
+    font-family: monospace;
+    color:grey;
+}
+
+.not-auth:hover {
+    color:rgba(128, 128, 128, 0.61)
 }
 
 .homegrid{
@@ -33,7 +40,7 @@ h3 {
 .left-home{
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 30%;
     margin-right: 25px;
 }
 
@@ -48,6 +55,7 @@ h3 {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    width: 100%;
 }
 
 .welcome{
@@ -70,6 +78,22 @@ h3 {
     padding: 2px 15px;
 }
 
+.welcome > p {
+    font-family: monospace;
+}
+
+.divider-icon {
+    width: 30px;
+    height: auto;
+    padding-top: 2px;
+}
+
+.quote {
+    font-weight: lighter;
+    color:rgb(126, 43, 43);
+    padding: 5px;
+}
+
 
 th, td {
     border-bottom: 2px solid rgba(132, 115, 207, 0.2);
@@ -79,12 +103,52 @@ th, td {
     padding: 10px 5px;
 }
 
+.img-container {
+    box-sizing: border-box;
+    width: 100px;
+    height: 160px;
+}
+
 th {
     color: white;
     position: sticky;
     top: 80px;
     background-color: rgb(132, 115, 207);
 }
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.guide-title{
+    font-weight: bold;
+}
+
+.summary-block {
+    width: 80%;
+    height: 80px;
+    overflow-y: scroll;
+    padding: 3px;
+    padding-bottom: 15px;
+} 
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #b9bdf5;
+  }
+
+::-webkit-scrollbar-thumb {
+    background: rgba(132, 115, 207, 0.719);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(132, 115, 207, 0.2);
+  }
 
 .all-guides {
     border-spacing: 0;
@@ -123,14 +187,16 @@ th {
     object-fit: cover;
     object-position: top;
     width: 100px;
-    height: 120px;
+    height: 160px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.445);
 }
 
 .ads {
     display: flex;
     overflow: hidden;
     flex-direction: column;
-    width: 40%;
+    width: 30%;
     margin-left: 25px;
 }
 
@@ -207,16 +273,18 @@ th {
 #curr-guides > li {
     display: flex;
     justify-content: left;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.title-link {
+    margin-left: 10px;
 }
 
 .want-square {
     object-fit: cover;
     width:fit-content;
-    /* min-width: 50px;
-    min-height: 50px; */
-    max-width: 80px;
-    max-height: 80px;
+    width: 80px;
+    height: 80px;
     object-position: top;
     border-radius: 10px;
 }
