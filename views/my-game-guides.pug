@@ -5,7 +5,7 @@ block head
 
 append head
     link(rel='stylesheet' href='/stylesheets/my-game-guides.css')
-    script(src='../javascripts/my-game-guides.js' type='module' defer)
+    script(src='/javascripts/my-game-guides.js' type='module' defer)
 
 block content
     div(class='mainContentContainer')
@@ -19,24 +19,27 @@ block content
                                     a(class='smallText' href='/my-game-guides/custom-shelves/edit') (Edit)
                                 div(id='shelfList' class='stacked')
                                     //- Insert interpolated number for # of games tied to user in database
-                                    if url === '/'
+                                    if url === '/my-game-guides'
                                         div(class='userShelf selectedShelf'): a(href='/my-game-guides') All (?)
                                     else
                                         div(class='userShelf'): a(href='/my-game-guides') All (?)
-                                    if url === '/status-shelves/3'
+                                    if url === '/my-game-guides/status-shelves/3'
                                         div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
                                     else
                                         div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
-                                    if url === '/status-shelves/2'
+                                    if url === '/my-game-guides/status-shelves/2'
                                         div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
                                     else
                                         div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
-                                    if url === '/status-shelves/1'
+                                    if url === '/my-game-guides/status-shelves/1'
                                         div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
                                     else
                                         div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
                                     //- Check if user has custom shelves, if yes, display them here with divider
-                                    div(class='divider')
+                                    if customShelves
+                                        div(class='divider')
+                                            each shelf in customShelves
+                                                div(class='userShelf'): a(href='#')= shelf.name
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked
