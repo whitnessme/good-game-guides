@@ -39,7 +39,10 @@ block content
                                     if customShelves
                                         div(class='divider')
                                         each shelf in customShelves
-                                            div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
+                                            if decodeURI(url) === `/my-game-guides/custom-shelves/${shelf.name}`
+                                                div(class='userShelf selectedShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
+                                            else
+                                                div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked
