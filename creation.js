@@ -1,4 +1,5 @@
 const db = require("./db/models");
+const { sequelize } = require("./db/models");
 
 async function findStatusShelfEntries(userId, statusId){
     return await db.StatusShelf.findAll({
@@ -6,8 +7,17 @@ async function findStatusShelfEntries(userId, statusId){
             userId,
             statusId
         },
-        include: await db.GameGuide
+        include: [
+            {
+                model: db.Status
+            },
+            {
+                model: db.GameGuide,
+                include: db.Review
+            }
+        ]
     })
+
 }
 
 async function addStatusShelfEntry(statusId, gameguideId, userId) {
@@ -34,12 +44,16 @@ async function findCustomShelfEntries(userId, name) {
             userId,
             name
         },
-        include: await db.GameGuide
+        include: {
+            model: db.GameGuide,
+            include: db.Review
+        }
     })
 
-    if(result) {
+    if (result) {
         return result
     } else return null
+
 }
 
 async function checkIfCustomNameExists(name, userId) {
@@ -104,9 +118,27 @@ async function allStatusShelfEntries(userId){
     return await db.StatusShelf.findAll({
         where: {
             userId
-        }
+        },
+        include: [
+            {
+                model: db.Status
+            },
+            {
+                model: db.GameGuide,
+                include: db.Review
+            }
+        ]
     })
- }
+}
+
+function findAvgRating(gameGuideId) {
+    return db.Review.findOne({
+        where: {
+            gameGuideId
+        },
+        attributes: [sequelize.fn('AVG', sequelize.col('rating'))]
+    });
+};
 
 
 module.exports = {
@@ -117,5 +149,7 @@ module.exports = {
     checkIfCustomNameExists,
     addGuideToCustomShelf,
     checkCountOfShelfEntries,
-    allStatusShelfEntries
+    allStatusShelfEntries,
+    findAvgRating
 }
+

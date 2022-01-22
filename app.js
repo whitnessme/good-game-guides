@@ -13,6 +13,7 @@ const usersRouter = require("./routes/users");
 const myGameGuidesRouter = require("./routes/my-game-guides");
 const gameGuidesRouter = require("./routes/game-guides");
 const countRouter = require("./routes/count-api");
+const apiRouter = require("./routes/api");
 
 const app = express();
 
@@ -44,9 +45,10 @@ store.sync();
 app.use(restoreUser);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/my-game-guides", myGameGuidesRouter);
+app.use(myGameGuidesRouter);
 app.use("/game-guides", gameGuidesRouter);
 app.use("/count", countRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
