@@ -14,14 +14,16 @@ block content
                 if locals.authenticated
                     ul#curr-guides
                         each guide in currentGuides
-                            li
-                                img.curr-rec(src=`${guide.GameGuide.coverImg}`)
-                                a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
-                                    h5 #{guide.GameGuide.title}
+                            a(href=`/game-guides/${guide.id}`)
+                                li
+                                    img.curr-rec(src=`${guide.GameGuide.coverImg}`)
+                                    a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
+                                        h5 #{guide.GameGuide.title}
                         each list in noCurr
                             li.no-guides #{list}
                 else
-                    p.not-auth Please login to view your saved guides
+                    a(href="/users/login")
+                        p.not-auth Please login to view your saved guides
             span.left-shelves#want-play
                 h4 WANT TO PLAY
                 if locals.authenticated
@@ -29,43 +31,59 @@ block content
                         each list in noWant
                             li.no-guides #{list}
                         each guide in wantToGuides
-                            li: img.want-square(src=`${guide.GameGuide.coverImg}`)
+                            a(href=`/game-guides/${guide.id}`)
+                                li: img.want-square(src=`${guide.GameGuide.coverImg}`)
                 else
-                    p.not-auth Please login to view your saved guides
+                    a(href="/users/login")
+                        p.not-auth Please login to view your saved guides
             span.list-shelves
                 h4 SHELVES
                 span.shelves-container
                     if locals.authenticated
                         div.shelves-counts
-                            a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") 0
-                            a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") 0
-                            a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") 0
+                            a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") #{count1}
+                            a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") #{count2}
+                            a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") #{count3}
+                            each count in customCounts 
+                                a.shelves-link.custom-num(href=`/my-game-guides/custom-shelves/${count.name}`) #{count.count}
                         div.shelves-names
                             a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
                             a.shelves-link#currently-playing(href="/my-game-guides/status-shelves/2") Currently Playing
                             a.shelves-link#play(href="/my-game-guides/status-shelves/3") Played
+                            each shelf in customShelves
+                                a.shelves-link.custom-shelf(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}
                     else
-                        p.not-auth Please login to view your saved guides
+                        a(href="/users/login") 
+                            p.not-auth Please login to view your shelves
 
         div.middle-guides-container
             div.welcome
                 div.welcome-img
-                p#welcome-text Welcome to our goodreads clone, goodgameguides! Once you have logged in, you can add guides to your shelves to save, review, and keep track of guides you've played through!
+                p#welcome-text Welcome to our GoodReads clone, GoodGameGuides! Once you have logged in, you can add guides to your shelves to save ones you want to play, ones you are currently playing, and keep track of guides you've already played through! Please check out the team's links on the right column!
+                img.divider-icon(src="/images/gamepad_purple_fixed_icon.png", alt="")
+                p.quote "Don't wish it were easier, wish you were better." <i>--Chief, Animal Crossing</i>
+                p.quote "It’s dangerous to go alone, take this!" --<i>Old Man, The Legend of Zelda</i> 
             h3 BROWSE GUIDES:
             table.all-guides
                 thead
                     tr 
                         th(scope='col') Cover
-                        th(scope='col') Title
-                        th(scope='col') Author
+                        th(scope='col') Info
+                        th(scope='col') By
                 tbody
                     each guide in guides
                         tr
                             td.img-container
                                 a(href=`/game-guides/${guide.id}`)
                                     img.guide-img(src=`${guide.coverImg}`)
-                            td.title=guide.title 
-                            td=guide.author
+                            td.title
+                                div.info
+                                    p.guide-title #{guide.title}
+                                    div.summary-block #{guide.summary}
+                            if guide.author
+                                td=guide.author
+                            else
+                                td=guide.publisher
         div.ads
             h4 THE DREAM TEAM
             div.socials#whit
