@@ -277,6 +277,18 @@ ul.wtp-non-exclusive-shelves input {
 .star-rating:hover + .hide {
   display: block;
   color: #181818;
+  font-family: monospace;
+  text-shadow: 1px 1px 2px purple;
+}
+
+.hidden-review {
+  display: none;
+}
+
+.review-box-content:hover + .hidden-review {
+  display: block;
+  font-family: monospace;
+  text-shadow: 1px 1px 2px purple;
 }
 
 a {
@@ -373,9 +385,14 @@ table {
 }
 
 tbody {
+  font-family: monospace;
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
+}
+
+td .star-rating {
+  margin-left: 0;
 }
 
 tr {
@@ -388,7 +405,7 @@ tr {
   font-size: 14px;
 }
 
-.my-review-label {
+.my-review_label {
   padding: 4px 0;
   vertical-align: top;
   width: 125px;

@@ -85,17 +85,18 @@ block content
                     td(colspan="2") #{title}
                   tr
                     td(valign="top" class="my-review_label") Rating
-                    td(colspan="2") title of book
-                  tr
-                    td(valign="top" class="my-review_label") Shelves
-                    td(colspan="2") shelves
+                    td(colspan="2")
+                      div(class="star-rating")
+                        a(class="star" title="did not like it" href="#") 1 of 5 stars
+                        a(class="star" title="it was ok" href="#") 2 of 5 stars
+                        a(class="star" title="liked it" href="#") 3 of 5 stars
+                        a(class="star" title="really liked it" href="#") 4 of 5 stars
+                        a(class="star" title="it was amazing" href="#") 5 of 5 stars
                   tr
                     td(valign="top" class="my-review_label") Review
-                    td(colspan="2") write a review button or your text review
-          div(class="community-review-box")
-            div stuff
-            div stuff
-            div stuff
+                    td(colspan="2")
+                      textarea
+            div(class="hidden-review") Rating and Review Features Coming Soon!
         div(class="right-container")
           div(class="right-container-header")
             h2(class="right-container-header-h2") Players Also Enjoyed:
