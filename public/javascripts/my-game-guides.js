@@ -62,24 +62,24 @@ window.addEventListener('DOMContentLoaded', (e) => {
     addShelfForm.addEventListener('submit', submitAddShelfForm);
 
     // Remove guide from status shelf
-    let removeGuideBtn = document.getElementById('removeGuideBtn');
-    let tableDataRow = document.getElementById('tableDataRow');
+    // let removeGuideBtn = document.getElementById('removeGuideBtn');
+    // let tableDataRow = document.getElementById('tableDataRow');
 
-    const removeGuideFromStatusShelf = async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+    // const removeGuideFromStatusShelf = async (e) => {
+    //     e.preventDefault();
+    //     e.stopPropagation();
 
-        let gameGuideId = tableDataRow.childNodes[0].childNodes[0].href.split('/')[4];
-        let statusId = tableDataRow.childNodes[5].childNodes[0].href.split('/')[5];
+    //     let gameGuideId = tableDataRow.childNodes[0].childNodes[0].href.split('/')[4];
+    //     let statusId = tableDataRow.childNodes[5].childNodes[0].href.split('/')[5];
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
-            method: "DELETE",
-        });
+    //     const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
+    //         method: "DELETE",
+    //     });
 
-        // if (res.ok) tableDataRow.remove();
-    };
+    //     // if (res.ok) tableDataRow.remove();
+    // };
 
-    removeGuideBtn.addEventListener('click', removeGuideFromStatusShelf);
+    // removeGuideBtn.addEventListener('click', removeGuideFromStatusShelf);
 
     // Remove guide from custom shelf
     const removeGuideFromCustomShelf = async (e) => {

@@ -75,7 +75,7 @@ async function checkIfCustomNameExists(name, userId) {
 
 async function addCustomShelfName(name, userId) {
     if (name) {
-        if (/[\w\- ]+/.test(name)) {
+        if (/^[\w\- ]+$/.test(name)) {
             const exists = await checkIfCustomNameExists(name, userId);
             console.log('----------', exists);
             if (!exists) {

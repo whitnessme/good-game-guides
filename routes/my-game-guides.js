@@ -50,7 +50,8 @@ router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, 
 
 // Read /my-game-guides/custom-shelves/:id, display all guides in specified custom shelf
 // :id can contain 1 or more letters (lower or uppercase), digits, underscore, dash, or space
-router.get('/my-game-guides/custom-shelves/:id([\\w\- ]+)', asyncHandler(async (req, res) => {
+router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async (req, res) => {
+    const url = req.url;
     const { userId } = req.session.auth;
     const shelfName = req.params.id;
 
@@ -61,7 +62,7 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- ]+)', asyncHandler(async (
         }
     });
 
-    res.render('my-game-guides', { userId, guides, customShelves });
+    res.render('my-game-guides', { url, userId, guides, customShelves });
 }));
 
 // Read /my-game-guides/custom-shelves/edit
