@@ -33,6 +33,12 @@ router.get(
         },
       });
 
+      let customShelves = await db.CustomShelf.findAll({
+        where: {
+          userId,
+        },
+      });
+
       let currentStatus;
       if (guideStatusCheck.length) {
         currentStatus = statusObj[guideStatusCheck[0].statusId];
@@ -48,6 +54,7 @@ router.get(
         userId,
         guides,
         currentStatus,
+        customShelves,
       });
     } else {
       let title = gameGuide.title;
