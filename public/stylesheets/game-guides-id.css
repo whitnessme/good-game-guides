@@ -39,7 +39,7 @@
 #imagecol {
   width: 150px;
   text-align: center;
-  float: left;
+  display: inline-block;
   margin: 0 20px 10px 0;
 }
 
@@ -84,10 +84,16 @@
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.wtp-button.unselected {
+  background-color: #409d69;
+  color: white;
+}
+
 .shelf-dropdown-button {
   background-color: #409d69;
   color: #fff;
   border-width: 0px;
+  height: 28px;
   width: 27px;
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
@@ -242,6 +248,7 @@ a {
 #textcol {
   width: 455px;
   margin-right: 0px;
+  display: inline-block;
 }
 
 #game-guide-title {
@@ -352,11 +359,18 @@ td {
 }
 
 .single-recommendation-container {
-  margin-top: 10px;
+  margin-top: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.right-container-header-h2 {
+  color: #333333;
+  font-family: "Merriweather", "Georgia", serif;
 }
 
 .guide-title {
-  margin-bottom: 0;
+  margin-bottom: 5px;
   width: 100%;
   font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;

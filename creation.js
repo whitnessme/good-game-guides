@@ -1,13 +1,15 @@
 const db = require("./db/models");
 
-function findStatusShelfEntries(userId, statusId){
-    return db.StatusShelf.findAll({
-        where: {
-            userId,
-            statusId
-        },
-        include: db.GameGuide
-    })
+
+function findStatusShelfEntries(userId, statusId) {
+  return db.StatusShelf.findAll({
+    where: {
+      userId,
+      statusId,
+    },
+    include: db.GameGuide,
+  });
+
 }
 
 function addStatusShelfEntry(statusId, gameguideId, userId) {
@@ -29,17 +31,19 @@ function addStatusShelfEntry(statusId, gameguideId, userId) {
 }
 
 function findCustomShelfEntries(userId, name) {
-    const result = db.CustomShelf.findAll({
-        where: {
-            userId,
-            name
-        },
-        include: db.GameGuide
-    })
 
-    if(result) {
-        return result
-    } else return null
+  const result = db.CustomShelf.findAll({
+    where: {
+      userId,
+      name,
+    },
+    include: db.GameGuide,
+  });
+
+  if (result) {
+    return result;
+  } else return null;
+
 }
 
 function checkIfCustomNameExists(name, userId) {
@@ -64,45 +68,48 @@ function addGuideToCustomShelf(name, userId, gameGuideId) {
   }
 }
 
-function checkCountOfShelfEntries(shelf, userId){
-    let count;
-    // If shelf is a custom shelf name:
-    if(typeof shelf === "string"){
-        count = db.CustomShelf.findAndCountAll({
-            where: {
-                userId,
-                name: shelf
-            }
-        })
-    }
-    // If shelf is a status shelf id:
-    if(typeof shelf === "number"){
-        count = db.StatusShelf.findAndCountAll({
-            where: {
-                userId,
-                statusId: shelf
-            }
-        })
-    }
-    return count
+
+function checkCountOfShelfEntries(shelf, userId) {
+  let count;
+  // If shelf is a custom shelf name:
+  if (typeof shelf === "string") {
+    count = db.CustomShelf.findAndCountAll({
+      where: {
+        userId,
+        name: shelf,
+      },
+    });
+  }
+  // If shelf is a status shelf id:
+  if (typeof shelf === "number") {
+    count = db.StatusShelf.findAndCountAll({
+      where: {
+        userId,
+        statusId: shelf,
+      },
+    });
+  }
+  return count;
 }
 
-function allStatusShelfEntries(userId){
-    return db.StatusShelf.findAll({
-        where: {
-            userId
-        }
-    })
- }
+function allStatusShelfEntries(userId) {
+  return db.StatusShelf.findAll({
+    where: {
+      userId,
+    },
+  });
 
+}
 
 module.exports = {
-    addStatusShelfEntry,
-    findStatusShelfEntries,
-    findCustomShelfEntries,
-    addCustomShelfName,
-    checkIfCustomNameExists,
-    addGuideToCustomShelf,
-    checkCountOfShelfEntries,
-    allStatusShelfEntries
-}
+
+  addStatusShelfEntry,
+  findStatusShelfEntries,
+  findCustomShelfEntries,
+  addCustomShelfName,
+  checkIfCustomNameExists,
+  addGuideToCustomShelf,
+  checkCountOfShelfEntries,
+  allStatusShelfEntries,
+};
+
