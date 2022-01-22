@@ -44,7 +44,7 @@ store.sync();
 app.use(restoreUser);
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/my-game-guides", myGameGuidesRouter);
+app.use(myGameGuidesRouter);
 app.use("/game-guides", gameGuidesRouter);
 app.use("/api", apiRouter);
 
