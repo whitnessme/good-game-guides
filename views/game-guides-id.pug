@@ -21,7 +21,7 @@ block content
               div(class="wtp-button-container")
                 if currentStatus
                   div(class="wtp-button")
-                    span(title="Want to Play" class="current-selected-status") #{currentStatus}
+                    span(class="current-selected-status") #{currentStatus}
                 else
                   div(class="wtp-button unselected")
                     span(title="Want to Play" class="current-selected-status") Want to Play
@@ -49,12 +49,12 @@ block content
                 div(class="rating-stars wtp-rating")
                   div(class="myrating-text") Rate this guide
                   //- need other info about user id and such
-                  div(class="stars")
-                    a(class="star off" title="did not like it" href="#") 1 of 5 stars
-                    a(class="star off" title="it was ok" href="#") 2 of 5 stars
-                    a(class="star off" title="liked it" href="#") 3 of 5 stars
-                    a(class="star off" title="really liked it" href="#") 4 of 5 stars
-                    a(class="star off" title="it was amazing" href="#") 5 of 5 stars
+                  div(class="star-rating")
+                    a(class="star" title="did not like it" href="#") 1 of 5 stars
+                    a(class="star" title="it was ok" href="#") 2 of 5 stars
+                    a(class="star" title="liked it" href="#") 3 of 5 stars
+                    a(class="star" title="really liked it" href="#") 4 of 5 stars
+                    a(class="star" title="it was amazing" href="#") 5 of 5 stars
             div(id="textcol")
               h1(id="game-guide-title") #{title}
               div(id="guide-authors")

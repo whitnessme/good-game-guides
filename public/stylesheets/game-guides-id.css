@@ -217,9 +217,10 @@ ul.wtp-exclusive-shelves > li > button {
   font-size: 85%;
 }
 
-.stars {
+.star-rating {
   white-space: nowrap;
-  display: inline-block;
+  display: flex;
+  flex-direction: row-reverse;
   color: #aaa;
   overflow: hidden;
   width: 75px;
@@ -234,11 +235,13 @@ ul.wtp-exclusive-shelves > li > button {
   width: 15px;
   float: left;
   font-size: 0 !important;
+  background-image: url("../images/heart-icon-empty.png");
+  background-size: 15px;
 }
 
-.star.off {
-  background-image: url("../images/review-stars.png");
-  background-size: 15px;
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+  background-image: url("../images/heart-icon-color.png");
 }
 
 a {
