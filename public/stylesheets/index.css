@@ -273,16 +273,18 @@ th {
 #curr-guides > li {
     display: flex;
     justify-content: left;
-    align-items: flex-start;
+    align-items: center;
+}
+
+.title-link {
+    margin-left: 10px;
 }
 
 .want-square {
     object-fit: cover;
     width:fit-content;
-    /* min-width: 50px;
-    min-height: 50px; */
-    max-width: 80px;
-    max-height: 80px;
+    width: 80px;
+    height: 80px;
     object-position: top;
     border-radius: 10px;
 }
