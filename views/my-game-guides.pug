@@ -38,8 +38,8 @@ block content
                                     //- Check if user has custom shelves, if yes, display them here with divider
                                     if customShelves
                                         div(class='divider')
-                                            each shelf in customShelves
-                                                div(class='userShelf'): a(href='#')= shelf.name
+                                        each shelf in customShelves
+                                            div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked
@@ -63,7 +63,7 @@ block content
                             tbody(id='guidesBody')
                                 if guides.length > 0
                                     each guide in guides
-                                        tr
+                                        tr(id='tableDataRow')
                                             td(class='cover'): a(href=`/game-guides/${guide.GameGuide.id}`): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
                                             td(class='title'): a(href=`/game-guides/${guide.GameGuide.id}`)= guide.GameGuide.title
                                             td(class='author')= guide.GameGuide.author
@@ -80,6 +80,6 @@ block content
                                             else
                                                 td(class='review'): a(href=`/games-guides/${guide.GameGuide.id}/reviews/new`) Write a Review
                                             td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
-                                            td(class='action'): a(href='#') X
+                                            td(class='action'): button(type='button' id='removeGuideBtn') X
                         if guides.length === 0
                             div(class='noContent') No guides have been added yet!

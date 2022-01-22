@@ -1,6 +1,8 @@
 form(class='add-shelf-form' action=`/users/${userId}/customShelves` method='post')
+    div(style="display: none" id="userId") #{userId}
     input(type='hidden' name='_csrf' value=csrfToken)
     label(for='addShelf') Add a Shelf:
     div(id='addShelfInput')
         input(type='text' name='addShelf' id='addShelf')
         button(type='submit') Add
+    p(id='errorMessage')
