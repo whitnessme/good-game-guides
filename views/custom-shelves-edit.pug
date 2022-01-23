@@ -1,4 +1,40 @@
 extends layout.pug
 
 block content
-    p why
+    div(class='mainContentContainer')
+        div(class='mainContent')
+            h1: <a href='/my-game-guides'>My Game Guides</a> > Edit Shelves
+            div(class='leftContainer')
+                div(class='stacked')
+                    form(class='addShelfForm' action='/users/${userId}/customShelves' method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        input(type='text' id='addShelf' name='addShelf' maxlength='50' placeholder='Add a Shelf')
+                        button(type='submit' class='addShelfBtn') Add
+                table(id='shelfTable' class='tableList stacked')
+                    tbody
+                        tr
+                            th
+                            th Shelf
+                        //- If custom shelves, list a row for each
+                        tr(class='shelf' data-shelf-name=``)
+                            td(class='remove'): button(type='button' class='removeShelfBtn') X
+                            td(class='userShelf')
+                                div(class='displayShelfName')
+                                    //- Shelf Name here & count?
+                                    a(class='displayShelfNameLink' href='#')
+                                    a(class='renameUserShelfLink' href='#') Rename
+                                div(class='renameUserShelf')
+                                    form(class='renameShelfForm' action='#' method='post')
+                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                        //- Value is current shelf name
+                                        input(type='text' name='renameShelf' class='renameUserShelfText' value='')
+                                        button(type='button' class='renameShelfBtn') Save
+                                        a(class='cancelRenameBtn' href='#') Cancel
+                div(class='right')
+                    a(href='/my-game-guides') I'm Done
+                div(class='left')
+                    //- Have pop up to confirm
+                    a(href='#') Delete All of My Shelves
+            div(class='rightContainer')
+                div(class='box')
+                //- Don't need any of the text from goodreads, maybe explain some features are not ready if not complete?

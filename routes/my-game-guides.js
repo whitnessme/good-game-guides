@@ -18,6 +18,15 @@ const {
 
 const router = express.Router();
 
+// READ - Display list of user's custom shelves
+router.get('/my-game-guides/custom-shelves/edit', csrfProtection, asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+
+
+
+    res.render('custom-shelves-edit', { title: 'Edit My Shelves | GoodGameGuides', userId, csrfToken: req.csrfToken() });
+}));
+
 // READ - Display all guides in user's shelves
 router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const url = req.url;
@@ -70,13 +79,6 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async 
     });
 
     res.render('my-game-guides', { url, userId, guides, customShelves, shelfName });
-}));
-
-// READ - Display list of user's custom shelves
-router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
-    const { userId } = req.session.auth;
-
-    res.render('custom-shelves-edit', { title: 'test' });
 }));
 
 // CREATE - User creates custom shelf
