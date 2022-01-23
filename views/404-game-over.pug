@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+    div.main-contain
+        div#gameover
+            div.gameover-text
+                img(src="/images/gameover_text.png", alt="game over")
+                p PAGE NOT FOUND
+            div.yesnolinks
+                p CONTINUE?
+                p YES
+                p NO
+        div#gameboy
+            div.gameover-img-container: img(src="/images/gameboy-advance.png", alt="Purple gameboy advance")
+
+    include includes/footer.pug
