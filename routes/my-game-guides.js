@@ -12,10 +12,14 @@ const {
     addGuideToCustomShelf,
     checkCountOfShelfEntries,
     allStatusShelfEntries,
-    findAvgRating
+    findAvgRating,
+    customCounts,
+    statusAndAllCounts
 } = require('../creation');
 
 const router = express.Router();
+
+// const allCount = countGuidesOnShelves(userId, whichShelves)
 
 // READ - Display all guides in user's shelves
 router.get('/my-game-guides', asyncHandler(async (req, res) => {
@@ -23,13 +27,16 @@ router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-    const customShelves = await db.CustomShelf.findAll({
-        where: {
-            userId
-        }
-    });
+    // const customShelves = await db.CustomShelf.findAll({
+    //     where: {
+    //         userId
+    //     }
+    // });
 
-    res.render('my-game-guides', { url, userId, guides, customShelves });
+    const customShelfAndCount = await customCounts(userId);
+    const {all, one, two, three} = await statusAndAllCounts(userId);
+
+    res.render('my-game-guides', { url, userId, guides, customShelfAndCount, all, one, two, three });
 }));
 
 // READ - Display all guides in specified status shelf
@@ -39,13 +46,16 @@ router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, 
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
-    const customShelves = await db.CustomShelf.findAll({
-        where: {
-            userId
-        }
-    });
+    // const customShelves = await db.CustomShelf.findAll({
+    //     where: {
+    //         userId
+    //     }
+    // });
+    
+    const customShelfAndCount = await customCounts(userId);
+    const {all, one, two, three} = await statusAndAllCounts(userId);
 
-    res.render('my-game-guides', { url, userId, guides, customShelves });
+    res.render('my-game-guides', { url, userId, guides, customShelfAndCount, all, one, two, three });
 }));
 
 // READ - display all guides in specified custom shelf
@@ -56,19 +66,21 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async 
     const shelfName = req.params.id;
 
     const guides = await findCustomShelfEntries(userId, shelfName);
-    const customShelves = await db.CustomShelf.findAll({
-        where: {
-            userId
-        }
-    });
+    // const customShelves = await db.CustomShelf.findAll({
+    //     where: {
+    //         userId
+    //     }
+    // });
 
-    res.render('my-game-guides', { url, userId, guides, customShelves, shelfName });
+    const customShelfAndCount = await customCounts(userId);
+    const {all, one, two, three} = await statusAndAllCounts(userId);
+
+    res.render('my-game-guides', { url, userId, guides, shelfName, customShelfAndCount, all, one, two, three });
 }));
 
 // READ - Display list of user's custom shelves
 router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
-
     res.render('custom-shelves-edit', { title: 'test' });
 }));
 

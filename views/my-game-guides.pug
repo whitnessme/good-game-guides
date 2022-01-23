@@ -20,29 +20,29 @@ block content
                                 div(id='shelfList' class='stacked')
                                     //- Insert interpolated number for # of games tied to user in database
                                     if url === '/my-game-guides'
-                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides') All (?)
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides') All (#{all})
                                     else
-                                        div(class='userShelf'): a(href='/my-game-guides') All (?)
+                                        div(class='userShelf'): a(href='/my-game-guides') All (#{all})
                                     if url === '/my-game-guides/status-shelves/3'
-                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/3') Played (#{three})
                                     else
-                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played (?)
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/3') Played (#{three})
                                     if url === '/my-game-guides/status-shelves/2'
-                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (#{two})
                                     else
-                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (?)
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/2') Currently Playing (#{two})
                                     if url === '/my-game-guides/status-shelves/1'
-                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
+                                        div(class='userShelf selectedShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (#{one})
                                     else
-                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (?)
+                                        div(class='userShelf'): a(href='/my-game-guides/status-shelves/1') Want to Play (#{one})
                                     //- Check if user has custom shelves, if yes, display them here with divider
-                                    if customShelves
+                                    if customShelfAndCount
                                         div(class='divider')
-                                        each shelf in customShelves
+                                        each shelf in customShelfAndCount
                                             if decodeURI(url) === `/my-game-guides/custom-shelves/${shelf.name}`
-                                                div(class='userShelf selectedShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
+                                                div(class='userShelf selectedShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}(#{shelf.count})
                                             else
-                                                div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`)= shelf.name
+                                                div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}(#{shelf.count})
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked

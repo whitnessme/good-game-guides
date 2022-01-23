@@ -237,6 +237,16 @@
     text-align: center;
 }
 
+.cover {
+    height: 68px;
+    box-sizing: border-box;
+}
+
 .cover img {
+    object-fit: cover;
+    object-position: top;
     width: 50px;
+    height: 68px;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.356);
 }
