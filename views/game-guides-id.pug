@@ -42,15 +42,16 @@ block content
                               button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
                             li(name="want-to-play")
                               button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
-                          ul(class="wtp-non-exclusive-shelves")
-                            each shelf in activeCustomShelves
-                              li(name=`${shelf.name}`)
-                                input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}` checked)
-                                label(for=`${shelf.name}`) #{shelf.name}
-                            each shelf in inactiveCustomShelves
-                              li(name=`${shelf.name}`)
-                                input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}`)
-                                label(for=`${shelf.name}`) #{shelf.name}
+                          if currentStatus
+                            ul(class="wtp-non-exclusive-shelves")
+                              each shelf in activeCustomShelves
+                                li(name=`${shelf.name}`)
+                                  input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}` checked)
+                                  label(for=`${shelf.name}`) #{shelf.name}
+                              each shelf in inactiveCustomShelves
+                                li(name=`${shelf.name}`)
+                                  input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}`)
+                                  label(for=`${shelf.name}`) #{shelf.name}
                   div(class="rating-stars wtp-rating")
                     div(class="myrating-text") Rate this guide
                     //- need other info about user id and such
