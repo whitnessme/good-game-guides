@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
   function updateStatusInDom(e) {
     const selectedButton = document.querySelector(".wtp-button");
     const currentStatus = document.querySelector(".current-selected-status");
+
     if (selectedButton) {
       selectedButton.style.backgroundColor = "#f2f2f2";
       selectedButton.style.color = "#181818";
@@ -31,6 +32,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
       currentStatus.innerText = newlySelectedStatus;
     }
   }
+
   shelf.addEventListener("click", updateStatusInDom);
 
   const wantToPlayButton = document.querySelector("#statusId1");
@@ -38,7 +40,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
   const playedButton = document.querySelector("#statusId3");
 
   async function updateStatusWantToPlay(e) {
-    console.log("HELLOOOOOOOOOOOOOOOOOO");
     let statusId = 1;
 
     const res = await fetch(
@@ -56,8 +57,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
       }
     );
   }
+
   async function updateStatusCurrentlyPlaying(e) {
-    console.log("HELLOOOOOOOOOOOOOOOOOO");
     let statusId = 2;
 
     const res = await fetch(
@@ -75,8 +76,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
       }
     );
   }
+
   async function updateStatusPlayed(e) {
-    console.log("HELLOOOOOOOOOOOOOOOOOO");
     let statusId = 3;
 
     const res = await fetch(
@@ -95,10 +96,36 @@ window.addEventListener("DOMContentLoaded", (e) => {
     );
   }
 
+  let checkBoxes = document.querySelectorAll("input[type=checkbox]");
+
+  async function updateCustomShelf(e) {
+    const customName = e.target.value;
+    const customId = e.target.id;
+    const res = await fetch(
+      `/api/users/${userId}/game-guides/${gameId}/custom/${customName}`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          userId,
+          gameGuideId: gameId,
+          name: customName,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
   wantToPlayButton.addEventListener("click", updateStatusWantToPlay);
+
   currentlyPlayingButton.addEventListener(
     "click",
     updateStatusCurrentlyPlaying
   );
   playedButton.addEventListener("click", updateStatusPlayed);
+
+  checkBoxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", updateCustomShelf);
+  });
 });

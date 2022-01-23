@@ -5,6 +5,8 @@ const csrf = require("csurf");
 const { csrfProtection, asyncHandler } = require("../utils");
 const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const db = require("../db/models");
+const { sequelize } = require("../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -17,6 +19,7 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
+    let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
     let statusObj = {
       1: "Want to Play",
@@ -33,27 +36,50 @@ router.get(
         },
       });
 
+      let activeCustomShelves = await db.CustomShelf.findAll({
+        where: {
+          userId,
+          gameGuideId,
+        },
+        attributes: [[sequelize.fn("distinct", sequelize.col("name")), "name"]],
+        raw: true,
+      });
+
+      // list of active shelf names to exclude from inactive shelves
+      let activeShelfNames = activeCustomShelves.map((shelf) => shelf.name);
+
+      let inactiveCustomShelves = await db.CustomShelf.findAll({
+        where: {
+          userId,
+          gameGuideId: {
+            [Op.or]: {
+              [Op.eq]: null,
+              [Op.not]: gameGuideId,
+            },
+          },
+          name: {
+            [Op.not]: activeShelfNames,
+          },
+        },
+        attributes: [[sequelize.fn("distinct", sequelize.col("name")), "name"]],
+        raw: true,
+      });
+
       let currentStatus;
       if (guideStatusCheck.length) {
         currentStatus = statusObj[guideStatusCheck[0].statusId];
       }
 
-      console.log("=========TEST", currentStatus);
-
-      let title = gameGuide.title;
-
       res.render("game-guides-id", {
-        title,
         gameGuide,
         userId,
-        guides,
+        filteredGuides,
         currentStatus,
+        inactiveCustomShelves,
+        activeCustomShelves,
       });
     } else {
-      let title = gameGuide.title;
-
       res.render("game-guides-id", {
-        title,
         gameGuide,
         guides,
       });

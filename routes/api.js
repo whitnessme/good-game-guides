@@ -5,6 +5,18 @@ const bcrypt = require("bcryptjs");
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
 
+const {
+  addStatusShelfEntry,
+  findStatusShelfEntries,
+  findCustomShelfEntries,
+  addCustomShelfName,
+  checkIfCustomNameExists,
+  addGuideToCustomShelf,
+  checkCountOfShelfEntries,
+  allStatusShelfEntries,
+  findAvgRating,
+} = require("../creation");
+
 const router = express.Router();
 
 // router.get(
@@ -25,19 +37,12 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId, statusId, gameGuideId } = req.body;
 
-    // const status = await StatusShelf.findByPk(statusId);
-    // console.log("==============TEST", status);
-
-    // console.log("==============TEST", guideStatusCheck.length);
-
     const guideStatusCheck = await db.StatusShelf.findAll({
       where: {
         gameGuideId,
         userId,
       },
     });
-
-    console.log("========TEST", guideStatusCheck[0]);
 
     if (!guideStatusCheck.length) {
       const statusEntry = await db.StatusShelf.create({
@@ -48,7 +53,6 @@ router.post(
 
       res.json({ statusEntry });
     } else {
-      console.log("UPDATE");
       const status = await db.StatusShelf.findOne({
         where: {
           gameGuideId,
@@ -58,6 +62,42 @@ router.post(
 
       await status.update({ statusId });
       res.json({ status });
+    }
+  })
+);
+
+router.post(
+  "/users/:id(\\d+)/game-guides/:id(\\d+)/custom/:id",
+  asyncHandler(async (req, res) => {
+    const { userId, name, gameGuideId, id } = req.body;
+
+    const activeCustomShelves = await db.CustomShelf.findAll({
+      where: {
+        name,
+        userId,
+        gameGuideId: gameGuideId,
+      },
+    });
+    const nullCustomShelves = await db.CustomShelf.findAll({
+      where: {
+        name,
+        userId,
+        gameGuideId: null,
+      },
+    });
+
+    let activeCustomShelf = activeCustomShelves[0];
+    let nullCustomShelf = nullCustomShelves[0];
+
+    console.log("=====TEST", activeCustomShelf);
+    console.log("=====TEST", nullCustomShelf);
+
+    if (activeCustomShelf) {
+      await activeCustomShelf.update({ gameGuideId: null });
+    } else if (nullCustomShelf) {
+      await nullCustomShelf.update({ gameGuideId: gameGuideId });
+    } else {
+      await db.CustomShelf.create({ name, userId, gameGuideId });
     }
   })
 );

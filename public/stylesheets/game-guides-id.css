@@ -1,3 +1,6 @@
+body {
+  font-family: monospace;
+}
 .main-content-container {
   width: 100%;
   text-align: center;
@@ -10,7 +13,7 @@
   grid-template-rows: auto;
   float: left;
   width: 960px;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-left: 5px;
   font-size: 12px;
   min-height: 400px;
@@ -29,9 +32,13 @@
   width: 625px;
   padding-right: 10px;
   padding-left: 8px;
+  margin-right: 40px;
 }
 
 #topcol {
+  display: flex;
+  flex-direction: row;
+  align-content: flex-start;
   width: 100%;
   margin-bottom: 10px;
 }
@@ -83,7 +90,6 @@
   text-align: left;
   word-wrap: normal;
   white-space: nowrap;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .wtp-button.unselected {
@@ -117,7 +123,6 @@
   border: 0;
   cursor: pointer;
   display: block;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -141,7 +146,6 @@
   width: 180px;
   position: absolute;
   box-shadow: 0 3px 4px -3px rgb(0 0 0 / 50%);
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
 }
 
@@ -150,13 +154,11 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding-bottom: 2px;
-  max-height: 215px;
 }
 
 /* There will be other css here to style drop down forms */
 
 ul.wtp-exclusive-shelves {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   list-style-type: none;
   padding: 0;
@@ -171,6 +173,7 @@ ul.wtp-exclusive-shelves > li {
   padding-left: 15px;
   color: #181818;
   text-align: left;
+  font-family: monospace;
 }
 
 ul.wtp-exclusive-shelves > li:hover {
@@ -180,7 +183,6 @@ ul.wtp-exclusive-shelves > li:hover {
 ul.wtp-exclusive-shelves > li > button {
   box-sizing: content-box;
   color: inherit;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: inherit;
   font-weight: normal;
   overflow: hidden;
@@ -192,8 +194,30 @@ ul.wtp-exclusive-shelves > li > button {
   cursor: pointer;
 }
 
+ul.wtp-non-exclusive-shelves {
+  display: block;
+}
+
+ul.wtp-non-exclusive-shelves li {
+  margin-left: 0;
+  overflow: hidden;
+  padding-left: 15px;
+  color: #181818;
+  text-align: left;
+}
+ul.wtp-non-exclusive-shelves label {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+}
+
+ul.wtp-non-exclusive-shelves input {
+  margin-left: 0;
+}
+
 .current-selected-status {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .rating-stars {
@@ -218,9 +242,10 @@ ul.wtp-exclusive-shelves > li > button {
   font-size: 85%;
 }
 
-.stars {
+.star-rating {
   white-space: nowrap;
-  display: inline-block;
+  display: flex;
+  flex-direction: row-reverse;
   color: #aaa;
   overflow: hidden;
   width: 75px;
@@ -235,11 +260,33 @@ ul.wtp-exclusive-shelves > li > button {
   width: 15px;
   float: left;
   font-size: 0 !important;
+  background-image: url("../images/heart-icon-empty.png");
+  background-size: 15px;
 }
 
-.star.off {
-  background-image: url("../images/review-stars.png");
-  background-size: 15px;
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+  background-image: url("../images/heart-icon-color.png");
+}
+
+.hide {
+  display: block;
+  color: transparent;
+}
+
+.star-rating:hover + .hide {
+  display: block;
+  color: #181818;
+  text-shadow: 1px 1px 2px purple;
+}
+
+.hidden-review {
+  display: none;
+}
+
+.review-box-content:hover + .hidden-review {
+  display: block;
+  text-shadow: 1px 1px 2px purple;
 }
 
 a {
@@ -254,9 +301,9 @@ a {
 }
 
 #game-guide-title {
+  margin-top: 0;
   margin-bottom: 0;
   width: 100%;
-  font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;
   line-height: 1.25;
   font-size: 24px;
@@ -281,7 +328,6 @@ a {
 }
 
 .grey-text {
-  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   margin: 0 5px;
 }
 
@@ -292,7 +338,6 @@ a {
 #description-box {
   right: 0;
   line-height: 21px;
-  font-family: "Merriweather", "Georgia", serif;
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -308,7 +353,6 @@ a {
 
 .my-review-header {
   display: block;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 2px 0;
   width: auto;
   height: 24px;
@@ -340,6 +384,10 @@ tbody {
   border-color: inherit;
 }
 
+td .star-rating {
+  margin-left: 0;
+}
+
 tr {
   display: table-row;
   vertical-align: inherit;
@@ -350,7 +398,7 @@ tr {
   font-size: 14px;
 }
 
-.my-review-label {
+.my-review_label {
   padding: 4px 0;
   vertical-align: top;
   width: 125px;
@@ -368,13 +416,11 @@ td {
 
 .right-container-header-h2 {
   color: #333333;
-  font-family: "Merriweather", "Georgia", serif;
 }
 
 .guide-title {
   margin-bottom: 5px;
   width: 100%;
-  font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;
   line-height: 1.25;
   font-size: 12px;
