@@ -17,7 +17,7 @@ const {
 
 const router = express.Router();
 
-// Read /my-game-guides, display all guides in user's shelves
+// READ - Display all guides in user's shelves
 router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const url = req.url;
     const { userId } = req.session.auth;
@@ -32,42 +32,86 @@ router.get('/my-game-guides', asyncHandler(async (req, res) => {
     res.render('my-game-guides', { url, userId, guides, customShelves });
 }));
 
-// Read /my-game-guides/status-shelves/:id, display all guides in specified status shelf
+// READ - Display all guides in specified status shelf
 router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, res) => {
     const url = req.url;
     const { userId } = req.session.auth;
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
+    const customShelves = await db.CustomShelf.findAll({
+        where: {
+            userId
+        }
+    });
 
-    res.render('my-game-guides', { url, userId, guides });
+    res.render('my-game-guides', { url, userId, guides, customShelves });
 }));
 
-// Read /my-game-guides/custom-shelves/:id, display all guides in specified custom shelf
+// READ - display all guides in specified custom shelf
 // :id can contain 1 or more letters (lower or uppercase), digits, underscore, dash, or space
-router.get('/my-game-guides/custom-shelves/:id([\\w\- ]+)', asyncHandler(async (req, res) => {
+router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async (req, res) => {
+    const url = req.url;
     const { userId } = req.session.auth;
     const shelfName = req.params.id;
 
     const guides = await findCustomShelfEntries(userId, shelfName);
+    const customShelves = await db.CustomShelf.findAll({
+        where: {
+            userId
+        }
+    });
 
-    res.render('my-game-guides', { userId, guides });
+    res.render('my-game-guides', { url, userId, guides, customShelves, shelfName });
 }));
 
-// Read /my-game-guides/custom-shelves/edit
-router.get('/my-game-guides/custom-shelves/edit');
+// READ - Display list of user's custom shelves
+router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
 
-// Create /users/:userId/customShelves, create new custom shelf
-router.post('/users/:userId(\\d+)/customShelves', csrfProtection, asyncHandler(async (req, res) => {
+    res.render('custom-shelves-edit', { title: 'test' });
+}));
+
+// CREATE - User creates custom shelf
+router.post('/users/:userId(\\d+)/customShelves', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const { name } = req.body;
 
-    // If validations, use below?
-    // const customShelf = db.CustomShelf.build({ name });
+    const check = await addCustomShelfName(name, userId);
 
-    await addCustomShelfName(name, userId);
+    res.json({ check });
+}));
 
+// DELETE - User removes guide from status shelf
+router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/status/:statusId(\\d+)', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
 
+    const statusShelfEntry = await db.StatusShelf.findOne({
+        where: {
+            userId,
+            gameGuideId: req.params.gameGuideId,
+            statusId: req.params.statusId
+        }
+    });
+
+    await statusShelfEntry.destroy();
+    res.json({ message: 'success' });
+}));
+
+// DELETE - User removes guide from custom shelf
+router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/custom/:customId([\\w\- %]+)', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+
+    const customShelfEntry = await db.CustomShelf.findOne({
+        where: {
+            userId,
+            gameGuideId: req.params.gameGuideId,
+            name: customId
+        }
+    });
+
+    await customShelfEntry.destroy();
+    res.json({ message: 'success' });
 }));
 
 module.exports = router;
