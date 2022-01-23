@@ -3,6 +3,7 @@ const { check, validationResult } = require("express-validator");
 
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
+const { sequelize } = require("../db/models");
 const {
     addStatusShelfEntry,
     findStatusShelfEntries,
@@ -19,7 +20,11 @@ const {
 
 const router = express.Router();
 
-// const allCount = countGuidesOnShelves(userId, whichShelves)
+// READ - Display list of user's custom shelves
+router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+    res.render('custom-shelves-edit', { title: 'test' });
+}));
 
 // READ - Display all guides in user's shelves
 router.get('/my-game-guides', asyncHandler(async (req, res) => {
@@ -27,12 +32,7 @@ router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-    // const customShelves = await db.CustomShelf.findAll({
-    //     where: {
-    //         userId
-    //     }
-    // });
-
+  
     const customShelfAndCount = await customCounts(userId);
     const {all, one, two, three} = await statusAndAllCounts(userId);
 
@@ -46,12 +46,7 @@ router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, 
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
-    // const customShelves = await db.CustomShelf.findAll({
-    //     where: {
-    //         userId
-    //     }
-    // });
-    
+
     const customShelfAndCount = await customCounts(userId);
     const {all, one, two, three} = await statusAndAllCounts(userId);
 
@@ -66,22 +61,11 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async 
     const shelfName = req.params.id;
 
     const guides = await findCustomShelfEntries(userId, shelfName);
-    // const customShelves = await db.CustomShelf.findAll({
-    //     where: {
-    //         userId
-    //     }
-    // });
-
+  
     const customShelfAndCount = await customCounts(userId);
     const {all, one, two, three} = await statusAndAllCounts(userId);
 
     res.render('my-game-guides', { url, userId, guides, shelfName, customShelfAndCount, all, one, two, three });
-}));
-
-// READ - Display list of user's custom shelves
-router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
-    const { userId } = req.session.auth;
-    res.render('custom-shelves-edit', { title: 'test' });
 }));
 
 // CREATE - User creates custom shelf
@@ -114,15 +98,27 @@ router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/status/:statu
 router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/custom/:customId([\\w\- %]+)', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
+    const allCustomShelves = await db.CustomShelf.findAll({
+        where: {
+            name: req.params.customId,
+            userId
+        },
+    });
+
     const customShelfEntry = await db.CustomShelf.findOne({
         where: {
             userId,
             gameGuideId: req.params.gameGuideId,
-            name: customId
+            name: req.params.customId
         }
     });
 
-    await customShelfEntry.destroy();
+    if (customShelfEntry && allCustomShelves.length > 1) {
+        await customShelfEntry.destroy();
+    } else if (customShelfEntry) {
+        await customShelfEntry.update({ gameGuideId: null });
+    }
+
     res.json({ message: 'success' });
 }));
 

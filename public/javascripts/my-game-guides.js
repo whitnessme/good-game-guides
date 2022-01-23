@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         let gameGuideId = e.target.dataset.gameGuideId;
         let shelfName = e.target.dataset.shelfName;
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName.replace('%20', ' ')}`, {
+        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName}`, {
             method: "DELETE",
         });
 
