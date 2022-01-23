@@ -113,6 +113,10 @@ body {
   float: left;
 }
 
+.wtp-shelf-button:hover {
+  background-color: #00635d;
+}
+
 .wtp-shelf-button {
   height: 27px;
   padding: 5px;
