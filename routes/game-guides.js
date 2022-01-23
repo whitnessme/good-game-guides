@@ -33,9 +33,16 @@ router.get(
         },
       });
 
-      let customShelves = await db.CustomShelf.findAll({
+      let inactiveCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,
+          gameGuideId: null,
+        },
+      });
+      let activeCustomShelves = await db.CustomShelf.findAll({
+        where: {
+          userId,
+          gameGuideId,
         },
       });
 
@@ -52,7 +59,8 @@ router.get(
         userId,
         guides,
         currentStatus,
-        customShelves,
+        inactiveCustomShelves,
+        activeCustomShelves,
       });
     } else {
       let title = gameGuide.title;

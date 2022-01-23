@@ -25,11 +25,6 @@ router.post(
   asyncHandler(async (req, res) => {
     const { userId, statusId, gameGuideId } = req.body;
 
-    // const status = await StatusShelf.findByPk(statusId);
-    // console.log("==============TEST", status);
-
-    // console.log("==============TEST", guideStatusCheck.length);
-
     const guideStatusCheck = await db.StatusShelf.findAll({
       where: {
         gameGuideId,
@@ -59,6 +54,13 @@ router.post(
       await status.update({ statusId });
       res.json({ status });
     }
+  })
+);
+
+router.post(
+  "/users/:id(\\d+)/game-guides/:id(\\d+)/custom/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const { userId, customId, gameGuideId } = req.body;
   })
 );
 

@@ -1,3 +1,6 @@
+body {
+  font-family: monospace;
+}
 .main-content-container {
   width: 100%;
   text-align: center;
@@ -86,7 +89,6 @@
   text-align: left;
   word-wrap: normal;
   white-space: nowrap;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .wtp-button.unselected {
@@ -120,7 +122,6 @@
   border: 0;
   cursor: pointer;
   display: block;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: inherit;
   font-style: inherit;
   font-weight: inherit;
@@ -144,7 +145,6 @@
   width: 180px;
   position: absolute;
   box-shadow: 0 3px 4px -3px rgb(0 0 0 / 50%);
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
 }
 
@@ -158,7 +158,6 @@
 /* There will be other css here to style drop down forms */
 
 ul.wtp-exclusive-shelves {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   list-style-type: none;
   padding: 0;
@@ -182,7 +181,6 @@ ul.wtp-exclusive-shelves > li:hover {
 ul.wtp-exclusive-shelves > li > button {
   box-sizing: content-box;
   color: inherit;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: inherit;
   font-weight: normal;
   overflow: hidden;
@@ -277,7 +275,6 @@ ul.wtp-non-exclusive-shelves input {
 .star-rating:hover + .hide {
   display: block;
   color: #181818;
-  font-family: monospace;
   text-shadow: 1px 1px 2px purple;
 }
 
@@ -287,7 +284,6 @@ ul.wtp-non-exclusive-shelves input {
 
 .review-box-content:hover + .hidden-review {
   display: block;
-  font-family: monospace;
   text-shadow: 1px 1px 2px purple;
 }
 
@@ -306,7 +302,6 @@ a {
   margin-top: 0;
   margin-bottom: 0;
   width: 100%;
-  font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;
   line-height: 1.25;
   font-size: 24px;
@@ -331,7 +326,6 @@ a {
 }
 
 .grey-text {
-  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
   margin: 0 5px;
 }
 
@@ -342,7 +336,6 @@ a {
 #description-box {
   right: 0;
   line-height: 21px;
-  font-family: "Merriweather", "Georgia", serif;
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -358,7 +351,6 @@ a {
 
 .my-review-header {
   display: block;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 2px 0;
   width: auto;
   height: 24px;
@@ -385,7 +377,6 @@ table {
 }
 
 tbody {
-  font-family: monospace;
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
@@ -423,13 +414,11 @@ td {
 
 .right-container-header-h2 {
   color: #333333;
-  font-family: "Merriweather", "Georgia", serif;
 }
 
 .guide-title {
   margin-bottom: 5px;
   width: 100%;
-  font-family: "Merriweather", "Georgia", serif;
   font-weight: bold;
   line-height: 1.25;
   font-size: 12px;

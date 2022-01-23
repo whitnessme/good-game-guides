@@ -7,104 +7,111 @@ append head
   script(src="../javascripts/game-guides-id.js" type="module")
 
 block content
-  if userId
-    div(style="display: none" id="userId") #{userId}
-  div(class="main-content-container")
-    div(class="main-content")
-      div(class="main-content-float")
+  body
+    if userId
+      div(style="display: none" id="userId") #{userId}
+    div(class="main-content-container")
+      div(class="main-content")
+        div(class="main-content-float")
 
-        div(class="left-container")
-          div(id="topcol")
-            div(id="imagecol")
-              div(class="book-cover-container")
-                img(src=`${gameGuide.coverImg}` id="cover-img" alt="guide cover image")
-              div(class="wtp-button-container")
-                if currentStatus
-                  div(class="wtp-button")
-                    span(class="current-selected-status") #{currentStatus}
-                else
-                  div(class="wtp-button unselected")
-                    span(title="Want to Play" class="current-selected-status") Want to Play
-                if !userId
-                  a(href="/users/login")
+          div(class="left-container")
+            div(id="topcol")
+              div(id="imagecol")
+                div(class="book-cover-container")
+                  img(src=`${gameGuide.coverImg}` id="cover-img" alt="guide cover image")
+                div(class="wtp-button-container")
+                  if currentStatus
+                    div(class="wtp-button")
+                      span(class="current-selected-status") #{currentStatus}
+                  else
+                    div(class="wtp-button unselected")
+                      span(title="Want to Play" class="current-selected-status") Want to Play
+                  if !userId
+                    a(href="/users/login")
+                      div(class="shelf-dropdown-button")
+                        button(class="wtp-shelf-button") 🔽
+                  else
                     div(class="shelf-dropdown-button")
                       button(class="wtp-shelf-button") 🔽
-                else
-                  div(class="shelf-dropdown-button")
-                    button(class="wtp-shelf-button") 🔽
-                    div(class="wtp-shelf-menu" style="display: none; left: -18px")
-                      div(class="wtp-shelf-list")
-                        ul(class="wtp-exclusive-shelves")
-                          li(name="played")
-                            button(class="wtp-exclusive-shelf" type=submit value="played" id="statusId1") Want to Play
-                          li(name="currently-playing")
-                            button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
-                          li(name="want-to-play")
-                            button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
-                        ul(class="wtp-non-exclusive-shelves")
-                          each shelf in customShelves
-                            li(name=`${shelf.name}`)
-                              input(type="checkbox" value=`${shelf.name}`)
-                              label(for=`${shelf.name}`) Test
-                div(class="rating-stars wtp-rating")
-                  div(class="myrating-text") Rate this guide
-                  //- need other info about user id and such
-                  div(class="star-rating")
-                    a(class="star" title="did not like it" href="#") 1 of 5 stars
-                    a(class="star" title="it was ok" href="#") 2 of 5 stars
-                    a(class="star" title="liked it" href="#") 3 of 5 stars
-                    a(class="star" title="really liked it" href="#") 4 of 5 stars
-                    a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                  div(class="hide") Rating Feature Coming Soon!
-            div(id="textcol")
-              h1(id="game-guide-title") #{title}
-              div(id="guide-authors")
-                span(class="by") by
-                span(id="author-name") #{" " + gameGuide.author + " " + "("+gameGuide.publisher+")"}
-              div(id="guide-meta")
-                span(class="stars static-stars")
-                  span(class="static-star")
-                  span(class="static-star")
-                  span(class="static-star")
-                  span(class="static-star")
-                  span(class="static-star")
-                span(class="grey-text") 4.72
-                span(class="grey-text") 500 ratings
-                span(class="grey-text") 500 reviews
-              div(id="description-container")
-                div(id="description-box")
-                  p(id="description-text") #{gameGuide.summary}
-          div(class="my-review-box")
-            div(class="h2-container")
-              h2(class="my-review-header") My Review
-            div(class="review-box-content")
-              table(class="my-reviews" cellspacing="1" border="0" width="100%")
-                tbody
-                  tr
-                    td(valign="top" class="my-review_label") Review of
-                    td(colspan="2") #{title}
-                  tr
-                    td(valign="top" class="my-review_label") Rating
-                    td(colspan="2")
-                      div(class="star-rating")
-                        a(class="star" title="did not like it" href="#") 1 of 5 stars
-                        a(class="star" title="it was ok" href="#") 2 of 5 stars
-                        a(class="star" title="liked it" href="#") 3 of 5 stars
-                        a(class="star" title="really liked it" href="#") 4 of 5 stars
-                        a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                  tr
-                    td(valign="top" class="my-review_label") Review
-                    td(colspan="2")
-                      textarea
-            div(class="hidden-review") Rating and Review Features Coming Soon!
-        div(class="right-container")
-          div(class="right-container-header")
-            h2(class="right-container-header-h2") Players Also Enjoyed:
-          div(class="guide-recommendations-container")
-            each guide in guides
-              div(class="single-recommendation-container")
-                div(class="guide-title-container")
-                  h3(class="guide-title") #{guide.title}
-                div(class="guide-img-container")
-                    a(href=`/game-guides/${guide.id}`)
-                      img(src=`${guide.coverImg}` class="guide-img" alt="guide image cover art")
+                      div(class="wtp-shelf-menu" style="display: none; left: -18px")
+                        div(class="wtp-shelf-list")
+                          ul(class="wtp-exclusive-shelves")
+                            li(name="played")
+                              button(class="wtp-exclusive-shelf" type=submit value="played" id="statusId1") Want to Play
+                            li(name="currently-playing")
+                              button(class="wtp-exclusive-shelf" type=submit value="currently-playing" id="statusId2") Currently Playing
+                            li(name="want-to-play")
+                              button(class="wtp-exclusive-shelf" type=submit value="want-to-play" id="statusId3") Played
+                          ul(class="wtp-non-exclusive-shelves")
+                            each shelf in activeCustomShelves
+                              li(name=`${shelf.name}`)
+                                input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}` checked)
+                                label(for=`${shelf.name}`) #{shelf.name}
+                            each shelf in inactiveCustomShelves
+                              li(name=`${shelf.name}`)
+                                input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}`)
+                                label(for=`${shelf.name}`) #{shelf.name}
+                  div(class="rating-stars wtp-rating")
+                    div(class="myrating-text") Rate this guide
+                    //- need other info about user id and such
+                    div(class="star-rating")
+                      a(class="star" title="did not like it" href="#") 1 of 5 stars
+                      a(class="star" title="it was ok" href="#") 2 of 5 stars
+                      a(class="star" title="liked it" href="#") 3 of 5 stars
+                      a(class="star" title="really liked it" href="#") 4 of 5 stars
+                      a(class="star" title="it was amazing" href="#") 5 of 5 stars
+                    div(class="hide") Rating Feature Coming Soon!
+              div(id="textcol")
+                h1(id="game-guide-title") #{title}
+                div(id="guide-authors")
+                  if gameGuide.author
+                    span(class="by") by
+                    span(id="author-name") #{" " + gameGuide.author}
+                  else
+                    span(class="by") by
+                    span(id="author-name") #{" " + gameGuide.publisher}
+
+                div(id="guide-meta")
+                  span(class="stars static-stars")
+                    span(class="static-star")
+                    span(class="static-star")
+                    span(class="static-star")
+                    span(class="static-star")
+                    span(class="static-star")
+                div(id="description-container")
+                  div(id="description-box")
+                    p(id="description-text") #{gameGuide.summary}
+            div(class="my-review-box")
+              div(class="h2-container")
+                h2(class="my-review-header") My Review
+              div(class="review-box-content")
+                table(class="my-reviews" cellspacing="1" border="0" width="100%")
+                  tbody
+                    tr
+                      td(valign="top" class="my-review_label") Review of
+                      td(colspan="2") #{title}
+                    tr
+                      td(valign="top" class="my-review_label") Rating
+                      td(colspan="2")
+                        div(class="star-rating")
+                          a(class="star" title="did not like it" href="#") 1 of 5 stars
+                          a(class="star" title="it was ok" href="#") 2 of 5 stars
+                          a(class="star" title="liked it" href="#") 3 of 5 stars
+                          a(class="star" title="really liked it" href="#") 4 of 5 stars
+                          a(class="star" title="it was amazing" href="#") 5 of 5 stars
+                    tr
+                      td(valign="top" class="my-review_label") Review
+                      td(colspan="2")
+                        textarea
+              div(class="hidden-review") Rating and Review Features Coming Soon!
+          div(class="right-container")
+            div(class="right-container-header")
+              h2(class="right-container-header-h2") Players Also Enjoyed:
+            div(class="guide-recommendations-container")
+              each guide in guides
+                div(class="single-recommendation-container")
+                  div(class="guide-title-container")
+                    h3(class="guide-title") #{guide.title}
+                  div(class="guide-img-container")
+                      a(href=`/game-guides/${guide.id}`)
+                        img(src=`${guide.coverImg}` class="guide-img" alt="guide image cover art")
