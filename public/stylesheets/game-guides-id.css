@@ -13,7 +13,7 @@ body {
   grid-template-rows: auto;
   float: left;
   width: 960px;
-  margin-top: 15px;
+  margin-top: 30px;
   margin-left: 5px;
   font-size: 12px;
   min-height: 400px;
@@ -32,6 +32,7 @@ body {
   width: 625px;
   padding-right: 10px;
   padding-left: 8px;
+  margin-right: 40px;
 }
 
 #topcol {
