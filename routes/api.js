@@ -1,6 +1,8 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const { sequelize } = require("../db/models");
+const { Op } = require("sequelize");
 
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
@@ -78,24 +80,23 @@ router.post(
         gameGuideId: gameGuideId,
       },
     });
-    const nullCustomShelves = await db.CustomShelf.findAll({
+
+    const allCustomShelves = await db.CustomShelf.findAll({
       where: {
         name,
         userId,
-        gameGuideId: null,
       },
     });
 
     let activeCustomShelf = activeCustomShelves[0];
-    let nullCustomShelf = nullCustomShelves[0];
+    let allCustomShelf = allCustomShelves[0];
 
-    console.log("=====TEST", activeCustomShelf);
-    console.log("=====TEST", nullCustomShelf);
-
-    if (activeCustomShelf) {
+    if (activeCustomShelf && allCustomShelves.length > 1) {
+      await activeCustomShelf.destroy();
+    } else if (activeCustomShelf) {
       await activeCustomShelf.update({ gameGuideId: null });
-    } else if (nullCustomShelf) {
-      await nullCustomShelf.update({ gameGuideId: gameGuideId });
+    } else if (allCustomShelf && allCustomShelf.gameGuideId === null) {
+      await allCustomShelf.update({ gameGuideId });
     } else {
       await db.CustomShelf.create({ name, userId, gameGuideId });
     }
