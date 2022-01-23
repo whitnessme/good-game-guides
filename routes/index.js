@@ -6,6 +6,7 @@ const { sequelize } = require("../db/models");
 const { csrfProtection, asyncHandler } = require("../utils");
 const { checkCountOfShelfEntries } = require('../creation')
 
+
 /* GET home page. */
 router.get("/", asyncHandler(async (req, res, next) => {
   let currentGuides;
@@ -61,8 +62,6 @@ router.get("/", asyncHandler(async (req, res, next) => {
       customCounts.push({count: result, name: shelfName})
     }
   }
-  console.log("HERE: ", customCounts)
-  console.log('Hello???? ', customShelves)
 
   if (currentGuides && !currentGuides.length) {
     noCurr.push("Please add guides to view them here")
