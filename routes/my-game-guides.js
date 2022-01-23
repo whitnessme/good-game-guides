@@ -3,6 +3,7 @@ const { check, validationResult } = require("express-validator");
 
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
+const { sequelize } = require("../db/models");
 const {
     addStatusShelfEntry,
     findStatusShelfEntries,
@@ -26,7 +27,9 @@ router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const customShelves = await db.CustomShelf.findAll({
         where: {
             userId
-        }
+        },
+        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
+        raw: true,
     });
 
     res.render('my-game-guides', { url, userId, guides, customShelves });
@@ -42,7 +45,9 @@ router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, 
     const customShelves = await db.CustomShelf.findAll({
         where: {
             userId
-        }
+        },
+        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
+        raw: true,
     });
 
     res.render('my-game-guides', { url, userId, guides, customShelves });
@@ -59,7 +64,9 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async 
     const customShelves = await db.CustomShelf.findAll({
         where: {
             userId
-        }
+        },
+        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
+        raw: true,
     });
 
     res.render('my-game-guides', { url, userId, guides, customShelves, shelfName });
@@ -102,15 +109,27 @@ router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/status/:statu
 router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/custom/:customId([\\w\- %]+)', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
+    const allCustomShelves = await db.CustomShelf.findAll({
+        where: {
+            name: req.params.customId,
+            userId
+        },
+    });
+
     const customShelfEntry = await db.CustomShelf.findOne({
         where: {
             userId,
             gameGuideId: req.params.gameGuideId,
-            name: customId
+            name: req.params.customId
         }
     });
 
-    await customShelfEntry.destroy();
+    if (customShelfEntry && allCustomShelves.length > 1) {
+        await customShelfEntry.destroy();
+    } else if (customShelfEntry) {
+        await customShelfEntry.update({ gameGuideId: null });
+    }
+
     res.json({ message: 'success' });
 }));
 
