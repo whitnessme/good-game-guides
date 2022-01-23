@@ -52,8 +52,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     addShelfForm.addEventListener('submit', submitAddShelfForm);
 
     // Remove guide from status shelf
-    let removeGuideBtns = document.querySelectorAll('.removeGuideBtn');
-    let tableDataRow = document.getElementById('tableDataRow');
+    let removeStatusGuideBtns = document.querySelectorAll('.removeStatusGuideBtn');
 
     const removeGuideFromStatusShelf = async (e) => {
         e.preventDefault();
@@ -66,19 +65,32 @@ window.addEventListener('DOMContentLoaded', (e) => {
             method: "DELETE",
         });
 
-        if (res.ok) tableDataRow.remove();
+        if (res.ok) e.path[2].remove();
     };
 
-    removeGuideBtns.forEach(button => {
+    removeStatusGuideBtns.forEach(button => {
         button.addEventListener('click', removeGuideFromStatusShelf);
     });
 
     // Remove guide from custom shelf
+    let removeCustomGuideBtns = document.querySelectorAll('.removeCustomGuideBtn');
+
     const removeGuideFromCustomShelf = async (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        // Adjust fetch path
-        const res = await fetch(`/users/${userId}/game-guides/:id/custom/:id`);
+        let gameGuideId = e.target.dataset.gameGuideId;
+        let shelfName = e.target.dataset.shelfName;
+
+        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName.replace('%20', ' ')}`, {
+            method: "DELETE",
+        });
+
+        if (res.ok) e.path[2].remove();
     };
+
+    removeCustomGuideBtns.forEach(button => {
+        button.addEventListener('click', removeGuideFromCustomShelf);
+    });
+
 })

@@ -69,7 +69,7 @@ block content
                                 if guides.length > 0
                                     each guide in guides
                                         if guide.GameGuide !== null
-                                            tr(id='tableDataRow')
+                                            tr(class='tableDataRow')
                                                 td(class='cover'): a(href=`/game-guides/${guide.GameGuide.id}`): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
                                                 td(class='title'): a(href=`/game-guides/${guide.GameGuide.id}`)= guide.GameGuide.title
                                                 td(class='author')= guide.GameGuide.author
@@ -90,10 +90,10 @@ block content
                                                     td(class='review')= guide.GameGuide.Reviews[0].reviewText
                                                 else
                                                     td(class='review'): a(href=`/games-guides/${guide.GameGuide.id}/reviews/new`) Write a Review
-                                                td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
+                                                td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")
-                                                    td(class='action'): button(type='button' class='removeGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-shelf-name=`${shelfName}`) X
+                                                    td(class='action'): button(type='button' class='removeCustomGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-shelf-name=`${shelfName}`) X
                                                 else
-                                                    td(class='action'): button(type='button' class='removeGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-status-id=`${guide.Status.id}`) X
+                                                    td(class='action'): button(type='button' class='removeStatusGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-status-id=`${guide.Status.id}`) X
                         if guides.length === 0 || guides[0].GameGuide === null
                             div(class='noContent') No guides have been added yet!

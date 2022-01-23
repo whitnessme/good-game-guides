@@ -88,9 +88,9 @@ router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/status/:statu
 
     const statusShelfEntry = await db.StatusShelf.findOne({
         where: {
-            statusId: req.params.statusId,
+            userId,
             gameGuideId: req.params.gameGuideId,
-            userId
+            statusId: req.params.statusId
         }
     });
 
@@ -99,6 +99,19 @@ router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/status/:statu
 }));
 
 // DELETE - User removes guide from custom shelf
-// router.delete();
+router.delete('/users/:userId(\\d+)/game-guides/:gameGuideId(\\d+)/custom/:customId([\\w\- %]+)', asyncHandler(async (req, res) => {
+    const { userId } = req.session.auth;
+
+    const customShelfEntry = await db.CustomShelf.findOne({
+        where: {
+            userId,
+            gameGuideId: req.params.gameGuideId,
+            name: customId
+        }
+    });
+
+    await customShelfEntry.destroy();
+    res.json({ message: 'success' });
+}));
 
 module.exports = router;
