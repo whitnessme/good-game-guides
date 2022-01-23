@@ -19,6 +19,7 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
+    let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
     let statusObj = {
       1: "Want to Play",
@@ -69,22 +70,16 @@ router.get(
         currentStatus = statusObj[guideStatusCheck[0].statusId];
       }
 
-      let title = gameGuide.title;
-
       res.render("game-guides-id", {
-        title,
         gameGuide,
         userId,
-        guides,
+        filteredGuides,
         currentStatus,
         inactiveCustomShelves,
         activeCustomShelves,
       });
     } else {
-      let title = gameGuide.title;
-
       res.render("game-guides-id", {
-        title,
         gameGuide,
         guides,
       });
