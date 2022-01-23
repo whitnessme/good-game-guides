@@ -5,6 +5,8 @@ const csrf = require("csurf");
 const { csrfProtection, asyncHandler } = require("../utils");
 const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const db = require("../db/models");
+const { sequelize } = require("../db/models");
+const { Op } = require("sequelize");
 
 const router = express.Router();
 
@@ -36,9 +38,16 @@ router.get(
       let inactiveCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,
-          gameGuideId: null,
+          gameGuideId: {
+            [Op.or]: {
+              [Op.eq]: null,
+              [Op.not]: gameGuideId,
+            },
+          },
         },
       });
+
+      console.log("=========TEST", inactiveCustomShelves);
       let activeCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,

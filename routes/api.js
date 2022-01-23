@@ -32,8 +32,6 @@ router.post(
       },
     });
 
-    console.log("========TEST", guideStatusCheck[0]);
-
     if (!guideStatusCheck.length) {
       const statusEntry = await db.StatusShelf.create({
         userId,
@@ -43,7 +41,6 @@ router.post(
 
       res.json({ statusEntry });
     } else {
-      console.log("UPDATE");
       const status = await db.StatusShelf.findOne({
         where: {
           gameGuideId,
@@ -58,9 +55,30 @@ router.post(
 );
 
 router.post(
-  "/users/:id(\\d+)/game-guides/:id(\\d+)/custom/:id(\\d+)",
+  "/users/:id(\\d+)/game-guides/:id(\\d+)/custom/:id",
   asyncHandler(async (req, res) => {
-    const { userId, customId, gameGuideId } = req.body;
+    const { userId, name, gameGuideId } = req.body;
+
+    const activeShelf = await db.CustomShelf.findOne({
+      where: {
+        name,
+        userId,
+        gameGuideId: gameGuideId,
+      },
+    });
+
+    if (activeShelf) {
+      await activeShelf.update({ gameGuideId: null });
+    } else {
+      const inactiveShelf = await db.CustomShelf.create({
+        where: {
+          name,
+          userId,
+          gameGuideId,
+        },
+      });
+      res.json({ inactiveShelf });
+    }
   })
 );
 

@@ -172,6 +172,7 @@ ul.wtp-exclusive-shelves > li {
   padding-left: 15px;
   color: #181818;
   text-align: left;
+  font-family: monospace;
 }
 
 ul.wtp-exclusive-shelves > li:hover {

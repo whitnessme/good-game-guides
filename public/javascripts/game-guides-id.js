@@ -99,16 +99,17 @@ window.addEventListener("DOMContentLoaded", (e) => {
   let checkBoxes = document.querySelectorAll("input[type=checkbox]");
 
   async function updateCustomShelf(e) {
+    const customName = e.target.value;
     const customId = e.target.id;
 
     const res = await fetch(
-      `/users/${userId}/game-guides/${gameId}/custom/${customId}`,
+      `/api/users/${userId}/game-guides/${gameId}/custom/${customId}`,
       {
         method: "POST",
         body: JSON.stringify({
           userId,
           gameGuideId: gameId,
-          customId,
+          name: customName,
         }),
         headers: {
           "Content-Type": "application/json",
