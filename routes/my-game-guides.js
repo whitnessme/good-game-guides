@@ -21,9 +21,18 @@ const {
 const router = express.Router();
 
 // READ - Display list of user's custom shelves
-router.get('/my-game-guides/custom-shelves/edit', asyncHandler(async (req, res) => {
+router.get('/my-game-guides/custom-shelves/edit', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
-    res.render('custom-shelves-edit', { title: 'test' });
+
+    const customShelves = await db.CustomShelf.findAll({
+        where: {
+            userId
+        },
+        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
+        raw: true,
+    });
+
+    res.render('custom-shelves-edit', { title: 'Edit My Shelves | GoodGameGuides', userId, customShelves, csrfToken: req.csrfToken() });
 }));
 
 // READ - Display all guides in user's shelves
@@ -32,9 +41,9 @@ router.get('/my-game-guides', asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-  
+
     const customShelfAndCount = await customCounts(userId);
-    const {all, one, two, three} = await statusAndAllCounts(userId);
+    const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render('my-game-guides', { url, userId, guides, customShelfAndCount, all, one, two, three });
 }));
@@ -48,7 +57,7 @@ router.get('/my-game-guides/status-shelves/:id(\\d+)', asyncHandler(async (req, 
     const guides = await findStatusShelfEntries(userId, shelfId);
 
     const customShelfAndCount = await customCounts(userId);
-    const {all, one, two, three} = await statusAndAllCounts(userId);
+    const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render('my-game-guides', { url, userId, guides, customShelfAndCount, all, one, two, three });
 }));
@@ -61,9 +70,9 @@ router.get('/my-game-guides/custom-shelves/:id([\\w\- %]+)', asyncHandler(async 
     const shelfName = req.params.id;
 
     const guides = await findCustomShelfEntries(userId, shelfName);
-  
+
     const customShelfAndCount = await customCounts(userId);
-    const {all, one, two, three} = await statusAndAllCounts(userId);
+    const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render('my-game-guides', { url, userId, guides, shelfName, customShelfAndCount, all, one, two, three });
 }));
