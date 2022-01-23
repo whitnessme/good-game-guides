@@ -22,9 +22,15 @@ const router = express.Router();
 router.get('/my-game-guides/custom-shelves/edit', csrfProtection, asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
+    const customShelves = await db.CustomShelf.findAll({
+        where: {
+            userId
+        },
+        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
+        raw: true,
+    });
 
-
-    res.render('custom-shelves-edit', { title: 'Edit My Shelves | GoodGameGuides', userId, csrfToken: req.csrfToken() });
+    res.render('custom-shelves-edit', { title: 'Edit My Shelves | GoodGameGuides', userId, customShelves, csrfToken: req.csrfToken() });
 }));
 
 // READ - Display all guides in user's shelves

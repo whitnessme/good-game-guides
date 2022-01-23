@@ -15,21 +15,20 @@ block content
                         tr
                             th
                             th Shelf
-                        //- If custom shelves, list a row for each
-                        tr(class='shelf' data-shelf-name=``)
-                            td(class='remove'): button(type='button' class='removeShelfBtn') X
-                            td(class='userShelf')
-                                div(class='displayShelfName')
-                                    //- Shelf Name here & count?
-                                    a(class='displayShelfNameLink' href='#')
-                                    a(class='renameUserShelfLink' href='#') Rename
-                                div(class='renameUserShelf')
-                                    form(class='renameShelfForm' action='#' method='post')
-                                        input(type='hidden' name='_csrf' value=csrfToken)
-                                        //- Value is current shelf name
-                                        input(type='text' name='renameShelf' class='renameUserShelfText' value='')
-                                        button(type='button' class='renameShelfBtn') Save
-                                        a(class='cancelRenameBtn' href='#') Cancel
+                        if customShelves
+                            each shelf in customShelves
+                                tr(class='shelf' data-shelf-name=`${shelf.name}`)
+                                    td(class='remove'): button(type='button' class='removeShelfBtn') X
+                                    td(class='userShelf')
+                                        div(class='displayShelfName')
+                                            a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}`)= `${shelf.name} (?)`
+                                            a(class='renameUserShelfLink' href='#') Rename
+                                        div(class='renameUserShelf')
+                                            form(class='renameShelfForm' action='#' method='post')
+                                                input(type='hidden' name='_csrf' value=csrfToken)
+                                                input(type='text' name='renameShelf' class='renameUserShelfText' value=shelf.name)
+                                                button(type='button' class='renameShelfBtn') Save
+                                                a(class='cancelRenameBtn' href='#') Cancel
                 div(class='right')
                     a(href='/my-game-guides') I'm Done
                 div(class='left')
