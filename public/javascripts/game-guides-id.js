@@ -101,9 +101,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
   async function updateCustomShelf(e) {
     const customName = e.target.value;
     const customId = e.target.id;
-
     const res = await fetch(
-      `/api/users/${userId}/game-guides/${gameId}/custom/${customId}`,
+      `/api/users/${userId}/game-guides/${gameId}/custom/${customName}`,
       {
         method: "POST",
         body: JSON.stringify({

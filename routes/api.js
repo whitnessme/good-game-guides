@@ -5,6 +5,18 @@ const bcrypt = require("bcryptjs");
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
 
+const {
+  addStatusShelfEntry,
+  findStatusShelfEntries,
+  findCustomShelfEntries,
+  addCustomShelfName,
+  checkIfCustomNameExists,
+  addGuideToCustomShelf,
+  checkCountOfShelfEntries,
+  allStatusShelfEntries,
+  findAvgRating,
+} = require("../creation");
+
 const router = express.Router();
 
 // router.get(
@@ -57,27 +69,35 @@ router.post(
 router.post(
   "/users/:id(\\d+)/game-guides/:id(\\d+)/custom/:id",
   asyncHandler(async (req, res) => {
-    const { userId, name, gameGuideId } = req.body;
+    const { userId, name, gameGuideId, id } = req.body;
 
-    const activeShelf = await db.CustomShelf.findOne({
+    const activeCustomShelves = await db.CustomShelf.findAll({
       where: {
         name,
         userId,
         gameGuideId: gameGuideId,
       },
     });
+    const nullCustomShelves = await db.CustomShelf.findAll({
+      where: {
+        name,
+        userId,
+        gameGuideId: null,
+      },
+    });
 
-    if (activeShelf) {
-      await activeShelf.update({ gameGuideId: null });
+    let activeCustomShelf = activeCustomShelves[0];
+    let nullCustomShelf = nullCustomShelves[0];
+
+    console.log("=====TEST", activeCustomShelf);
+    console.log("=====TEST", nullCustomShelf);
+
+    if (activeCustomShelf) {
+      await activeCustomShelf.update({ gameGuideId: null });
+    } else if (nullCustomShelf) {
+      await nullCustomShelf.update({ gameGuideId: gameGuideId });
     } else {
-      const inactiveShelf = await db.CustomShelf.create({
-        where: {
-          name,
-          userId,
-          gameGuideId,
-        },
-      });
-      res.json({ inactiveShelf });
+      await db.CustomShelf.create({ name, userId, gameGuideId });
     }
   })
 );

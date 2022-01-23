@@ -35,6 +35,18 @@ router.get(
         },
       });
 
+      let activeCustomShelves = await db.CustomShelf.findAll({
+        where: {
+          userId,
+          gameGuideId,
+        },
+        attributes: [[sequelize.fn("distinct", sequelize.col("name")), "name"]],
+        raw: true,
+      });
+
+      // list of active shelf names to exclude from inactive shelves
+      let activeShelfNames = activeCustomShelves.map((shelf) => shelf.name);
+
       let inactiveCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,
@@ -44,15 +56,12 @@ router.get(
               [Op.not]: gameGuideId,
             },
           },
+          name: {
+            [Op.not]: activeShelfNames,
+          },
         },
-      });
-
-      console.log("=========TEST", inactiveCustomShelves);
-      let activeCustomShelves = await db.CustomShelf.findAll({
-        where: {
-          userId,
-          gameGuideId,
-        },
+        attributes: [[sequelize.fn("distinct", sequelize.col("name")), "name"]],
+        raw: true,
       });
 
       let currentStatus;
