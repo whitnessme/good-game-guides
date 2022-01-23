@@ -134,6 +134,8 @@ body {
 }
 
 .wtp-shelf-menu {
+  float: left;
+  position: relative;
   background: #ffffff;
   border-color: #cccccc;
   border-radius: 3px;
@@ -142,11 +144,8 @@ body {
   max-height: 250px;
   overflow: hidden;
   padding: 0;
-  right: 0;
   text-align: left;
-  top: 28px;
   width: 180px;
-  position: absolute;
   box-shadow: 0 3px 4px -3px rgb(0 0 0 / 50%);
   font-size: 12px;
 }
