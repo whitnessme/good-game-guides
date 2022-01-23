@@ -1,0 +1,9 @@
+.main-contain {
+    display: flex;
+    flex-direction: column;
+}
+
+.gameover-img-div {
+    display: block;
+    position: absolute;
+}
