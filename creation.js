@@ -1,5 +1,6 @@
 const db = require("./db/models");
 const { sequelize } = require("./db/models");
+const { check, validationResult } = require("express-validator");
 
 async function findStatusShelfEntries(userId, statusId){
     return await db.StatusShelf.findAll({
@@ -46,7 +47,15 @@ async function findCustomShelfEntries(userId, name) {
         },
         include: {
             model: db.GameGuide,
-            include: db.Review
+            include: [
+                {
+                    model: db.Review
+                },
+                {
+                    model: db.StatusShelf,
+                    include: db.Status
+                }
+            ]
         }
     })
 
@@ -57,13 +66,30 @@ async function findCustomShelfEntries(userId, name) {
 }
 
 async function checkIfCustomNameExists(name, userId) {
-  const shelf = await findCustomShelfEntries(userId, name);
-  if (shelf) return true;
-  else return false;
+
+    const shelf = await findCustomShelfEntries(userId, name);
+    if (shelf && shelf.length) return true;
+    else return false;
 }
 
 async function addCustomShelfName(name, userId) {
-  await db.CustomShelf.create({ name, userId });
+    if (name) {
+        if (/^[\w\- ]+$/.test(name)) {
+            const exists = await checkIfCustomNameExists(name, userId);
+            console.log('----------', exists);
+            if (!exists) {
+                await db.CustomShelf.create({ name, userId });
+                return "success";
+            } else {
+                return "There is already a shelf with this name";
+            }
+        } else {
+            return "Shelf name can only contain 1 or more lowercase letters, uppercase letters, 0-9, -, _, or a space";
+        }
+    } else {
+        return "Please provide a value for the shelf name";
+    }
+
 }
 
 async function addGuideToCustomShelf(name, userId, gameGuideId) {
@@ -152,4 +178,3 @@ module.exports = {
     allStatusShelfEntries,
     findAvgRating
 }
-
