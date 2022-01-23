@@ -35,6 +35,10 @@ body {
   margin-right: 40px;
 }
 
+.right-container {
+  /* float: right; */
+}
+
 #topcol {
   display: flex;
   flex-direction: row;
