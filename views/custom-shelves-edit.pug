@@ -1,12 +1,17 @@
 extends layout.pug
 
+append head
+    script(src='/javascripts/edit-custom-shelves.js' type='module' defer)
+
 block content
     div(class='mainContentContainer')
+    if userId
+        div(style="display:none" id="userId") #{userId}
         div(class='mainContent')
             h1: <a href='/my-game-guides'>My Game Guides</a> > Edit Shelves
             div(class='leftContainer')
                 div(class='stacked')
-                    form(class='addShelfForm' action='/users/${userId}/customShelves' method='post')
+                    form(class='addShelfForm' action=`/users/${userId}/customShelves` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         input(type='text' id='addShelf' name='addShelf' maxlength='50' placeholder='Add a Shelf')
                         button(type='submit' class='addShelfBtn') Add
