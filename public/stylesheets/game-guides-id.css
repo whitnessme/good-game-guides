@@ -51,7 +51,6 @@ body {
 }
 
 .book-cover-container {
-  position: relative;
   text-align: center;
 }
 
@@ -68,7 +67,6 @@ body {
   margin-right: auto;
   height: 67px;
   width: 140px;
-  position: relative;
 }
 
 .wtp-button {
