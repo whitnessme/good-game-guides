@@ -91,6 +91,9 @@ block content
                                                 else
                                                     td(class='review'): a(href=`/games-guides/${guide.GameGuide.id}/reviews/new`) Write a Review
                                                 td(class='dateAdded')= guide.GameGuide.createdAt.toDateString().slice(4)
-                                                td(class='action'): button(type='button' id='removeGuideBtn') X
+                                                if url.startsWith("/my-game-guides/custom-shelves/")
+                                                    td(class='action'): button(type='button' class='removeGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-shelf-name=`${shelfName}`) X
+                                                else
+                                                    td(class='action'): button(type='button' class='removeGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-status-id=`${guide.Status.id}`) X
                         if guides.length === 0 || guides[0].GameGuide === null
                             div(class='noContent') No guides have been added yet!
