@@ -21,22 +21,24 @@ block content
                         tr
                             th
                             th Shelf
+                            th
                         if customShelfAndCount
                             each shelf in customShelfAndCount
                                 tr(class='shelf')
-                                    td(class='remove'): a(class='removeShelfBtn') X
+                                    td(class='remove')
+                                        form(class='remove-custom' action=`/custom-shelves/${shelf.name}/delete` method='post')
+                                            button.remove-custom-button(type='submit') X
                                     td(class='userShelf')
                                         div(class='displayShelfName')
-                                            a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}`)= `${shelf.name} (${shelf.count})`
-                                            a(class='renameUserShelfLink' href='#')= " Rename"
-                                        div(class='renameUserShelf')
-                                            form(class='renameShelfForm' action='#' method='post')
+                                            a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}` style="display: inline")= `${shelf.name} (${shelf.count})`
+                                            a(class=`renameUserShelfLink ${shelf.name}` href='#' data-shelf-name=`${shelf.name}`)= " Rename"
+                                    td
+                                        span(class=`renameUserShelf ${shelf.name}`)
+                                            form(class='renameShelfForm' action=`/custom-shelves/${shelf.name}/edit` method='post')
                                                 input(type='hidden' name='_csrf' value=csrfToken)
-                                                input(type='text' name='renameShelf' class='renameUserShelfText' value=shelf.name)
-                                                button(type='button' class='renameShelfBtn') Save
-                                                a(class='cancelRenameBtn' href='#') Cancel
+                                                input(type='text' name='name' class='renameUserShelfText' value=shelf.name)
+                                                button(type='submit' class='renameShelfBtn') Save
+                                                //- a(class='cancelRenameBtn' href='#' data-shelf-name=`${shelf.name}`) Cancel
+
                 div(class='right')
                     a(href='/my-game-guides') I'm Done
-                div(class='left')
-                    //- Have pop up to confirm
-                    a(href='#') Delete All of My Shelves
