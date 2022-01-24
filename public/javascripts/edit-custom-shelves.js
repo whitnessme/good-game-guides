@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
   // ***ADDING NEW CUSTOM SHELF
   const addShelfForm = document.querySelector(".addShelfForm");
-  const tbody = document.querySelector('tbody');
+  const tbody = document.querySelector("tbody");
 
   addShelfForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -24,11 +24,9 @@ window.addEventListener("DOMContentLoaded", (e) => {
     const data = await res.json();
     const { check } = data;
 
-    console.log(check);
-
-    if (check === 'success') {
-      const tr = document.createElement('tr');
-      tr.className = 'shelf';
+    if (check === "success") {
+      const tr = document.createElement("tr");
+      tr.className = "shelf";
       tr.innerHTML = `
       <td class="remove">
         <a class="removeShelfBtn">X</a>
@@ -51,27 +49,28 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
       tbody.appendChild(tr);
     } else {
-      const p = document.getElementById('errorMessage');
+      const p = document.getElementById("errorMessage");
       p.innerText = check;
     }
-
   });
 
   // ***ADDING NEW CUSTOM SHELF
 
   // Display rename shelf form
-  let renameUserShelfLink = document.querySelectorAll('.renameUserShelfLink');
+  let renameUserShelfLink = document.querySelectorAll(".renameUserShelfLink");
 
   const displayRenameForm = (e) => {
     let shelfName = e.target.dataset.shelfName;
-    let renameUserShelfSpan = document.querySelector(`.renameUserShelf.${shelfName}`);
+    let renameUserShelfSpan = document.querySelector(
+      `.renameUserShelf.${shelfName}`
+    );
 
-    e.target.style.display = 'none';
-    renameUserShelfSpan.style.display = 'inline';
+    e.target.style.display = "none";
+    renameUserShelfSpan.style.display = "inline";
   };
 
-  renameUserShelfLink.forEach(link => {
-    link.addEventListener('click', displayRenameForm);
+  renameUserShelfLink.forEach((link) => {
+    link.addEventListener("click", displayRenameForm);
   });
 
   // Cancel renaming shelf

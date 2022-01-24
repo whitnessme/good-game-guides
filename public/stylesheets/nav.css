@@ -35,6 +35,12 @@ button,
 }
 
 a {
+  font-family: monospace;
+  text-decoration: none;
+  font-style: normal;
+}
+
+nav a {
   text-decoration: none;
   color: white;
   font-style: normal;
@@ -92,6 +98,13 @@ footer {
   display: flex;
   background-color: rgb(132, 115, 207);
   clear: both;
+  font-family: monospace;
+}
+
+footer h3 {
+  color: black;
+  font-family: monospace;
+  font-style: normal;
 }
 
 .footer-container {
