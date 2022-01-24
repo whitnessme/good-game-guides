@@ -1,5 +1,6 @@
 body {
   font-family: monospace;
+  background-color: rgb(253, 245, 245);
 }
 .main-content-container {
   width: 100%;
@@ -17,7 +18,7 @@ body {
   margin-left: 5px;
   font-size: 12px;
   min-height: 400px;
-  background: #ffffff;
+  background-color: rgb(253, 245, 245);
 }
 
 .main-content {
@@ -60,9 +61,12 @@ body {
 
 #cover-img {
   object-fit: cover;
+  object-position: top;
   width: 150px;
   height: 216px;
   margin: 0 auto 10px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.445);
 }
 
 .wtp-button-container {
@@ -437,4 +441,6 @@ td {
   object-position: top;
   width: 100px;
   height: 120px;
+  border-radius: 10px;
+  box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.445);
 }

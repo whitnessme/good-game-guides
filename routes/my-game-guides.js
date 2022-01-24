@@ -38,6 +38,8 @@ router.get(
     })
 );
 
+
+
 // READ - Display all guides in user's shelves
 router.get(
   "/my-game-guides",
@@ -72,7 +74,6 @@ router.get(
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
-
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);
 

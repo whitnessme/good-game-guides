@@ -220,6 +220,7 @@ async function statusAndAllCounts(userId) {
 
 
 async function customCounts(userId) {
+    // returns objects in array with shelf.name and shelf.count 
     const customs = await countGuidesOnShelves(userId, 'customShelves')
     return customs
 }

@@ -1,0 +1,22 @@
+extends layout.pug
+
+block head
+    title Game Over! | GoodGameGuides
+
+append head
+    link(rel='stylesheet' href='/stylesheets/404-game-over.css')
+
+
+block content
+    div.bodyhere
+        div.main-contain
+            div#gameover
+                div.gameover-text
+                    img(src="/images/gameover_text-white.png", alt="game over")
+                    h1 >>PAGE NOT FOUND<<
+                    p CONTINUE?
+                div.yesnolinks
+                    a#yesa(href="/"): p#yes YES
+                    p#no NO
+                    p.hide#nohide You may now close the browser
+    include includes/footer.pug

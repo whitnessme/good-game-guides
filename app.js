@@ -62,8 +62,13 @@ app.use(function (err, req, res, next) {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  if (err.status === 404) {
+    res.status(404)
+    res.render("404-game-over")
+  }else {
+    res.status(err.status || 500);
+    res.render("error");
+  }
 });
 
 module.exports = app;
