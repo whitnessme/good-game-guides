@@ -1,12 +1,18 @@
 extends layout.pug
 
+append head
+    script(src='/javascripts/edit-custom-shelves.js' type='module' defer)
+    link(rel='stylesheet' href='/stylesheets/custom-shelves-edit.css')
+
 block content
     div(class='mainContentContainer')
+    if userId
+        div(style="display:none" id="userId") #{userId}
         div(class='mainContent')
             h1: <a href='/my-game-guides'>My Game Guides</a> > Edit Shelves
             div(class='leftContainer')
                 div(class='stacked')
-                    form(class='addShelfForm' action='/users/${userId}/customShelves' method='post')
+                    form(class='addShelfForm' action=`/users/${userId}/customShelves` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         input(type='text' id='addShelf' name='addShelf' maxlength='50' placeholder='Add a Shelf')
                         button(type='submit' class='addShelfBtn') Add
@@ -18,11 +24,11 @@ block content
                         if customShelves
                             each shelf in customShelves
                                 tr(class='shelf' data-shelf-name=`${shelf.name}`)
-                                    td(class='remove'): button(type='button' class='removeShelfBtn') X
+                                    td(class='remove'): a(class='removeShelfBtn') X
                                     td(class='userShelf')
                                         div(class='displayShelfName')
                                             a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}`)= `${shelf.name} (?)`
-                                            a(class='renameUserShelfLink' href='#') Rename
+                                            a(class='renameUserShelfLink' href='#')= " Rename"
                                         div(class='renameUserShelf')
                                             form(class='renameShelfForm' action='#' method='post')
                                                 input(type='hidden' name='_csrf' value=csrfToken)

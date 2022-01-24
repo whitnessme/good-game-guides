@@ -40,9 +40,9 @@ block content
                                         div(class='divider')
                                         each shelf in customShelfAndCount
                                             if decodeURI(url) === `/my-game-guides/custom-shelves/${shelf.name}`
-                                                div(class='userShelf selectedShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}(#{shelf.count})
+                                                div(class='userShelf selectedShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name} (#{shelf.count})
                                             else
-                                                div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}(#{shelf.count})
+                                                div(class='userShelf'): a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name} (#{shelf.count})
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
                                 //- Don't display form until Add Shelf has been clicked

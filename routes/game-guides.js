@@ -81,7 +81,7 @@ router.get(
     } else {
       res.render("game-guides-id", {
         gameGuide,
-        guides,
+        filteredGuides,
       });
     }
   })

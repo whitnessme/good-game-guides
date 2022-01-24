@@ -1,79 +1,119 @@
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: antiquewhite;
-    font-family: monospace;
-    position: sticky;
-    top: 0;
-    height: 80px;
-    width: 100%;
+body {
+  margin: 0;
 }
 
-button, #login-button {
-    background-color: rgb(156, 33, 33);
-    border: none;
-    border-radius: 5px;
-    padding: 5px 8px;
-    font-size: 1em;
-    color: white
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: antiquewhite;
+  font-family: monospace;
+  position: sticky;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  background-color: rgb(132, 115, 207);
+}
+
+button,
+#login-button {
+  background-color: rgb(156, 33, 33);
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 1em;
+  color: white;
 }
 
 #signup-button > a {
-    color: rgb(156, 33, 33);
-    font-weight: bold;
+  color: rgb(156, 33, 33);
+  font-weight: bold;
 }
 
 #login-button > a {
-    color: white
+  color: white;
 }
 
 a {
-    text-decoration: none;
-    color: #382110;
-    font-style: normal;
-    /* padding: 10px; */
+  text-decoration: none;
+  color: white;
+  font-style: normal;
+  /* padding: 10px; */
 }
 
 ul {
-    padding: 0px;
+  padding: 0px;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .user-nav > li {
-    color: #382110;
-    padding: 10px;
+  color: white;
+  padding: 10px;
 }
 
 .nav-links > li > a {
-    padding: 10px;
+  padding: 10px;
+  color: white;
 }
 
 .nav-links > li > a:hover {
-    background-color: #382110;
-    color: white;
+  background-color: #382110;
+  color: white;
 }
 
 #logo {
-    height: 30px;
-    width: auto;
+  height: 30px;
+  width: auto;
 }
 
-.left-nav, .right-nav, ul{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.left-nav,
+.right-nav,
+ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-
 
 #user-name {
-    font-style: italic;
+  font-style: italic;
 }
 
 #signup-button {
-    font-size: 11px;
+  font-size: 11px;
+}
+
+footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  background-color: rgb(132, 115, 207);
+  clear: both;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.footer-header {
+  margin-bottom: 5px;
+}
+
+.footer-site-map-container,
+.footer-socials-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-container a {
+  color: black;
+}
+
+footer a:hover {
+  color: white;
 }

@@ -1,6 +1,8 @@
 extends layout.pug
 include utils.pug
 
+block head
+  title #{gameGuide.title}
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/game-guides-id.css")
@@ -33,7 +35,7 @@ block content
                   else
                     div(class="shelf-dropdown-button")
                       button(class="wtp-shelf-button") 🔽
-                      div(class="wtp-shelf-menu" style="display: none; left: -18px")
+                      div(class="wtp-shelf-menu" style="display: none; left: -120px")
                         div(class="wtp-shelf-list")
                           ul(class="wtp-exclusive-shelves")
                             li(name="played")
@@ -56,11 +58,11 @@ block content
                     div(class="myrating-text") Rate this guide
                     //- need other info about user id and such
                     div(class="star-rating")
-                      a(class="star" title="did not like it" href="#") 1 of 5 stars
-                      a(class="star" title="it was ok" href="#") 2 of 5 stars
+                      a(class="star" title="it was amazing" href="#") 1 of 5 stars
+                      a(class="star" title="really liked it" href="#") 2 of 5 stars
                       a(class="star" title="liked it" href="#") 3 of 5 stars
-                      a(class="star" title="really liked it" href="#") 4 of 5 stars
-                      a(class="star" title="it was amazing" href="#") 5 of 5 stars
+                      a(class="star" title="it was ok" href="#") 4 of 5 stars
+                      a(class="star" title="did not like it" href="#") 5 of 5 stars
                     div(class="hide") Rating Feature Coming Soon!
               div(id="textcol")
                 h1(id="game-guide-title") #{gameGuide.title}
@@ -116,3 +118,4 @@ block content
                   div(class="guide-img-container")
                       a(href=`/game-guides/${guide.id}`)
                         img(src=`${guide.coverImg}` class="guide-img" alt="guide image cover art")
+    include includes/footer.pug
