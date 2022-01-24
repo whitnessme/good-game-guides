@@ -21,44 +21,22 @@ const {
 const router = express.Router();
 
 // READ - Display list of user's custom shelves
-<<<<<<< HEAD
 router.get(
   "/my-game-guides/custom-shelves/edit",
   csrfProtection,
   asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
 
-    const customShelves = await db.CustomShelf.findAll({
-      where: {
-        userId,
-      },
-      attributes: [[sequelize.fn("distinct", sequelize.col("name")), "name"]],
-      raw: true,
-    });
+    const customShelfAndCount = await customCounts(userId);
 
     res.render("custom-shelves-edit", {
       title: "Edit My Shelves | GoodGameGuides",
       userId,
-      customShelves,
+      customShelfAndCount,
       csrfToken: req.csrfToken(),
     });
   })
 );
-=======
-router.get('/my-game-guides/custom-shelves/edit', csrfProtection, asyncHandler(async (req, res) => {
-    const { userId } = req.session.auth;
-
-    const customShelves = await db.CustomShelf.findAll({
-        where: {
-            userId
-        },
-        attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
-        raw: true,
-    });
-
-    res.render('custom-shelves-edit', { title: 'Edit My Shelves | GoodGameGuides', userId, customShelves, csrfToken: req.csrfToken() });
-}));
->>>>>>> main
 
 // READ - Display all guides in user's shelves
 router.get(
@@ -68,12 +46,6 @@ router.get(
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-<<<<<<< HEAD
-=======
-
-    const customShelfAndCount = await customCounts(userId);
-    const { all, one, two, three } = await statusAndAllCounts(userId);
->>>>>>> main
 
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);
@@ -104,7 +76,6 @@ router.get(
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);
 
-<<<<<<< HEAD
     res.render("my-game-guides", {
       url,
       userId,
@@ -117,10 +88,6 @@ router.get(
     });
   })
 );
-=======
-    res.render('my-game-guides', { url, userId, guides, customShelfAndCount, all, one, two, three });
-}));
->>>>>>> main
 
 // READ - display all guides in specified custom shelf
 // :id can contain 1 or more letters (lower or uppercase), digits, underscore, dash, or space
@@ -132,12 +99,6 @@ router.get(
     const shelfName = req.params.id;
 
     const guides = await findCustomShelfEntries(userId, shelfName);
-<<<<<<< HEAD
-=======
-
-    const customShelfAndCount = await customCounts(userId);
-    const { all, one, two, three } = await statusAndAllCounts(userId);
->>>>>>> main
 
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);

@@ -1,11 +1,8 @@
 extends layout.pug
 
 append head
-<<<<<<< HEAD
     script(src='/javascripts/edit-custom-shelves.js' type='module' defer)
-=======
     link(rel='stylesheet' href='/stylesheets/custom-shelves-edit.css')
->>>>>>> main
 
 block content
     div(class='mainContentContainer')
@@ -24,13 +21,13 @@ block content
                         tr
                             th
                             th Shelf
-                        if customShelves
-                            each shelf in customShelves
+                        if customShelfAndCount
+                            each shelf in customShelfAndCount
                                 tr(class='shelf' data-shelf-name=`${shelf.name}`)
                                     td(class='remove'): a(class='removeShelfBtn') X
                                     td(class='userShelf')
                                         div(class='displayShelfName')
-                                            a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}`)= `${shelf.name} (?)`
+                                            a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}`)= `${shelf.name} (${shelf.count})`
                                             a(class='renameUserShelfLink' href='#')= " Rename"
                                         div(class='renameUserShelf')
                                             form(class='renameShelfForm' action='#' method='post')
