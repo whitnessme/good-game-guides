@@ -12,6 +12,7 @@ nav {
   top: 0;
   height: 80px;
   width: 100%;
+  background-color: rgb(132, 115, 207);
 }
 
 button,
@@ -35,7 +36,7 @@ button,
 
 a {
   text-decoration: none;
-  color: #382110;
+  color: white;
   font-style: normal;
   /* padding: 10px; */
 }
@@ -88,7 +89,7 @@ footer {
   width: 100%;
   height: 100px;
   display: flex;
-  background-color: antiquewhite;
+  background-color: rgb(213, 208, 233);
   clear: both;
 }
 
