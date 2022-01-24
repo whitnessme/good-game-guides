@@ -23,13 +23,17 @@
     width: 90%;
     height: 85vh;
     position: relative;
-    top: 30%;
+}
+
+.gameover-text {
+    margin-top: 20%;
+    margin-left: 1%;
 }
 
 .gameover-text > img {
     width: 38%;
     position: relative;
-    animation: wiggle 2s ease infinite;
+    animation: wiggle 2s ease infinite, shine 5s ease infinite; 
 }
 
 @keyframes wiggle {
@@ -38,12 +42,54 @@
     100% { transform:translate(2px,0px) }
 }
 
+@keyframes shine {
+    0% { filter: drop-shadow(0px 0px 20px rgba(255, 254, 254, 0.699)); }
+    50% { filter: drop-shadow(0px 0px 5px rgba(255, 254, 254, 0.699)); }
+    75% { filter: drop-shadow(0px 0px 20px rgba(255, 254, 254, 0.897)); }
+    100% { filter: drop-shadow(0px 0px 20px rgba(255, 254, 254, 0.699)); }
+}
+
+@keyframes shine-purple {
+    0% { filter: drop-shadow(0px 0px 20px rgb(226, 224, 236)); }
+    50% { filter: drop-shadow(0px 0px 5px rgba(173, 164, 212)); }
+    100% { filter: drop-shadow(0px 0px 20px rgba(174, 167, 206, 0.899)); }
+}
+
 p, h1 {
     font-family: monospace;
     color: rgb(132, 115, 207);
+    animation: shine-purple 5s ease infinite;
+    font-size: 1.5vw;
+    margin: 1%;
 }
 
-.yesnolinks > p {
+h1 {
+    font-size: 2vw;
+    font-style: italic;
+}
+
+#yes, #no {
     display: inline;
-    padding: 10px;
+    padding: 1%;
+    font-size: 1vw;
+}
+
+#yes:hover, #no:hover {
+    text-shadow:  0px 0px 10px rgb(82, 131, 10);
+}
+
+.hide {
+    display: block;
+    color: transparent;
+    font-size: 1vw;
+}
+
+#no:hover ~ #nohide{
+    font-family: monospace;
+    color: rgba(255, 255, 255, 0.678);
+}
+
+#yesa:hover ~ #yeshide{
+    font-family: monospace;
+    color: rgb(255, 255, 255);
 }

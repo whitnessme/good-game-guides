@@ -1,7 +1,7 @@
 body {
-  background-color: antiquewhite;
+  background-color: rgb(253, 245, 245);
   font-size: 12px;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: monospace;
   line-height: 18px;
 }
 
@@ -9,6 +9,12 @@ a {
   text-decoration: none;
   color: #00635d;
 }
+
+p {
+  padding: 10px;
+}
+
+
 
 .content-box {
   border: 1px solid #d0d0c8;
@@ -24,7 +30,7 @@ a {
 h1 {
   padding: 0px 0px 2px 0px;
   font-size: 20px;
-  font-family: "Merriweather", Georgia, "Times New Roman", serif;
+  font-family: monospace;
   font-weight: bold;
   margin-top: 0;
   margin-bottom: 15px;
@@ -50,6 +56,10 @@ fieldset {
   text-align: left;
 }
 
+fieldset ~ p {
+  font-size: 10px;
+}
+
 .fieldEle {
   margin-bottom: 10px;
 }
@@ -60,7 +70,7 @@ fieldset {
 }
 
 label {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: monospace;
   text-align: left;
   color: #333;
   font-weight: bold;
@@ -75,7 +85,7 @@ input {
   border-radius: 3px;
   box-shadow: 0px 2px 2px #333 #ccc;
   font-weight: bold;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: monospace;
   width: 300px;
   color: #333;
   box-sizing: border-box;
@@ -83,13 +93,13 @@ input {
 
 .submitEle {
   margin-top: 20px;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: monospace;
 }
 
 .submit-button {
   border-radius: 3px;
   border: 1px solid #d6d0c4;
-  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-family: monospace;
   font-size: 14px;
   cursor: pointer;
   display: inline-block;
@@ -125,6 +135,7 @@ input {
 
 .signInOption > a {
   margin-left: 10px;
+  font-size: 10px;
 }
 
 img {
