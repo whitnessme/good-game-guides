@@ -74,7 +74,7 @@ async function checkIfCustomNameExists(name, userId) {
 
 async function addCustomShelfName(name, userId) {
     if (name) {
-        if (/^[\w\- ]+$/.test(name)) {
+        if (/^[\w\-]+$/.test(name)) {
             const exists = await checkIfCustomNameExists(name, userId);
             console.log('----------', exists);
             if (!exists) {
@@ -84,7 +84,7 @@ async function addCustomShelfName(name, userId) {
                 return "There is already a shelf with this name";
             }
         } else {
-            return "Shelf name can only contain 1 or more lowercase letters, uppercase letters, 0-9, -, _, or a space";
+            return "Shelf name can only contain 1 or more lowercase letters, uppercase letters, 0-9, -, or _";
         }
     } else {
         return "Please provide a value for the shelf name";
@@ -198,8 +198,8 @@ async function countGuidesOnShelves(userId, whichShelves) {
             attributes: [[sequelize.fn('distinct', sequelize.col('name')), 'name']],
             raw: true,
         })
-        
-        
+
+
         for (let shelf of customShelves) {
             let shelfName = shelf.name
             const result = await checkCountOfShelfEntries(shelfName, userId);
@@ -223,7 +223,7 @@ async function customCounts(userId) {
     const customs = await countGuidesOnShelves(userId, 'customShelves')
     return customs
 }
-    
+
 module.exports = {
     addStatusShelfEntry,
     findStatusShelfEntries,
