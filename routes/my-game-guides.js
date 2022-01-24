@@ -40,53 +40,53 @@ router.get(
 
 // READ - Display all guides in user's shelves
 router.get(
-    "/my-game-guides",
-    asyncHandler(async (req, res) => {
-        const url = req.url;
-        const { userId } = req.session.auth;
+  "/my-game-guides",
+  asyncHandler(async (req, res) => {
+    const url = req.url;
+    const { userId } = req.session.auth;
 
-        const guides = await allStatusShelfEntries(userId);
+    const guides = await allStatusShelfEntries(userId);
 
-        const customShelfAndCount = await customCounts(userId);
-        const { all, one, two, three } = await statusAndAllCounts(userId);
+    const customShelfAndCount = await customCounts(userId);
+    const { all, one, two, three } = await statusAndAllCounts(userId);
 
-        res.render("my-game-guides", {
-            url,
-            userId,
-            guides,
-            customShelfAndCount,
-            all,
-            one,
-            two,
-            three,
-        });
-    })
+    res.render("my-game-guides", {
+      url,
+      userId,
+      guides,
+      customShelfAndCount,
+      all,
+      one,
+      two,
+      three,
+    });
+  })
 );
 
 // READ - Display all guides in specified status shelf
 router.get(
-    "/my-game-guides/status-shelves/:id(\\d+)",
-    asyncHandler(async (req, res) => {
-        const url = req.url;
-        const { userId } = req.session.auth;
-        const shelfId = parseInt(req.params.id, 10);
+  "/my-game-guides/status-shelves/:id(\\d+)",
+  asyncHandler(async (req, res) => {
+    const url = req.url;
+    const { userId } = req.session.auth;
+    const shelfId = parseInt(req.params.id, 10);
 
-        const guides = await findStatusShelfEntries(userId, shelfId);
+    const guides = await findStatusShelfEntries(userId, shelfId);
 
-        const customShelfAndCount = await customCounts(userId);
-        const { all, one, two, three } = await statusAndAllCounts(userId);
+    const customShelfAndCount = await customCounts(userId);
+    const { all, one, two, three } = await statusAndAllCounts(userId);
 
-        res.render("my-game-guides", {
-            url,
-            userId,
-            guides,
-            customShelfAndCount,
-            all,
-            one,
-            two,
-            three,
-        });
-    })
+    res.render("my-game-guides", {
+      url,
+      userId,
+      guides,
+      customShelfAndCount,
+      all,
+      one,
+      two,
+      three,
+    });
+  })
 );
 
 // READ - display all guides in specified custom shelf
