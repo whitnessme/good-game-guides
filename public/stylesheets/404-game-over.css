@@ -1,9 +1,49 @@
+.bodyhere {
+    height: 100;
+    width: 100%;
+    background-color: rgb(32, 30, 41)
+}
+
 .main-contain {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 1000px;
+    height: 85vh;
+    margin: auto;
+    text-align: center;
+    background-image: url("/images/gameboy-advance-big.png");
+    background-position: 50% 0%;
+    background-repeat: no-repeat;
+    background-size: 90%;
 }
 
-.gameover-img-div {
-    display: block;
-    position: absolute;
+#gameover {
+    margin: auto;
+    width: 90%;
+    height: 85vh;
+    position: relative;
+    top: 30%;
+}
+
+.gameover-text > img {
+    width: 38%;
+    position: relative;
+    animation: wiggle 2s ease infinite;
+}
+
+@keyframes wiggle {
+    0% { transform:translate(2px,0) }
+    50% { transform:translate(5px,-1px) }
+    100% { transform:translate(2px,0px) }
+}
+
+p, h1 {
+    font-family: monospace;
+    color: rgb(132, 115, 207);
+}
+
+.yesnolinks > p {
+    display: inline;
+    padding: 10px;
 }
