@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
       tr.className = "shelf";
       tr.innerHTML = `
       <td class="remove">
-        <a class="removeShelfBtn">X</a>
+        <button type="submit" class="remove-custom-button">X</button>
       </td>
       <td class="userShelf">
         <div class="displayShelfName">
