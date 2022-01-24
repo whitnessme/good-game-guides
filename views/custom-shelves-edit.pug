@@ -5,7 +5,6 @@ append head
     link(rel='stylesheet' href='/stylesheets/custom-shelves-edit.css')
 
 block content
-    div(class='mainContentContainer')
     if userId
         div(style="display:none" id="userId") #{userId}
         div(class='mainContent')
@@ -40,6 +39,3 @@ block content
                 div(class='left')
                     //- Have pop up to confirm
                     a(href='#') Delete All of My Shelves
-            div(class='rightContainer')
-                div(class='box')
-                //- Don't need any of the text from goodreads, maybe explain some features are not ready if not complete?
