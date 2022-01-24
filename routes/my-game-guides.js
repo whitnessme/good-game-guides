@@ -180,26 +180,27 @@ router.delete(
   })
 );
 
-router.post(
-  "/users/:userId(\\d+)/customShelves",
-  asyncHandler(async (req, res) => {
-    const { userId } = req.session.auth;
-    const { name } = req.body;
+// CREATE - User creates custom shelf
+// router.post(
+//   "/users/:userId(\\d+)/customShelves",
+//   asyncHandler(async (req, res) => {
+//     const { userId } = req.session.auth;
+//     const { name } = req.body;
 
-    const allCustomShelves = await db.CustomShelf.findAll({
-      where: {
-        name,
-        userId,
-      },
-    });
+//     const allCustomShelves = await db.CustomShelf.findAll({
+//       where: {
+//         name,
+//         userId,
+//       },
+//     });
 
-    if (!allCustomShelves.length) {
-      await db.CustomShelf.create({
-        name,
-        userId,
-      });
-    }
-  })
-);
+//     if (!allCustomShelves.length) {
+//       await db.CustomShelf.create({
+//         name,
+//         userId,
+//       });
+//     }
+//   })
+// );
 
 module.exports = router;
