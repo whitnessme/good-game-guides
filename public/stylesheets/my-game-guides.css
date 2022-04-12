@@ -76,6 +76,7 @@ body {
     border: 1px solid #D6D0C4;
     border-radius: 3px;
     color: #333333;
+    cursor: pointer;
     display: inline-block;
     font-family: monospace;
     font-size: 10px;
@@ -275,6 +276,10 @@ td.review a:hover + .hidden-review {
 #guides .action {
     padding: 12px;
     width: 40px;
+}
+
+.action button {
+    cursor: pointer;
 }
 
 .noContent {

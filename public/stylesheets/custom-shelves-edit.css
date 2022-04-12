@@ -117,6 +117,10 @@ a {
     width: 20px;
 }
 
+.remove button {
+    cursor: pointer;
+}
+
 .removeShelfBtn {
     color: grey;
     font-weight: bold;
@@ -152,6 +156,7 @@ input[type=text] {
     display: inline-block;
     text-decoration: none;
     color: #333333;
+    cursor: pointer;
     background-color: #F4F1EA;
     line-height: 1;
     font-size: 11px;
