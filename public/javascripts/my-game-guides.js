@@ -54,6 +54,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // Remove guide from status shelf
     let removeStatusGuideBtns = document.querySelectorAll('.removeStatusGuideBtn');
 
+    // let customShelfCounts = document.querySelectorAll('.count-a-custom-text');
+    // console.log("SELECTED", customShelfCounts[0].innerText.split('(')[1][0])
+
     const removeGuideFromStatusShelf = async (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -61,11 +64,22 @@ window.addEventListener('DOMContentLoaded', (e) => {
         let gameGuideId = e.target.dataset.gameGuideId;
         let statusId = e.target.dataset.statusId;
 
+        let allCountATag = document.querySelector('.count-a-status-all')
+        let currentAllNumber = parseInt(allCountATag.innerText.split('(')[1][0]) - 1
+        console.log(allCountATag, currentAllNumber)
+
+        let selectedStatusShelfCountText = document.querySelector(`.count-a-status-${statusId}`)
+        let currentNumber = parseInt(selectedStatusShelfCountText.innerText.split('(')[1][0]) - 1
+
         const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
             method: "DELETE",
         });
 
-        if (res.ok) e.path[2].remove();
+        if (res.ok) {
+            e.path[2].remove();
+            allCountATag.innerText = ` (${currentAllNumber})`
+            selectedStatusShelfCountText.innerText = ` (${currentNumber})`
+        } 
     };
 
     removeStatusGuideBtns.forEach(button => {

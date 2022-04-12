@@ -76,7 +76,6 @@ async function addCustomShelfName(name, userId) {
     if (name) {
         if (/^[\w\-]+$/.test(name)) {
             const exists = await checkIfCustomNameExists(name, userId);
-            console.log('----------', exists);
             if (!exists) {
                 await db.CustomShelf.create({ name, userId });
                 return "success";
@@ -114,15 +113,16 @@ async function checkCountOfShelfEntries(shelf, userId) {
                 name: shelf
             }
         })
-
+        
+        // console.log("LOOOOKIE", result.count, result.rows)
         if (result.count === 1) {
-            const one = await db.CustomShelf.findAll({
+            const one = await db.CustomShelf.findOne({
                 where: {
                     userId,
                     name: shelf
                 }
             })
-            if (!one.GameGuide) {
+            if (!one.gameGuideId) {
                 result.count = 0
             }
         }
