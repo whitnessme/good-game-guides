@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(253, 245, 245);
+}
+
 .mainContentContainer {
     width: 100%;
     text-align: center;
@@ -5,15 +9,14 @@
 }
 
 .mainContent {
-    text-align: left;
-    width: 970px;
-    background: #FFFFFF;
-    margin: 15px auto 0px auto;
-    font-size: 12px;
-    min-height: 400px;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    font-size: 12px;
+    min-height: 400px;
+    padding: 15px 0px;
+    text-align: left;
+    width: 100%;
 }
 
 h1 {
