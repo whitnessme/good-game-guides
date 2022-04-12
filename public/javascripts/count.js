@@ -7,7 +7,6 @@ const currPlay = 2
 const played = 3
 
 async function updateStatusShelvesCount(statusId, userId) {
-    console.log("HELLOOOOOOOOOOOOOOOOOO");
 
     const body = { statusId, userId }
 

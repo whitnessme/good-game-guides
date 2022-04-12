@@ -41,6 +41,10 @@ a {
   /* padding: 10px; */
 }
 
+.shelves-link, td > a, .title-link > h5 {
+  color:rgb(132, 115, 207)
+}
+
 ul {
   padding: 0px;
 }

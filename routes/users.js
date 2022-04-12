@@ -109,7 +109,6 @@ router.post(
   loginValidators,
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password);
     let errors = [];
     const validatorErrors = validationResult(req);
 
@@ -143,7 +142,6 @@ router.post(
 );
 
 router.post("/logout", (req, res) => {
-  console.log("hello?");
   logoutUser(req, res);
   res.redirect("/users/login");
 });
