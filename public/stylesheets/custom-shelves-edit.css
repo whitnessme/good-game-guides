@@ -1,3 +1,7 @@
+body {
+    background-color: rgb(253, 245, 245);
+}
+
 .mainContentContainer {
     width: 100%;
     text-align: center;
@@ -5,15 +9,14 @@
 }
 
 .mainContent {
-    text-align: left;
-    width: 970px;
-    background: #FFFFFF;
-    margin: 15px auto 0px auto;
-    font-size: 12px;
-    min-height: 400px;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    font-size: 12px;
+    min-height: 400px;
+    padding: 15px 0px;
+    text-align: left;
+    width: 100%;
 }
 
 h1 {
@@ -117,6 +120,10 @@ a {
     width: 20px;
 }
 
+.remove button {
+    cursor: pointer;
+}
+
 .removeShelfBtn {
     color: grey;
     font-weight: bold;
@@ -152,6 +159,7 @@ input[type=text] {
     display: inline-block;
     text-decoration: none;
     color: #333333;
+    cursor: pointer;
     background-color: #F4F1EA;
     line-height: 1;
     font-size: 11px;

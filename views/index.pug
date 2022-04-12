@@ -14,11 +14,11 @@ block content
                 if locals.authenticated
                     ul#curr-guides
                         each guide in currentGuides
-                            a(href=`/game-guides/${guide.id}`)
-                                li
+                            li
+                                a(href=`/game-guides/${guide.GameGuide.id}`)
                                     img.curr-rec(src=`${guide.GameGuide.coverImg}`)
-                                    a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
-                                        h5 #{guide.GameGuide.title}
+                                a.title-link(href=`/game-guides/${guide.GameGuide.id}`)
+                                    h5 #{guide.GameGuide.title}
                         each list in noCurr
                             li.no-guides #{list}
                 else
@@ -31,7 +31,7 @@ block content
                         each list in noWant
                             li.no-guides #{list}
                         each guide in wantToGuides
-                            a(href=`/game-guides/${guide.id}`)
+                            a(href=`/game-guides/${guide.GameGuide.id}`)
                                 li: img.want-square(src=`${guide.GameGuide.coverImg}`)
                 else
                     a(href="/users/login")
@@ -44,7 +44,7 @@ block content
                             a.shelves-link#want-to-play-num(href="/my-game-guides/status-shelves/1") #{count1}
                             a.shelves-link#currently-playing-num(href="/my-game-guides/status-shelves/2") #{count2}
                             a.shelves-link#play-num(href="/my-game-guides/status-shelves/3") #{count3}
-                            each count in customCounts 
+                            each count in customCounts
                                 a.shelves-link.custom-num(href=`/my-game-guides/custom-shelves/${count.name}`) #{count.count}
                         div.shelves-names
                             a.shelves-link#want-to-play(href="/my-game-guides/status-shelves/1") Want to Play
@@ -53,7 +53,7 @@ block content
                             each shelf in customShelves
                                 a.shelves-link.custom-shelf(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}
                     else
-                        a(href="/users/login") 
+                        a(href="/users/login")
                             p.not-auth Please login to view your shelves
 
         div.middle-guides-container
@@ -62,11 +62,11 @@ block content
                 p#welcome-text Welcome to our GoodReads clone, GoodGameGuides! Once you have logged in, you can add guides to your shelves to save ones you want to play, ones you are currently playing, and keep track of guides you've already played through! Please check out the team's links on the right column!
                 img.divider-icon(src="/images/gamepad_purple_fixed_icon.png", alt="")
                 p.quote "Don't wish it were easier, wish you were better." <i>--Chief, Animal Crossing</i>
-                p.quote "It’s dangerous to go alone, take this!" --<i>Old Man, The Legend of Zelda</i> 
+                p.quote "It’s dangerous to go alone, take this!" --<i>Old Man, The Legend of Zelda</i>
             h3 BROWSE GUIDES:
             table.all-guides
                 thead
-                    tr 
+                    tr
                         th(scope='col') Cover
                         th(scope='col') Info
                         th(scope='col') By
@@ -91,12 +91,12 @@ block content
                     img.social-img(src="https://i.pinimg.com/550x/f2/68/76/f26876965d8b787fc1738a460a9c31a8.jpg", alt="Retro illustration of Nintendo 64, playing Legend of Zelda")
                 a(href="https://github.com/whitnessme" target="_blank") WHIT MINSON
             div.socials#alex
-                a(href="https://github.com/alexsmaldone")
-                    img.social-img(src="https://www.techrepublic.com/a/hub/i/r/2020/07/24/0491b437-24cf-4129-bfe3-12db15f17d8e/resize/1200x900/0ddd34fe229eac17e2c0a38da331f3e5/zoljo.jpg", alt="Purple arcade illustration")
+                a(href="https://github.com/alexsmaldone" target="_blank")
+                    img.social-img(src="https://i.imgur.com/1kv3UHC.jpeg", alt="Purple arcade illustration")
                 a(href="https://github.com/alexsmaldone" target="_blank") ALEX SMALDONE
             div.socials#laura
                 a(href="https://github.com/lrmaser" target="_blank")
                     img.social-img(src="https://64.media.tumblr.com/45d8d9457a835696558ed8a75c56da3e/7a2938d030429248-07/s500x750/15c6c56bdac00e14fb331573adba55e7eed1b5a8.png", alt="Animal Crossing character in field of flowers")
                 a(href="https://github.com/lrmaser" target="_blank") LAURA MASER
-            a(href="https://github.com/alexsmaldone/good-game-guides" target="_blank") 
+            a(href="https://github.com/whitnessme/good-game-guides" target="_blank")
                 div.ads-head

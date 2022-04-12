@@ -26,8 +26,7 @@ block content
                             each shelf in customShelfAndCount
                                 tr(class='shelf')
                                     td(class='remove')
-                                        form(class='remove-custom' action=`/custom-shelves/${shelf.name}/delete` method='post')
-                                            button.remove-custom-button(type='submit') X
+                                        button.remove-custom-button(type='submit' data-shelf-name=`${shelf.name}`) X
                                     td(class='userShelf')
                                         div(class='displayShelfName')
                                             a(class='displayShelfNameLink' href=`/my-game-guides/custom-shelves/${shelf.name}` style="display: inline")= `${shelf.name} (${shelf.count})`
