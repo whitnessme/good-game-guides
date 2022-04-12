@@ -95,8 +95,8 @@ block content
                                                     div(class="hidden-review") Review Features Coming Soon!
                                                 td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")
-                                                    td(class='action'): button(type='button' class='removeCustomGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-shelf-name=`${shelfName}`) X
+                                                    td(class='action'): button(type='button' class='removeCustomGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-game-guide-title=`${guide.GameGuide.title}` data-shelf-name=`${shelfName}`) X
                                                 else
-                                                    td(class='action'): button(type='button' class='removeStatusGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-status-id=`${guide.Status.id}`) X
+                                                    td(class='action'): button(type='button' class='removeStatusGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-game-guide-title=`${guide.GameGuide.title}` data-status-id=`${guide.Status.id}`) X
                         if guides.length === 0 || guides[0].GameGuide === null
                             div(class='noContent') No guides have been added yet!

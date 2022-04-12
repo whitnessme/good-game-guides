@@ -59,13 +59,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
         e.stopPropagation();
 
         let gameGuideId = e.target.dataset.gameGuideId;
+        let gameGuideTitle = e.target.dataset.gameGuideTitle;
         let statusId = e.target.dataset.statusId;
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
-            method: "DELETE",
-        });
+        if (window.confirm(`Are you sure you'd like to remove ${gameGuideTitle}?`)) {
+            const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
+                method: "DELETE",
+            });
 
-        if (res.ok) e.path[2].remove();
+            if (res.ok) e.path[2].remove();
+        }
     };
 
     removeStatusGuideBtns.forEach(button => {
@@ -80,13 +83,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
         e.stopPropagation();
 
         let gameGuideId = e.target.dataset.gameGuideId;
+        let gameGuideTitle = e.target.dataset.gameGuideTitle;
         let shelfName = e.target.dataset.shelfName;
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName}`, {
-            method: "DELETE",
-        });
+        if (window.confirm(`Are you sure you'd like to remove ${gameGuideTitle} from ${shelfName}?`)) {
+            const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName}`, {
+                method: "DELETE",
+            });
 
-        if (res.ok) e.path[2].remove();
+            if (res.ok) e.path[2].remove();
+        }
     };
 
     removeCustomGuideBtns.forEach(button => {
