@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
       tr.innerHTML = `
       <td class="remove">
         <form class="remove-custom" action="/custom-shelves/${shelfName}/delete" method="post">
-          <button type="submit" class="remove-custom-button">X</button>
+          <button type="submit" class="remove-custom-button" data-shelf-name='${shelfName}'>X</button>
         </form>
       </td>
       <td class="userShelf">
@@ -55,6 +55,26 @@ window.addEventListener("DOMContentLoaded", (e) => {
       p.innerText = check;
     }
 
+  });
+
+  // Delete custom shelf
+  let removeCustomBtns = document.querySelectorAll('.remove-custom-button');
+
+  const removeShelf = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let shelfName = e.target.dataset.shelfName;
+
+    const res = await fetch(`/custom-shelves/${shelfName}`, {
+      method: "DELETE"
+    });
+
+    if (res.ok) e.path[2].remove();
+  };
+
+  removeCustomBtns.forEach(button => {
+    button.addEventListener('click', removeShelf);
   });
 
   // Display rename shelf form

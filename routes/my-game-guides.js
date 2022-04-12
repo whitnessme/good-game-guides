@@ -181,17 +181,28 @@ router.delete(
     })
 );
 
-router.post("/custom-shelves/:shelfName([\\w-]+)/delete", asyncHandler(async (req, res) => {
+// DELETE - User removes a custom shelf
+router.delete("/custom-shelves/:shelfName([\\w-]+)", asyncHandler(async (req, res) => {
     const { userId } = req.session.auth;
     const shelfName = req.params.shelfName;
 
-    const shelves = await findCustomShelfEntries(userId, shelfName);
+    const shelf = await db.CustomShelf.findOne({
+        where: {
+            userId,
+            name: shelfName
+        }
+    });
 
-    for (let shelf of shelves) {
-        await shelf.destroy();
-    }
+    await shelf.destroy();
+    res.json({ message: "success" });
 
-    res.redirect("/my-game-guides/custom-shelves/edit");
+    // const shelves = await findCustomShelfEntries(userId, shelfName);
+
+    // for (let shelf of shelves) {
+    //     await shelf.destroy();
+    // }
+
+    // res.redirect("/my-game-guides/custom-shelves/edit");
 }));
 
 // UPDATE - User updates name of shelf
