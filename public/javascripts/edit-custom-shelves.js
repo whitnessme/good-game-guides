@@ -66,11 +66,13 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
     let shelfName = e.target.dataset.shelfName;
 
-    const res = await fetch(`/custom-shelves/${shelfName}`, {
-      method: "DELETE"
-    });
+    if (window.confirm(`Are you sure you'd like to remove ${shelfName}?`)) {
+      const res = await fetch(`/custom-shelves/${shelfName}`, {
+        method: "DELETE"
+      });
 
-    if (res.ok) e.path[2].remove();
+      if (res.ok) e.path[2].remove();
+    }
   };
 
   removeCustomBtns.forEach(button => {
