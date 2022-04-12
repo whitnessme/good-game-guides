@@ -3,7 +3,10 @@ footer
     div.footer-site-map-container
       h3.footer-header SiteMap
       a(href="/" class="footer-links") Home
-      a(href="/my-game-guides" class="footer-links") My Game Guides
+      if locals.authenticated
+        a(href="/my-game-guides" class="footer-links") My Game Guides
+      else
+        a(href="/users/login") My Game Guides
     div.footer-socials-container
       h3.footer-header GoodGameGuides Creators
       a(href="https://github.com/whitnessme" target="_blank" class="footer-links") Whit Minson

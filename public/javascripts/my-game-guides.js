@@ -59,7 +59,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
         e.stopPropagation();
 
         let gameGuideId = e.target.dataset.gameGuideId;
+        let gameGuideTitle = e.target.dataset.gameGuideTitle;
         let statusId = e.target.dataset.statusId;
+
 
         let allCountATag = document.querySelector('.count-a-status-all')
         let currentAllNumber = parseInt(allCountATag.innerText.split('(')[1][0]) - 1
@@ -68,15 +70,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
         let selectedStatusShelfCountText = document.querySelector(`.count-a-status-${statusId}`)
         let currentNumber = parseInt(selectedStatusShelfCountText.innerText.split('(')[1][0]) - 1
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
-            method: "DELETE",
-        });
+        if (window.confirm(`Are you sure you'd like to remove ${gameGuideTitle}?`)) {
+            const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/status/${statusId}`, {
+                method: "DELETE",
+            });
 
-        if (res.ok) {
-            e.path[2].remove();
-            allCountATag.innerText = ` (${currentAllNumber})`
-            selectedStatusShelfCountText.innerText = ` (${currentNumber})`
-        } 
+          if (res.ok) {
+              e.path[2].remove();
+              allCountATag.innerText = ` (${currentAllNumber})`
+              selectedStatusShelfCountText.innerText = ` (${currentNumber})`
+          } 
+        }
+
     };
 
     removeStatusGuideBtns.forEach(button => {
@@ -91,18 +96,21 @@ window.addEventListener('DOMContentLoaded', (e) => {
         e.stopPropagation();
 
         let gameGuideId = e.target.dataset.gameGuideId;
+        let gameGuideTitle = e.target.dataset.gameGuideTitle;
         let shelfName = e.target.dataset.shelfName;
 
         let customShelfCount = document.querySelector(`.count-a-custom-${shelfName}`);
         let currentCount = parseInt(customShelfCount.innerText.split('(')[1][0]) - 1
 
-        const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName}`, {
-            method: "DELETE",
-        });
+        if (window.confirm(`Are you sure you'd like to remove ${gameGuideTitle} from ${shelfName}?`)) {
+            const res = await fetch(`/users/${userId}/game-guides/${gameGuideId}/custom/${shelfName}`, {
+                method: "DELETE",
+            });
 
-        if (res.ok) {
-            e.path[2].remove();
-            customShelfCount.innerText = ` (${currentCount})`
+          if (res.ok) {
+              e.path[2].remove();
+              customShelfCount.innerText = ` (${currentCount})`
+          }
         }
     };
 

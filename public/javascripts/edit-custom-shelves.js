@@ -24,14 +24,14 @@ window.addEventListener("DOMContentLoaded", (e) => {
     const data = await res.json();
     const { check } = data;
 
-    console.log(check);
-
     if (check === 'success') {
       const tr = document.createElement('tr');
       tr.className = 'shelf';
       tr.innerHTML = `
       <td class="remove">
-        <a class="removeShelfBtn">X</a>
+        <form class="remove-custom" action="/custom-shelves/${shelfName}/delete" method="post">
+          <button type="submit" class="remove-custom-button" data-shelf-name='${shelfName}'>X</button>
+        </form>
       </td>
       <td class="userShelf">
         <div class="displayShelfName">
@@ -57,7 +57,27 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
   });
 
-  // ***ADDING NEW CUSTOM SHELF
+  // Delete custom shelf
+  let removeCustomBtns = document.querySelectorAll('.remove-custom-button');
+
+  const removeShelf = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    let shelfName = e.target.dataset.shelfName;
+
+    if (window.confirm(`Are you sure you'd like to remove ${shelfName}?`)) {
+      const res = await fetch(`/custom-shelves/${shelfName}`, {
+        method: "DELETE"
+      });
+
+      if (res.ok) e.path[2].remove();
+    }
+  };
+
+  removeCustomBtns.forEach(button => {
+    button.addEventListener('click', removeShelf);
+  });
 
   // Display rename shelf form
   let renameUserShelfLink = document.querySelectorAll('.renameUserShelfLink');

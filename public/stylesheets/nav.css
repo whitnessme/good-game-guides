@@ -90,6 +90,10 @@ ul {
   font-size: 11px;
 }
 
+#logout-button {
+  cursor: pointer;
+}
+
 footer {
   width: 100%;
   height: 100px;
