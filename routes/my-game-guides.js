@@ -50,6 +50,7 @@ router.get(
     const guides = await allStatusShelfEntries(userId);
 
     const customShelfAndCount = await customCounts(userId);
+    console.log("SHELVES & COUNTS", customShelfAndCount)
     const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render("my-game-guides", {
@@ -210,7 +211,6 @@ router.post("/custom-shelves/:shelfName([\\w-]+)/edit", asyncHandler(async (req,
     const { userId } = req.session.auth;
     const shelfName = req.params.shelfName;
     const { name } = req.body;
-    console.log('-----test---------', name)
 
     const shelves = await findCustomShelfEntries(userId, shelfName);
 
