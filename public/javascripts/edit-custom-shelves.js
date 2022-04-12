@@ -24,14 +24,14 @@ window.addEventListener("DOMContentLoaded", (e) => {
     const data = await res.json();
     const { check } = data;
 
-    console.log(check);
-
     if (check === 'success') {
       const tr = document.createElement('tr');
       tr.className = 'shelf';
       tr.innerHTML = `
       <td class="remove">
-        <a class="removeShelfBtn">X</a>
+        <form class="remove-custom" action="/custom-shelves/${shelfName}/delete" method="post">
+          <button type="submit" class="remove-custom-button">X</button>
+        </form>
       </td>
       <td class="userShelf">
         <div class="displayShelfName">
@@ -56,8 +56,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
     }
 
   });
-
-  // ***ADDING NEW CUSTOM SHELF
 
   // Display rename shelf form
   let renameUserShelfLink = document.querySelectorAll('.renameUserShelfLink');
