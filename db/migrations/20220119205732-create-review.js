@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       reviewText: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.TEXT,
       },
       userId: {
