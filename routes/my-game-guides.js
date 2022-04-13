@@ -48,6 +48,22 @@ router.get(
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
+    const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
+    
+    // If user does have review it will be set to userReview, and ratingArr will display true for each heart that is <= userReview[0].rating
+    // let userReview = false;
+    // let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
+    
+    // let userReviewFind = reviews.filter((review) => review.userId === userId)
+    // if (userReviewFind.length) {
+    //   userReview = userReviewFind
+    //   for (let i = 1; i <= 5; i++) {
+    //     if (i <= userReview[0].rating) {
+    //       ratingArr[`${i}`] = true
+    //     }
+    //   } 
+    // }
+
 
     const customShelfAndCount = await customCounts(userId);
     console.log("SHELVES & COUNTS", customShelfAndCount)

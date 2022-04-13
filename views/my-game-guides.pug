@@ -111,7 +111,7 @@ block content
                                                 //-     td(class='review')= guide.GameGuide.Reviews[0].reviewText
                                                 //- else
                                                 td(class='review')
-                                                    a(href=`#`) Write a Review
+                                                    a(class="review-text" href=`/game-guides/${gameGuide.id}/reviews/new/0`) Write a Review
                                                     //- div(class="hidden-review") Review Features Coming Soon!
                                                 td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")

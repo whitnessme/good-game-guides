@@ -20,8 +20,6 @@ router.get(
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
     const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
-
-
     
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
