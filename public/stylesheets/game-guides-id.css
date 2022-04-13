@@ -258,6 +258,28 @@ ul.wtp-non-exclusive-shelves input {
   margin-right: auto;
 }
 
+.heart-false {
+  cursor: default;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  float: left;
+  font-size: 0 !important;
+  background-image: url("../images/heart-icon-empty.png");
+  background-size: 15px;
+}
+
+.heart-true {
+  cursor: default;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  float: left;
+  font-size: 0 !important;
+  background-image: url("../images/heart-icon-color.png");
+  background-size: 15px;
+}
+
 .star {
   cursor: pointer;
   background-repeat: no-repeat;

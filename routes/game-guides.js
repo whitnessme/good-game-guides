@@ -35,10 +35,16 @@ router.get(
       const { userId } = req.session.auth;
 
       let userReview = false;
+      let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
       
       let userReviewFind = reviews.filter((review) => review.userId === userId)
       if (userReviewFind.length) {
         userReview = userReviewFind
+        for (let i = 1; i <= 5; i++) {
+          if (i <= userReview[0].rating) {
+            ratingArr[`${i}`] = true
+          }
+        } 
       }
 
       const guideStatusCheck = await db.StatusShelf.findAll({
@@ -90,7 +96,8 @@ router.get(
         inactiveCustomShelves,
         activeCustomShelves,
         reviews,
-        userReview
+        userReview,
+        ratingArr
       });
     } else {
       res.render("game-guides-id", {

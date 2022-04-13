@@ -100,15 +100,17 @@ block content
                           td(valign="top" class="my-review_label") Rating
                           td(colspan="2")
                             div(class="star-rating")
-                              a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                              a(class="star" title="really liked it" href="#") 4 of 5 stars
-                              a(class="star" title="liked it" href="#") 3 of 5 stars
-                              a(class="star" title="it was ok" href="#") 2 of 5 stars
-                              a(class="star" title="did not like it" href="#") 1 of 5 stars
+                              a(class=`heart-${ratingArr["5"]}` title="it was amazing" href="#") 5 of 5 stars
+                              a(class=`heart-${ratingArr["4"]}` title="really liked it" href="#") 4 of 5 stars
+                              a(class=`heart-${ratingArr["3"]}` title="liked it" href="#") 3 of 5 stars
+                              a(class=`heart-${ratingArr["2"]}` title="it was ok" href="#") 2 of 5 stars
+                              a(class=`heart-${ratingArr["1"]}` title="did not like it" href="#") 1 of 5 stars
                         tr
                           td(valign="top" class="my-review_label") Review
                           td(colspan="2")
-                            div Need to import review.reviewText & review.rating above
+                            div #{userReview[0].reviewText}
+                    div(class="edit-review-div")
+                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/edit`) (Edit)
                   //- ------------IF THERE IS NOT A REVIEW FROM USER SHOW THIS --------------
                   else
                     table(class="my-reviews" cellspacing="1" border="0" width="100%")
