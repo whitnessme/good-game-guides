@@ -100,7 +100,7 @@ block content
                                                         a(class="star" title="liked it" href="#") 3 of 5 stars
                                                         a(class="star" title="it was ok" href="#") 2 of 5 stars
                                                         a(class="star" title="did not like it" href="#") 1 of 5 stars
-                                                    div(class='hide') Rating Feature Coming Soon!
+                                                    //- div(class='hide') Rating Feature Coming Soon!
                                                 if url === "/my-game-guides"
                                                     td(class='shelves'): a(href=`/my-game-guides/status-shelves/${guide.Status.id}`)= guide.Status.name
                                                 //- else if url.startsWith("/my-game-guides/status-shelves/")
@@ -112,7 +112,7 @@ block content
                                                 //- else
                                                 td(class='review')
                                                     a(href=`#`) Write a Review
-                                                    div(class="hidden-review") Review Features Coming Soon!
+                                                    //- div(class="hidden-review") Review Features Coming Soon!
                                                 td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")
                                                     td(class='action'): button(type='button' class='removeCustomGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-game-guide-title=`${guide.GameGuide.title}` data-shelf-name=`${shelfName}`) X

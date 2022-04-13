@@ -63,7 +63,7 @@ block content
                       a(class="star" title="liked it" href="#") 3 of 5 stars
                       a(class="star" title="it was ok" href="#") 2 of 5 stars
                       a(class="star" title="did not like it" href="#") 1 of 5 stars
-                    div(class="hide") Rating Feature Coming Soon!
+                    //- div(class="hide") Rating Feature Coming Soon!
               div(id="textcol")
                 h1(id="game-guide-title") #{gameGuide.title}
                 div(id="guide-authors")
@@ -84,15 +84,16 @@ block content
                 div(id="description-container")
                   div(id="description-box")
                     p(id="description-text") #{gameGuide.summary}
+            //- ------------IF THERE IS A REVIEW FROM USER SHOW THIS -------
             div(class="my-review-box")
               div(class="h2-container")
                 h2(class="my-review-header") My Review
               div(class="review-box-content")
                 table(class="my-reviews" cellspacing="1" border="0" width="100%")
                   tbody
-                    tr
-                      td(valign="top" class="my-review_label") Review of
-                      td(colspan="2") #{gameGuide.title}
+                    //- tr
+                    //-   td(valign="top" class="my-review_label") Review of
+                    //-   td(colspan="2") #{gameGuide.title}
                     tr
                       td(valign="top" class="my-review_label") Rating
                       td(colspan="2")
@@ -105,8 +106,8 @@ block content
                     tr
                       td(valign="top" class="my-review_label") Review
                       td(colspan="2")
-                        textarea
-              div(class="hidden-review") Rating and Review Features Coming Soon!
+                        div Need to import review.reviewText & review.rating above
+              //- div(class="hidden-review") Rating and Review Features Coming Soon!
           div(class="right-container")
             div(class="right-container-header")
               h2(class="right-container-header-h2") Players Also Enjoyed:
