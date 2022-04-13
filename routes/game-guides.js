@@ -19,6 +19,10 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
+    const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
+
+
+    
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
     let statusObj = {
@@ -26,16 +30,24 @@ router.get(
       2: "Currently Playing",
       3: "Played",
     };
-
+    
     if (req.session.auth) {
       const { userId } = req.session.auth;
+
+      let userReview = false;
+      
+      let userReviewFind = reviews.filter((review) => review.userId === userId)
+      if (userReviewFind.length) {
+        userReview = userReviewFind
+      }
+
       const guideStatusCheck = await db.StatusShelf.findAll({
         where: {
           gameGuideId,
           userId,
         },
       });
-
+      
       let activeCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,
@@ -77,6 +89,8 @@ router.get(
         currentStatus,
         inactiveCustomShelves,
         activeCustomShelves,
+        reviews,
+        userReview
       });
     } else {
       res.render("game-guides-id", {
