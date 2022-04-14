@@ -7,6 +7,7 @@ const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const db = require("../db/models");
 const { sequelize } = require("../db/models");
 const { Op } = require("sequelize");
+const {findAverageRating, makeAvgRatingObj, makeRatingArrsForAllReviews} = require('../creation')
 
 const router = express.Router();
 
@@ -20,6 +21,9 @@ router.get(
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
     const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
+
+    let avg = findAverageRating(reviews)
+    let avgArr = makeAvgRatingObj(avg)
     
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
@@ -95,12 +99,15 @@ router.get(
         activeCustomShelves,
         reviews,
         userReview,
-        ratingArr
+        ratingArr,
+        avgArr
       });
     } else {
       res.render("game-guides-id", {
         gameGuide,
         filteredGuides,
+        reviews,
+        avgArr
       });
     }
   })

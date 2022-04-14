@@ -157,14 +157,14 @@ async function allStatusShelfEntries(userId) {
     })
 }
 
-async function findAvgRating(gameGuideId) {
-    return db.Review.findOne({
-        where: {
-            gameGuideId
-        },
-        attributes: [sequelize.fn('AVG', sequelize.col('rating'))]
-    });
-};
+// async function findAvgRating(gameGuideId) {
+//     return db.Review.findOne({
+//         where: {
+//             gameGuideId
+//         },
+//         attributes: [sequelize.fn('AVG', sequelize.col('rating'))]
+//     });
+// };
 
 async function checkIfOnlyOneCustomShelfEntry(userId, name) {
     const guides = findCustomShelfEntries(userId, name)
@@ -218,11 +218,38 @@ async function statusAndAllCounts(userId) {
     return {all, one, two, three}
 }
 
-
 async function customCounts(userId) {
     // returns objects in array with shelf.name and shelf.count 
     const customs = await countGuidesOnShelves(userId, 'customShelves')
     return customs
+}
+
+// ------------------------- RATING FUNCTIONS ---------------------------------
+
+function findAverageRating(reviews) {
+    // Takes in array of all reviews for a gameguide
+    let sum = 0
+    for (let review of reviews) {
+      sum += review.rating
+    }
+    return Math.round(sum / reviews.length)
+  }
+  
+  function makeAvgRatingObj(avg) {
+  
+    let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
+  
+    for (let i = 1; i <= 5; i++) {
+      if (i <= avg) {
+        ratingArr[`${i}`] = true
+      }
+    } 
+  
+    return ratingArr
+  }
+
+function makeRatingArrsForAllReviews(reviews) {
+
 }
 
 module.exports = {
@@ -234,7 +261,7 @@ module.exports = {
     addGuideToCustomShelf,
     checkCountOfShelfEntries,
     allStatusShelfEntries,
-    findAvgRating,
     customCounts,
-    statusAndAllCounts
+    statusAndAllCounts,
+    findAverageRating
 }
