@@ -1,30 +1,71 @@
 const express = require("express");
+const { check, validationResult } = require("express-validator");
 
 const { csrfProtection, asyncHandler } = require("../utils");
 const db = require("../db/models");
 
 const router = express.Router();
 
+const reviewValidators = [
+    check('rating')
+        .exists({ checkFalsy: true })
+        .withMessage('If you would like to submit a review, please provide a rating from 1 (did not like it) to 5 (it was amazing).')
+];
+
+// READ - Get the form to create a review
+router.get(
+    '/game-guides/:id(\\d+)/reviews/new/:rating(\\d+)',
+    csrfProtection,
+    (req, res) => {
+        const { userId } = req.session.auth;
+        const gameGuideId = parseInt(req.params.id, 10);
+        const rating = parseInt(req.params.rating, 10);
+
+        res.render('new-review', {
+            title: 'Leave a Review',
+            userId,
+            gameGuideId,
+            rating,
+            csrfToken: req.csrfToken()
+        });
+    }
+);
+
 // CREATE - User creates a rating/review
 router.post(
     '/game-guides/:id(\\d+)/reviews/new',
     csrfProtection,
+    reviewValidators,
     asyncHandler(async (req, res) => {
         const { userId } = req.session.auth;
         const gameGuideId = parseInt(req.params.id, 10);
-
         const { rating, reviewText } = req.body;
 
-        const review = await db.Review.create({
-            rating,
-            reviewText,
-            userId,
-            gameGuideId,
-            createdAt: new Date(),
-            updatedAt: new Date()
-        });
+        const validatorErrors = validationResult(req);
 
-        return res.json(review);
+        if (validatorErrors.isEmpty()) {
+            const review = await db.Review.create({
+                rating,
+                reviewText,
+                userId,
+                gameGuideId,
+                createdAt: new Date(),
+                updatedAt: new Date()
+            });
+
+            res.redirect(`/game-guides/${gameGuideId}`);
+        } else {
+            const errors = validatorErrors.array().map(error => error.msg);
+
+            res.render('new-review', {
+                title: 'Leave a Review',
+                userId,
+                gameGuideId,
+                rating,
+                errors,
+                csrfToken: req.csrfToken()
+            });
+        }
     })
 );
 

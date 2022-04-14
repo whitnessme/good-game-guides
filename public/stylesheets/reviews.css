@@ -1,0 +1,160 @@
+body {
+    background-color: rgb(253, 245, 245);
+    font-family: monospace;
+}
+
+.new-review-container {
+    background-color: white;
+    border: 1px solid #d0d0c8;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px #d0d0c8;
+    margin: 20px auto 0 auto;
+    padding: 28px 10px 34px 10px;
+    text-align: center;
+    width: 600px;
+}
+
+h1 {
+    color: #382110;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    padding: 0px 0px 2px 0px;
+}
+
+.error-box {
+    background-color: #fdb7ad;
+    border: 1px solid #fa604a;
+    border-radius: 4px;
+    margin: 16px;
+    padding: 12px;
+    text-align: start;
+    width: auto;
+}
+
+fieldset {
+    border: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+    width: 300px;
+}
+
+/* .rating-stars {
+    text-align: center;
+}
+
+.wtp-rating {
+    clear: both;
+    color: #f2f2f2;
+    font-size: 85%;
+}
+
+.star-rating {
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    color: #aaa;
+    overflow: hidden;
+    width: 550px;
+}
+
+.star {
+    cursor: pointer;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    float: left;
+    font-size: 0 !important;
+    background-image: url("../images/heart-icon-empty.png");
+    background-size: 50px;
+}
+
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+    background-image: url("../images/heart-icon-color.png");
+} */
+
+.fieldEle {
+    margin-bottom: 10px;
+}
+
+.heart {
+    cursor: pointer;
+}
+
+input[type='radio'] {
+    -webkit-appearance: none;
+    background: url("../images/heart-icon-empty.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+input[type='radio']:hover {
+    -webkit-appearance: none;
+    background: url("../images/heart-icon-color.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+input[type='radio']:checked {
+    -webkit-appearance: none;
+    background: url("../images/heart-icon-color.png");
+    background-repeat: no-repeat;
+    background-size: 30px;
+    border: none;
+    height: 30px;
+    width: 30px;
+}
+
+textarea {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0px 2px 2px #333 #ccc;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+    height: 100px;
+    padding: 4px;
+    width: 100%;
+}
+
+.submitEle {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    font-family: monospace;
+}
+
+.submit-button {
+    border-radius: 3px;
+    border: 1px solid #d6d0c4;
+    font-family: monospace;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    color: #333333;
+    background-color: #f4f1ea;
+    line-height: 1;
+    padding: 8px 12px;
+}
+
+.submit-button:hover {
+    background-color: #f5e6c5;
+}
+
+.cancel-button {
+    margin-left: 10px;
+}
