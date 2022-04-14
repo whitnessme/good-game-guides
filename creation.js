@@ -235,21 +235,24 @@ function findAverageRating(reviews) {
     return Math.round(sum / reviews.length)
   }
   
-  function makeAvgRatingObj(avg) {
-  
+  function makeRatingObj(rating) {
     let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
   
     for (let i = 1; i <= 5; i++) {
-      if (i <= avg) {
+      if (i <= rating) {
         ratingArr[`${i}`] = true
       }
     } 
-  
     return ratingArr
   }
 
 function makeRatingArrsForAllReviews(reviews) {
-
+    // Replaces rating number with a ratingArr
+    for (let review of reviews) {
+        let rating = review.rating
+        review.rating = makeRatingObj(rating)
+    }
+    return reviews;
 }
 
 module.exports = {
@@ -263,5 +266,7 @@ module.exports = {
     allStatusShelfEntries,
     customCounts,
     statusAndAllCounts,
-    findAverageRating
+    findAverageRating,
+    makeRatingObj,
+    makeRatingArrsForAllReviews
 }

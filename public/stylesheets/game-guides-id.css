@@ -462,3 +462,9 @@ td {
   border-radius: 10px;
   box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.445);
 }
+
+.review-user-name {
+  font-size: 12px !important;
+  text-transform: uppercase;
+  word-spacing: 2px;
+}

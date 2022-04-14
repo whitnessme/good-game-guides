@@ -11,5 +11,7 @@ function demoUserLogin(e) {
 document.addEventListener("DOMContentLoaded", (e) => {
   let checkbox = document.querySelector("#demo-user-box");
 
-  checkbox.addEventListener("change", demoUserLogin);
+  if (checkbox) {
+    checkbox.addEventListener("change", demoUserLogin);
+  }
 });

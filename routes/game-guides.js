@@ -7,7 +7,7 @@ const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const db = require("../db/models");
 const { sequelize } = require("../db/models");
 const { Op } = require("sequelize");
-const {findAverageRating, makeAvgRatingObj, makeRatingArrsForAllReviews} = require('../creation')
+const {findAverageRating, makeRatingObj, makeRatingArrsForAllReviews} = require('../creation')
 
 const router = express.Router();
 
@@ -20,10 +20,19 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
-    const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
+
+    const reviews = await db.Review.findAll({
+      where: {
+        gameGuideId
+      },
+      include: [{
+        model: db.User
+      }]
+    })
 
     let avg = findAverageRating(reviews)
-    let avgArr = makeAvgRatingObj(avg)
+    let avgArr = makeRatingObj(avg)
+    let updatedReviews = makeRatingArrsForAllReviews(reviews)
     
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
@@ -37,18 +46,12 @@ router.get(
       const { userId } = req.session.auth;
 
       let userReview = false;
-      let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
       
       let userReviewFind = reviews.filter((review) => review.userId === userId)
       if (userReviewFind.length) {
         userReview = userReviewFind
-        for (let i = 1; i <= 5; i++) {
-          if (i <= userReview[0].rating) {
-            ratingArr[`${i}`] = true
-          }
-        } 
       }
-
+      console.log(userReview[0])
       const guideStatusCheck = await db.StatusShelf.findAll({
         where: {
           gameGuideId,
@@ -97,16 +100,15 @@ router.get(
         currentStatus,
         inactiveCustomShelves,
         activeCustomShelves,
-        reviews,
+        updatedReviews,
         userReview,
-        ratingArr,
         avgArr
       });
     } else {
       res.render("game-guides-id", {
         gameGuide,
         filteredGuides,
-        reviews,
+        updatedReviews,
         avgArr
       });
     }
