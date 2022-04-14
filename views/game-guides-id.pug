@@ -110,7 +110,7 @@ block content
                           td(colspan="2")
                             div #{userReview[0].reviewText}
                     div(class="edit-review-div")
-                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/edit`) (Edit)
+                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview.id}/edit`) (Edit)
                   //- ------------IF THERE IS NOT A REVIEW FROM USER SHOW THIS --------------
                   else
                     table(class="my-reviews" cellspacing="1" border="0" width="100%")
