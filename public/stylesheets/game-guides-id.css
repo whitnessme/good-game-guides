@@ -258,6 +258,28 @@ ul.wtp-non-exclusive-shelves input {
   margin-right: auto;
 }
 
+.heart-false {
+  cursor: default;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  float: left;
+  font-size: 0 !important;
+  background-image: url("../images/heart-icon-empty.png");
+  background-size: 15px;
+}
+
+.heart-true {
+  cursor: default;
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  float: left;
+  font-size: 0 !important;
+  background-image: url("../images/heart-icon-color.png");
+  background-size: 15px;
+}
+
 .star {
   cursor: pointer;
   background-repeat: no-repeat;
@@ -439,4 +461,10 @@ td {
   height: 120px;
   border-radius: 10px;
   box-shadow: 1px 2px 5px rgba(128, 128, 128, 0.445);
+}
+
+.review-user-name {
+  font-size: 12px !important;
+  text-transform: uppercase;
+  word-spacing: 2px;
 }

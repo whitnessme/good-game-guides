@@ -7,6 +7,7 @@ const { loginUser, logoutUser, restoreUser, requireAuth } = require("../auth");
 const db = require("../db/models");
 const { sequelize } = require("../db/models");
 const { Op } = require("sequelize");
+const {findAverageRating, makeRatingObj, makeRatingArrsForAllReviews} = require('../creation')
 
 const router = express.Router();
 
@@ -19,6 +20,20 @@ router.get(
     const gameGuideId = parseInt(req.params.id, 10);
     const gameGuide = await db.GameGuide.findByPk(gameGuideId);
     const guides = await db.GameGuide.findAll();
+
+    const reviews = await db.Review.findAll({
+      where: {
+        gameGuideId
+      },
+      include: [{
+        model: db.User
+      }]
+    })
+
+    let avg = findAverageRating(reviews)
+    let avgArr = makeRatingObj(avg)
+    let updatedReviews = makeRatingArrsForAllReviews(reviews)
+    
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
     let statusObj = {
@@ -26,16 +41,24 @@ router.get(
       2: "Currently Playing",
       3: "Played",
     };
-
+    
     if (req.session.auth) {
       const { userId } = req.session.auth;
+
+      let userReview = false;
+      
+      let userReviewFind = reviews.filter((review) => review.userId === userId)
+      if (userReviewFind.length) {
+        userReview = userReviewFind
+      }
+      console.log(userReview[0])
       const guideStatusCheck = await db.StatusShelf.findAll({
         where: {
           gameGuideId,
           userId,
         },
       });
-
+      
       let activeCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,
@@ -77,11 +100,16 @@ router.get(
         currentStatus,
         inactiveCustomShelves,
         activeCustomShelves,
+        updatedReviews,
+        userReview,
+        avgArr
       });
     } else {
       res.render("game-guides-id", {
         gameGuide,
         filteredGuides,
+        updatedReviews,
+        avgArr
       });
     }
   })

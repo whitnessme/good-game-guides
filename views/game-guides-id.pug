@@ -55,15 +55,22 @@ block content
                                   input(type="checkbox" value=`${shelf.name}` id=`${shelf.id}`)
                                   label(for=`${shelf.name}`) #{shelf.name}
                   div(class="rating-stars wtp-rating")
-                    div(class="myrating-text") Rate this guide
-                    //- need other info about user id and such
-                    div(class="star-rating")
-                      a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                      a(class="star" title="really liked it" href="#") 4 of 5 stars
-                      a(class="star" title="liked it" href="#") 3 of 5 stars
-                      a(class="star" title="it was ok" href="#") 2 of 5 stars
-                      a(class="star" title="did not like it" href="#") 1 of 5 stars
-                    div(class="hide") Rating Feature Coming Soon!
+                      if updatedReviews.length
+                        div(class="myrating-text") Average rating
+                            div(class="star-rating")
+                              a(class=`heart-${avgArr["5"]}` title="it was amazing" href="#") 5 of 5 stars
+                              a(class=`heart-${avgArr["4"]}` title="really liked it" href="#") 4 of 5 stars
+                              a(class=`heart-${avgArr["3"]}` title="liked it" href="#") 3 of 5 stars
+                              a(class=`heart-${avgArr["2"]}` title="it was ok" href="#") 2 of 5 stars
+                              a(class=`heart-${avgArr["1"]}` title="did not like it" href="#") 1 of 5 stars
+                      else
+                        div(class="myrating-text") No reviews yet
+                            div(class="star-rating")
+                              a(class=`heart-false` title="it was amazing" href="#") 5 of 5 stars
+                              a(class=`heart-false` title="really liked it" href="#") 4 of 5 stars
+                              a(class=`heart-false` title="liked it" href="#") 3 of 5 stars
+                              a(class=`heart-false` title="it was ok" href="#") 2 of 5 stars
+                              a(class=`heart-false` title="did not like it" href="#") 1 of 5 stars
               div(id="textcol")
                 h1(id="game-guide-title") #{gameGuide.title}
                 div(id="guide-authors")
@@ -88,25 +95,79 @@ block content
               div(class="h2-container")
                 h2(class="my-review-header") My Review
               div(class="review-box-content")
-                table(class="my-reviews" cellspacing="1" border="0" width="100%")
-                  tbody
-                    tr
-                      td(valign="top" class="my-review_label") Review of
-                      td(colspan="2") #{gameGuide.title}
-                    tr
-                      td(valign="top" class="my-review_label") Rating
-                      td(colspan="2")
-                        div(class="star-rating")
-                          a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                          a(class="star" title="really liked it" href="#") 4 of 5 stars
-                          a(class="star" title="liked it" href="#") 3 of 5 stars
-                          a(class="star" title="it was ok" href="#") 2 of 5 stars
-                          a(class="star" title="did not like it" href="#") 1 of 5 stars
-                    tr
-                      td(valign="top" class="my-review_label") Review
-                      td(colspan="2")
-                        textarea
-              div(class="hidden-review") Rating and Review Features Coming Soon!
+                //- ------------IF THERE IS A REVIEW FROM USER SHOW THIS ----------------
+                if userId
+                  if userReview
+                    table(class="my-reviews" cellspacing="1" border="0" width="100%")
+                      tbody
+                        //- tr
+                        //-   td(valign="top" class="my-review_label") Review of
+                        //-   td(colspan="2") #{gameGuide.title}
+                        tr
+                          td(valign="top" class="my-review_label") Rating
+                          td(colspan="2")
+                            div(class="star-rating")
+                              a(class=`heart-${userReview[0].rating["5"]}` title="it was amazing" href="#") 5 of 5 stars
+                              a(class=`heart-${userReview[0].rating["4"]}` title="really liked it" href="#") 4 of 5 stars
+                              a(class=`heart-${userReview[0].rating["3"]}` title="liked it" href="#") 3 of 5 stars
+                              a(class=`heart-${userReview[0].rating["2"]}` title="it was ok" href="#") 2 of 5 stars
+                              a(class=`heart-${userReview[0].rating["1"]}` title="did not like it" href="#") 1 of 5 stars
+                        tr
+                          td(valign="top" class="my-review_label") Review
+                          td(colspan="2")
+                            div #{userReview[0].reviewText}
+                    div(class="edit-review-div")
+                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview.id}/edit`) (Edit)
+                  //- ------------IF THERE IS NOT A REVIEW FROM USER SHOW THIS --------------
+                  else
+                    table(class="my-reviews" cellspacing="1" border="0" width="100%")
+                      tbody
+                        //- tr
+                        //-   td(valign="top" class="my-review_label") Review of
+                        //-   td(colspan="2") #{gameGuide.title}
+                        tr
+                          td(valign="top" class="my-review_label") Rating
+                          td(colspan="2")
+                            div(class="star-rating")
+                              a(class="star" title="it was amazing" href=`/game-guides/${gameGuide.id}/reviews/new/5`) 5 of 5 stars
+                              a(class="star" title="really liked it" href=`/game-guides/${gameGuide.id}/reviews/new/4`) 4 of 5 stars
+                              a(class="star" title="liked it" href=`/game-guides/${gameGuide.id}/reviews/new/3`) 3 of 5 stars
+                              a(class="star" title="it was ok" href=`/game-guides/${gameGuide.id}/reviews/new/2`) 2 of 5 stars
+                              a(class="star" title="did not like it" href=`/game-guides/${gameGuide.id}/reviews/new/1`) 1 of 5 stars
+                        tr
+                          td(valign="top" class="my-review_label") Review
+                          td(colspan="2")
+                            a(class="review-text" href=`/game-guides/${gameGuide.id}/reviews/new/0`) Write a review!
+                else 
+                  a(class="login-review" href="/users/login") Please login to leave a review              
+            div(class="my-review-box")
+              div(class="h2-container")
+                h2(class="my-review-header") REVIEWS
+              div(class="review-box-content")
+                if updatedReviews
+                  each review in updatedReviews
+                      //- if userId !== review.userId
+                      table(class="my-reviews" cellspacing="1" border="0" width="100%")
+                        tbody
+                          tr
+                            //- td(valign="top" class="my-review_label") Reviewed by
+                            td(class="review-user-name" colspan="2") #{review.User.fullName}
+                          tr
+                            td(valign="top" class="my-review_label") Rating
+                            td(colspan="2")
+                              div(class="star-rating")
+                                a(class=`heart-${review.rating["5"]}` title="it was amazing" href="#") 5 of 5 stars
+                                a(class=`heart-${review.rating["4"]}` title="really liked it" href="#") 4 of 5 stars
+                                a(class=`heart-${review.rating["3"]}` title="liked it" href="#") 3 of 5 stars
+                                a(class=`heart-${review.rating["2"]}` title="it was ok" href="#") 2 of 5 stars
+                                a(class=`heart-${review.rating["1"]}` title="did not like it" href="#") 1 of 5 stars
+                          tr
+                            td(valign="top" class="my-review_label") Review
+                            td(colspan="2")
+                              div #{review.reviewText}
+                      if review.userId === userId
+                        div(class="edit-review-div")
+                          a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview.id}/edit`) (Edit)
           div(class="right-container")
             div(class="right-container-header")
               h2(class="right-container-header-h2") Players Also Enjoyed:
