@@ -9,7 +9,7 @@ const router = express.Router();
 const reviewValidators = [
     check('rating')
         .exists({ checkFalsy: true })
-        .withMessage('If you would like to submit a review, please provide a rating from 1 (did not like it) to 5 (it was amazing).')
+        .withMessage('If you would like to submit a review, please provide a rating from 1 heart (did not like it) to 5 hearts (it was amazing).')
 ];
 
 // READ - Get the form to create a review

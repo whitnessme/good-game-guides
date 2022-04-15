@@ -41,44 +41,13 @@ fieldset {
     width: 300px;
 }
 
-/* .rating-stars {
-    text-align: center;
-}
-
-.wtp-rating {
-    clear: both;
-    color: #f2f2f2;
-    font-size: 85%;
-}
-
-.star-rating {
-    white-space: nowrap;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    color: #aaa;
-    overflow: hidden;
-    width: 550px;
-}
-
-.star {
-    cursor: pointer;
-    background-repeat: no-repeat;
-    height: 50px;
-    width: 50px;
-    float: left;
-    font-size: 0 !important;
-    background-image: url("../images/heart-icon-empty.png");
-    background-size: 50px;
-}
-
-.star-rating .star:hover,
-.star-rating .star:hover ~ .star {
-    background-image: url("../images/heart-icon-color.png");
-} */
-
 .fieldEle {
     margin-bottom: 10px;
+}
+
+.heart-rating {
+    align-items: center;
+    display: flex;
 }
 
 .heart {
@@ -88,26 +57,6 @@ fieldset {
 input[type='radio'] {
     -webkit-appearance: none;
     background: url("../images/heart-icon-empty.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    border: none;
-    height: 30px;
-    width: 30px;
-}
-
-input[type='radio']:hover {
-    -webkit-appearance: none;
-    background: url("../images/heart-icon-color.png");
-    background-repeat: no-repeat;
-    background-size: 30px;
-    border: none;
-    height: 30px;
-    width: 30px;
-}
-
-input[type='radio']:checked {
-    -webkit-appearance: none;
-    background: url("../images/heart-icon-color.png");
     background-repeat: no-repeat;
     background-size: 30px;
     border: none;
