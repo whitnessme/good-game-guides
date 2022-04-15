@@ -14,6 +14,7 @@ const myGameGuidesRouter = require("./routes/my-game-guides");
 const gameGuidesRouter = require("./routes/game-guides");
 const countRouter = require("./routes/count-api");
 const apiRouter = require("./routes/api");
+const reviewsRouter = require('./routes/reviews');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use(myGameGuidesRouter);
 app.use("/game-guides", gameGuidesRouter);
 app.use("/count", countRouter);
 app.use("/api", apiRouter);
+app.use(reviewsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
