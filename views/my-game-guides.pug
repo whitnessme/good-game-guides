@@ -61,7 +61,7 @@ block content
                                                     a(class=`count-a-custom-${shelf.name}` href=`/my-game-guides/custom-shelves/${shelf.name}`)  (#{shelf.count})
                                             else
                                                 div(class='userShelf')
-                                                    a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name} 
+                                                    a(href=`/my-game-guides/custom-shelves/${shelf.name}`) #{shelf.name}
                                                     a(class=`count-a-custom-${shelf.name}` href=`/my-game-guides/custom-shelves/${shelf.name}`) (#{shelf.count})
                             div(class='stacked')
                                 button(id='addShelfBtn') Add Shelf
@@ -111,7 +111,7 @@ block content
                                                 //-     td(class='review')= guide.GameGuide.Reviews[0].reviewText
                                                 //- else
                                                 td(class='review')
-                                                    a(class="review-text" href=`/game-guides/${gameGuide.id}/reviews/new/0`) Write a Review
+                                                    a(class="review-text" href=`/game-guides/${guide.GameGuide.id}/reviews/new/0`) Write a Review
                                                     //- div(class="hidden-review") Review Features Coming Soon!
                                                 td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")
