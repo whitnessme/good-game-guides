@@ -16,19 +16,22 @@ const reviewValidators = [
 router.get(
     '/game-guides/:id(\\d+)/reviews/new/:rating(\\d+)',
     csrfProtection,
-    (req, res) => {
+    asyncHandler(async (req, res) => {
         const { userId } = req.session.auth;
         const gameGuideId = parseInt(req.params.id, 10);
         const rating = parseInt(req.params.rating, 10);
+
+        const gameGuide = await db.GameGuide.findByPk(gameGuideId);
 
         res.render('new-review', {
             title: 'Leave a Review',
             userId,
             gameGuideId,
+            gameGuide,
             rating,
             csrfToken: req.csrfToken()
         });
-    }
+    })
 );
 
 // CREATE - User creates a rating/review
