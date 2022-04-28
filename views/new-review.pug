@@ -18,11 +18,11 @@ block content
                 input(type='hidden' name='_csrf' value=csrfToken)
 
                 div(class="fieldEle heart-rating") Rating
-                    input(type='radio' name='rating' title="did not like it" value='1' id='rating1' class='heart')
-                    input(type='radio' name='rating' title="it was ok" value='2' id='rating2' class='heart')
-                    input(type='radio' name='rating' title="liked it" value='3' id='rating3' class='heart')
-                    input(type='radio' name='rating' title="really liked it" value='4' id='rating4' class='heart')
-                    input(type='radio' name='rating' title="it was amazing" value='5' id='rating5' class='heart')
+                    input(type='radio' name='rating' title="did not like it" value='1' id='rating1' class='heart' checked=(rating === 1))
+                    input(type='radio' name='rating' title="it was ok" value='2' id='rating2' class='heart' checked=(rating === 2))
+                    input(type='radio' name='rating' title="liked it" value='3' id='rating3' class='heart' checked=(rating === 3))
+                    input(type='radio' name='rating' title="really liked it" value='4' id='rating4' class='heart' checked=(rating === 4))
+                    input(type='radio' name='rating' title="it was amazing" value='5' id='rating5' class='heart' checked=(rating === 5))
 
                 div(class="fieldEle")
                     label(for='reviewText') Review
