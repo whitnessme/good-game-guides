@@ -16,6 +16,38 @@ window.addEventListener('DOMContentLoaded', (e) => {
             e.target.style.border = 'none';
             e.target.style.height = '30px';
             e.target.style.width = '30px';
+
+            heart2.style.webkitAppearance = 'none';
+            heart2.style.background = 'url("/images/heart-icon-empty.png")';
+            heart2.style.backgroundRepeat = 'no-repeat';
+            heart2.style.backgroundSize = '30px';
+            heart2.style.border = 'none';
+            heart2.style.height = '30px';
+            heart2.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-empty.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-empty.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
         } else if (e.target.id === 'rating2') {
             heart1.style.webkitAppearance = 'none';
             heart1.style.background = 'url("/images/heart-icon-color.png")';
@@ -32,6 +64,30 @@ window.addEventListener('DOMContentLoaded', (e) => {
             e.target.style.border = 'none';
             e.target.style.height = '30px';
             e.target.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-empty.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-empty.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
         } else if (e.target.id === 'rating3') {
             heart1.style.webkitAppearance = 'none';
             heart1.style.background = 'url("/images/heart-icon-color.png")';
@@ -56,6 +112,22 @@ window.addEventListener('DOMContentLoaded', (e) => {
             e.target.style.border = 'none';
             e.target.style.height = '30px';
             e.target.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-empty.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
         } else if (e.target.id === 'rating4') {
             heart1.style.webkitAppearance = 'none';
             heart1.style.background = 'url("/images/heart-icon-color.png")';
@@ -88,6 +160,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
             e.target.style.border = 'none';
             e.target.style.height = '30px';
             e.target.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
         } else if (e.target.id === 'rating5') {
             heart1.style.webkitAppearance = 'none';
             heart1.style.background = 'url("/images/heart-icon-color.png")';
@@ -140,89 +220,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     // Remove background from all hearts when exit hover on new review form
     const leaveHeart = (e) => {
-        if (e.target.id === 'rating1' && !e.target.checked) {
-            e.target.style.webkitAppearance = 'none';
-            e.target.style.background = 'url("/images/heart-icon-empty.png")';
-            e.target.style.backgroundRepeat = 'no-repeat';
-            e.target.style.backgroundSize = '30px';
-            e.target.style.border = 'none';
-            e.target.style.height = '30px';
-            e.target.style.width = '30px';
-        } else if (e.target.id === 'rating2' && !e.target.checked) {
+        if (heart1.checked) {
             heart1.style.webkitAppearance = 'none';
-            heart1.style.background = 'url("/images/heart-icon-empty.png")';
-            heart1.style.backgroundRepeat = 'no-repeat';
-            heart1.style.backgroundSize = '30px';
-            heart1.style.border = 'none';
-            heart1.style.height = '30px';
-            heart1.style.width = '30px';
-
-            e.target.style.webkitAppearance = 'none';
-            e.target.style.background = 'url("/images/heart-icon-empty.png")';
-            e.target.style.backgroundRepeat = 'no-repeat';
-            e.target.style.backgroundSize = '30px';
-            e.target.style.border = 'none';
-            e.target.style.height = '30px';
-            e.target.style.width = '30px';
-        } else if (e.target.id === 'rating3' && !e.target.checked) {
-            heart1.style.webkitAppearance = 'none';
-            heart1.style.background = 'url("/images/heart-icon-empty.png")';
-            heart1.style.backgroundRepeat = 'no-repeat';
-            heart1.style.backgroundSize = '30px';
-            heart1.style.border = 'none';
-            heart1.style.height = '30px';
-            heart1.style.width = '30px';
-
-            heart2.style.webkitAppearance = 'none';
-            heart2.style.background = 'url("/images/heart-icon-empty.png")';
-            heart2.style.backgroundRepeat = 'no-repeat';
-            heart2.style.backgroundSize = '30px';
-            heart2.style.border = 'none';
-            heart2.style.height = '30px';
-            heart2.style.width = '30px';
-
-            e.target.style.webkitAppearance = 'none';
-            e.target.style.background = 'url("/images/heart-icon-empty.png")';
-            e.target.style.backgroundRepeat = 'no-repeat';
-            e.target.style.backgroundSize = '30px';
-            e.target.style.border = 'none';
-            e.target.style.height = '30px';
-            e.target.style.width = '30px';
-        } else if (e.target.id === 'rating4' && !e.target.checked) {
-            heart1.style.webkitAppearance = 'none';
-            heart1.style.background = 'url("/images/heart-icon-empty.png")';
-            heart1.style.backgroundRepeat = 'no-repeat';
-            heart1.style.backgroundSize = '30px';
-            heart1.style.border = 'none';
-            heart1.style.height = '30px';
-            heart1.style.width = '30px';
-
-            heart2.style.webkitAppearance = 'none';
-            heart2.style.background = 'url("/images/heart-icon-empty.png")';
-            heart2.style.backgroundRepeat = 'no-repeat';
-            heart2.style.backgroundSize = '30px';
-            heart2.style.border = 'none';
-            heart2.style.height = '30px';
-            heart2.style.width = '30px';
-
-            heart3.style.webkitAppearance = 'none';
-            heart3.style.background = 'url("/images/heart-icon-empty.png")';
-            heart3.style.backgroundRepeat = 'no-repeat';
-            heart3.style.backgroundSize = '30px';
-            heart3.style.border = 'none';
-            heart3.style.height = '30px';
-            heart3.style.width = '30px';
-
-            e.target.style.webkitAppearance = 'none';
-            e.target.style.background = 'url("/images/heart-icon-empty.png")';
-            e.target.style.backgroundRepeat = 'no-repeat';
-            e.target.style.backgroundSize = '30px';
-            e.target.style.border = 'none';
-            e.target.style.height = '30px';
-            e.target.style.width = '30px';
-        } else if (e.target.id === 'rating5' && !e.target.checked) {
-            heart1.style.webkitAppearance = 'none';
-            heart1.style.background = 'url("/images/heart-icon-empty.png")';
+            heart1.style.background = 'url("/images/heart-icon-color.png")';
             heart1.style.backgroundRepeat = 'no-repeat';
             heart1.style.backgroundSize = '30px';
             heart1.style.border = 'none';
@@ -253,13 +253,295 @@ window.addEventListener('DOMContentLoaded', (e) => {
             heart4.style.height = '30px';
             heart4.style.width = '30px';
 
-            e.target.style.webkitAppearance = 'none';
-            e.target.style.background = 'url("/images/heart-icon-empty.png")';
-            e.target.style.backgroundRepeat = 'no-repeat';
-            e.target.style.backgroundSize = '30px';
-            e.target.style.border = 'none';
-            e.target.style.height = '30px';
-            e.target.style.width = '30px';
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
+        } else if (heart2.checked) {
+            heart1.style.webkitAppearance = 'none';
+            heart1.style.background = 'url("/images/heart-icon-color.png")';
+            heart1.style.backgroundRepeat = 'no-repeat';
+            heart1.style.backgroundSize = '30px';
+            heart1.style.border = 'none';
+            heart1.style.height = '30px';
+            heart1.style.width = '30px';
+
+            heart2.style.webkitAppearance = 'none';
+            heart2.style.background = 'url("/images/heart-icon-color.png")';
+            heart2.style.backgroundRepeat = 'no-repeat';
+            heart2.style.backgroundSize = '30px';
+            heart2.style.border = 'none';
+            heart2.style.height = '30px';
+            heart2.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-empty.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-empty.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
+        } else if (heart3.checked) {
+            heart1.style.webkitAppearance = 'none';
+            heart1.style.background = 'url("/images/heart-icon-color.png")';
+            heart1.style.backgroundRepeat = 'no-repeat';
+            heart1.style.backgroundSize = '30px';
+            heart1.style.border = 'none';
+            heart1.style.height = '30px';
+            heart1.style.width = '30px';
+
+            heart2.style.webkitAppearance = 'none';
+            heart2.style.background = 'url("/images/heart-icon-color.png")';
+            heart2.style.backgroundRepeat = 'no-repeat';
+            heart2.style.backgroundSize = '30px';
+            heart2.style.border = 'none';
+            heart2.style.height = '30px';
+            heart2.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-color.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-empty.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
+        } else if (heart4.checked) {
+            heart1.style.webkitAppearance = 'none';
+            heart1.style.background = 'url("/images/heart-icon-color.png")';
+            heart1.style.backgroundRepeat = 'no-repeat';
+            heart1.style.backgroundSize = '30px';
+            heart1.style.border = 'none';
+            heart1.style.height = '30px';
+            heart1.style.width = '30px';
+
+            heart2.style.webkitAppearance = 'none';
+            heart2.style.background = 'url("/images/heart-icon-color.png")';
+            heart2.style.backgroundRepeat = 'no-repeat';
+            heart2.style.backgroundSize = '30px';
+            heart2.style.border = 'none';
+            heart2.style.height = '30px';
+            heart2.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-color.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-color.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-empty.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
+        } else if (heart5.checked) {
+            heart1.style.webkitAppearance = 'none';
+            heart1.style.background = 'url("/images/heart-icon-color.png")';
+            heart1.style.backgroundRepeat = 'no-repeat';
+            heart1.style.backgroundSize = '30px';
+            heart1.style.border = 'none';
+            heart1.style.height = '30px';
+            heart1.style.width = '30px';
+
+            heart2.style.webkitAppearance = 'none';
+            heart2.style.background = 'url("/images/heart-icon-color.png")';
+            heart2.style.backgroundRepeat = 'no-repeat';
+            heart2.style.backgroundSize = '30px';
+            heart2.style.border = 'none';
+            heart2.style.height = '30px';
+            heart2.style.width = '30px';
+
+            heart3.style.webkitAppearance = 'none';
+            heart3.style.background = 'url("/images/heart-icon-color.png")';
+            heart3.style.backgroundRepeat = 'no-repeat';
+            heart3.style.backgroundSize = '30px';
+            heart3.style.border = 'none';
+            heart3.style.height = '30px';
+            heart3.style.width = '30px';
+
+            heart4.style.webkitAppearance = 'none';
+            heart4.style.background = 'url("/images/heart-icon-color.png")';
+            heart4.style.backgroundRepeat = 'no-repeat';
+            heart4.style.backgroundSize = '30px';
+            heart4.style.border = 'none';
+            heart4.style.height = '30px';
+            heart4.style.width = '30px';
+
+            heart5.style.webkitAppearance = 'none';
+            heart5.style.background = 'url("/images/heart-icon-color.png")';
+            heart5.style.backgroundRepeat = 'no-repeat';
+            heart5.style.backgroundSize = '30px';
+            heart5.style.border = 'none';
+            heart5.style.height = '30px';
+            heart5.style.width = '30px';
+        } else {
+            if (e.target.id === 'rating1') {
+                e.target.style.webkitAppearance = 'none';
+                e.target.style.background = 'url("/images/heart-icon-empty.png")';
+                e.target.style.backgroundRepeat = 'no-repeat';
+                e.target.style.backgroundSize = '30px';
+                e.target.style.border = 'none';
+                e.target.style.height = '30px';
+                e.target.style.width = '30px';
+            } else if (e.target.id === 'rating2') {
+                heart1.style.webkitAppearance = 'none';
+                heart1.style.background = 'url("/images/heart-icon-empty.png")';
+                heart1.style.backgroundRepeat = 'no-repeat';
+                heart1.style.backgroundSize = '30px';
+                heart1.style.border = 'none';
+                heart1.style.height = '30px';
+                heart1.style.width = '30px';
+
+                e.target.style.webkitAppearance = 'none';
+                e.target.style.background = 'url("/images/heart-icon-empty.png")';
+                e.target.style.backgroundRepeat = 'no-repeat';
+                e.target.style.backgroundSize = '30px';
+                e.target.style.border = 'none';
+                e.target.style.height = '30px';
+                e.target.style.width = '30px';
+            } else if (e.target.id === 'rating3') {
+                heart1.style.webkitAppearance = 'none';
+                heart1.style.background = 'url("/images/heart-icon-empty.png")';
+                heart1.style.backgroundRepeat = 'no-repeat';
+                heart1.style.backgroundSize = '30px';
+                heart1.style.border = 'none';
+                heart1.style.height = '30px';
+                heart1.style.width = '30px';
+
+                heart2.style.webkitAppearance = 'none';
+                heart2.style.background = 'url("/images/heart-icon-empty.png")';
+                heart2.style.backgroundRepeat = 'no-repeat';
+                heart2.style.backgroundSize = '30px';
+                heart2.style.border = 'none';
+                heart2.style.height = '30px';
+                heart2.style.width = '30px';
+
+                e.target.style.webkitAppearance = 'none';
+                e.target.style.background = 'url("/images/heart-icon-empty.png")';
+                e.target.style.backgroundRepeat = 'no-repeat';
+                e.target.style.backgroundSize = '30px';
+                e.target.style.border = 'none';
+                e.target.style.height = '30px';
+                e.target.style.width = '30px';
+            } else if (e.target.id === 'rating4') {
+                heart1.style.webkitAppearance = 'none';
+                heart1.style.background = 'url("/images/heart-icon-empty.png")';
+                heart1.style.backgroundRepeat = 'no-repeat';
+                heart1.style.backgroundSize = '30px';
+                heart1.style.border = 'none';
+                heart1.style.height = '30px';
+                heart1.style.width = '30px';
+
+                heart2.style.webkitAppearance = 'none';
+                heart2.style.background = 'url("/images/heart-icon-empty.png")';
+                heart2.style.backgroundRepeat = 'no-repeat';
+                heart2.style.backgroundSize = '30px';
+                heart2.style.border = 'none';
+                heart2.style.height = '30px';
+                heart2.style.width = '30px';
+
+                heart3.style.webkitAppearance = 'none';
+                heart3.style.background = 'url("/images/heart-icon-empty.png")';
+                heart3.style.backgroundRepeat = 'no-repeat';
+                heart3.style.backgroundSize = '30px';
+                heart3.style.border = 'none';
+                heart3.style.height = '30px';
+                heart3.style.width = '30px';
+
+                e.target.style.webkitAppearance = 'none';
+                e.target.style.background = 'url("/images/heart-icon-empty.png")';
+                e.target.style.backgroundRepeat = 'no-repeat';
+                e.target.style.backgroundSize = '30px';
+                e.target.style.border = 'none';
+                e.target.style.height = '30px';
+                e.target.style.width = '30px';
+            } else if (e.target.id === 'rating5') {
+                heart1.style.webkitAppearance = 'none';
+                heart1.style.background = 'url("/images/heart-icon-empty.png")';
+                heart1.style.backgroundRepeat = 'no-repeat';
+                heart1.style.backgroundSize = '30px';
+                heart1.style.border = 'none';
+                heart1.style.height = '30px';
+                heart1.style.width = '30px';
+
+                heart2.style.webkitAppearance = 'none';
+                heart2.style.background = 'url("/images/heart-icon-empty.png")';
+                heart2.style.backgroundRepeat = 'no-repeat';
+                heart2.style.backgroundSize = '30px';
+                heart2.style.border = 'none';
+                heart2.style.height = '30px';
+                heart2.style.width = '30px';
+
+                heart3.style.webkitAppearance = 'none';
+                heart3.style.background = 'url("/images/heart-icon-empty.png")';
+                heart3.style.backgroundRepeat = 'no-repeat';
+                heart3.style.backgroundSize = '30px';
+                heart3.style.border = 'none';
+                heart3.style.height = '30px';
+                heart3.style.width = '30px';
+
+                heart4.style.webkitAppearance = 'none';
+                heart4.style.background = 'url("/images/heart-icon-empty.png")';
+                heart4.style.backgroundRepeat = 'no-repeat';
+                heart4.style.backgroundSize = '30px';
+                heart4.style.border = 'none';
+                heart4.style.height = '30px';
+                heart4.style.width = '30px';
+
+                e.target.style.webkitAppearance = 'none';
+                e.target.style.background = 'url("/images/heart-icon-empty.png")';
+                e.target.style.backgroundRepeat = 'no-repeat';
+                e.target.style.backgroundSize = '30px';
+                e.target.style.border = 'none';
+                e.target.style.height = '30px';
+                e.target.style.width = '30px';
+            }
         }
     };
 
