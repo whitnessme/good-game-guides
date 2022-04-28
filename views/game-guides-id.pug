@@ -117,7 +117,7 @@ block content
                           td(colspan="2")
                             div #{userReview[0].reviewText}
                     div(class="edit-review-div")
-                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview.id}/edit`) (Edit)
+                      a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview[0].id}/edit`) (Edit)
                   //- ------------IF THERE IS NOT A REVIEW FROM USER SHOW THIS --------------
                   else
                     table(class="my-reviews" cellspacing="1" border="0" width="100%")
@@ -138,8 +138,8 @@ block content
                           td(valign="top" class="my-review_label") Review
                           td(colspan="2")
                             a(class="review-text" href=`/game-guides/${gameGuide.id}/reviews/new/0`) Write a review!
-                else 
-                  a(class="login-review" href="/users/login") Please login to leave a review              
+                else
+                  a(class="login-review" href="/users/login") Please login to leave a review
             div(class="my-review-box")
               div(class="h2-container")
                 h2(class="my-review-header") REVIEWS
@@ -167,7 +167,7 @@ block content
                               div #{review.reviewText}
                       if review.userId === userId
                         div(class="edit-review-div")
-                          a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview.id}/edit`) (Edit)
+                          a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview[0].id}/edit`) (Edit)
           div(class="right-container")
             div(class="right-container-header")
               h2(class="right-container-header-h2") Players Also Enjoyed:
