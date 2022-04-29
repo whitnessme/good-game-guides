@@ -15,6 +15,16 @@ body {
     width: 600px;
 }
 
+.delete-review-div {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 18px;
+}
+
+.delete-review-btn {
+    cursor: pointer;
+}
+
 h1 {
     color: #382110;
     font-size: 20px;

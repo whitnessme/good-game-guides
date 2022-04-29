@@ -9,6 +9,8 @@ append head
 
 block content
     div(class='edit-review-container')
+        div(class='delete-review-div')
+            button(type='button' class='delete-review-btn' data-review-id=reviewId data-game-guide-id=gameGuideId) X
         h1 Edit Your Review
         if errors
             div(class='error-box')

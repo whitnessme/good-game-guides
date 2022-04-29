@@ -156,7 +156,7 @@ router.delete(
             }
         });
 
-        return res.json(review.id);
+        return res.json({ message: "success" });
     })
 );
 

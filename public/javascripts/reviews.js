@@ -1,10 +1,10 @@
 window.addEventListener('DOMContentLoaded', (e) => {
     // Heart Rating Radio Inputs
-    let heart1 = document.getElementById('rating1');
-    let heart2 = document.getElementById('rating2');
-    let heart3 = document.getElementById('rating3');
-    let heart4 = document.getElementById('rating4');
-    let heart5 = document.getElementById('rating5');
+    const heart1 = document.getElementById('rating1');
+    const heart2 = document.getElementById('rating2');
+    const heart3 = document.getElementById('rating3');
+    const heart4 = document.getElementById('rating4');
+    const heart5 = document.getElementById('rating5');
 
     // Heart CSS upon loading the page if one is pre-selected
     if (heart1.checked) {
@@ -885,4 +885,28 @@ window.addEventListener('DOMContentLoaded', (e) => {
     heart3.addEventListener('click', selectHeart);
     heart4.addEventListener('click', selectHeart);
     heart5.addEventListener('click', selectHeart);
+
+    // Remove a review
+    const removeReviewBtn = document.querySelector('.delete-review-btn');
+
+    const removeReview = async (e) => {
+        e.preventDefault();
+
+        const reviewId = e.target.dataset.reviewId;
+        const gameGuideId = e.target.dataset.gameGuideId;
+
+        if (window.confirm("Are you sure you'd like to remove your review?")) {
+            const res = await fetch(`/reviews/${reviewId}`, {
+                method: 'DELETE'
+            });
+
+            const data = await res.json();
+
+            if (data.message === 'success') {
+                window.location.href = `/game-guides/${gameGuideId}`;
+            }
+        }
+    };
+
+    removeReviewBtn.addEventListener('click', removeReview);
 });
