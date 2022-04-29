@@ -3,7 +3,8 @@ body {
     font-family: monospace;
 }
 
-.new-review-container {
+.new-review-container,
+.edit-review-container {
     background-color: white;
     border: 1px solid #d0d0c8;
     border-radius: 4px;

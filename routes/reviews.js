@@ -12,7 +12,7 @@ const reviewValidators = [
         .withMessage('If you would like to submit a review, please provide a rating from 1 heart (did not like it) to 5 hearts (it was amazing).')
 ];
 
-// READ - Get the form to create a review
+// READ - Get the form to create a new review
 router.get(
     '/game-guides/:id(\\d+)/reviews/new/:rating(\\d+)',
     csrfProtection,
@@ -43,6 +43,7 @@ router.post(
         const { userId } = req.session.auth;
         const gameGuideId = parseInt(req.params.id, 10);
         const { rating, reviewText } = req.body;
+        const gameGuide = await db.GameGuide.findByPk(gameGuideId);
 
         const validatorErrors = validationResult(req);
 
@@ -64,6 +65,7 @@ router.post(
                 title: 'Leave a Review',
                 userId,
                 gameGuideId,
+                gameGuide,
                 rating,
                 errors,
                 csrfToken: req.csrfToken()
@@ -72,25 +74,70 @@ router.post(
     })
 );
 
-// UPDATE - User updates their rating/review
-router.put(
-    '/reviews/:id(\\d+)/edit',
+// READ - Get the form to edit a review
+router.get(
+    '/game-guides/:gameGuideId(\\d+)/reviews/:id(\\d+)/edit',
     csrfProtection,
     asyncHandler(async (req, res) => {
-        const id = parseInt(req.params.id, 10);
-        const review = await db.Review.findByPk(id);
+        const gameGuideId = parseInt(req.params.gameGuideId, 10);
+        const reviewId = parseInt(req.params.id, 10);
+        const review = await db.Review.findByPk(reviewId);
+
+        const gameGuide = await db.GameGuide.findByPk(gameGuideId);
+
+        if (!review) throw new Error('Cannot find review.');
+
+        res.render('edit-review', {
+            title: 'Edit Your Review',
+            gameGuideId,
+            gameGuide,
+            reviewId,
+            rating: review.rating,
+            reviewText: review.reviewText,
+            csrfToken: req.csrfToken()
+        });
+    })
+);
+
+// UPDATE - User updates their rating/review
+router.post(
+    '/game-guides/:gameGuideId(\\d+)/reviews/:id(\\d+)/edit',
+    csrfProtection,
+    reviewValidators,
+    asyncHandler(async (req, res) => {
+        const gameGuideId = parseInt(req.params.gameGuideId, 10);
+        const reviewId = parseInt(req.params.id, 10);
+        const review = await db.Review.findByPk(reviewId);
+        const gameGuide = await db.GameGuide.findByPk(gameGuideId);
 
         const { rating, reviewText } = req.body;
 
         if (!review) throw new Error('Cannot find review.');
 
-        const updatedReview = await review.update({
-            rating,
-            reviewText,
-            updatedAt: new Date()
-        });
+        const validatorErrors = validationResult(req);
 
-        return res.json(updatedReview);
+        if (validatorErrors.isEmpty()) {
+            const updatedReview = await review.update({
+                rating,
+                reviewText,
+                updatedAt: new Date()
+            });
+
+            res.redirect(`/game-guides/${gameGuideId}`);
+        } else {
+            const errors = validatorErrors.array().map(error => error.msg);
+
+            res.render('edit-review', {
+                title: 'Edit Your Review',
+                gameGuideId,
+                gameGuide,
+                reviewId,
+                rating: review.rating,
+                reviewText: review.reviewText,
+                errors,
+                csrfToken: req.csrfToken()
+            });
+        }
     })
 );
 
