@@ -51,7 +51,7 @@ router.get(
       if (userReviewFind.length) {
         userReview = userReviewFind
       }
-      console.log(userReview[0])
+
       const guideStatusCheck = await db.StatusShelf.findAll({
         where: {
           gameGuideId,

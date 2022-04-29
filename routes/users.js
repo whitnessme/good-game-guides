@@ -73,7 +73,6 @@ router.post(
   userValidators,
   asyncHandler(async (req, res) => {
     const { fullName, email, password } = req.body;
-    console.log(password)
     const user = db.User.build({ fullName, email, password });
 
     const validatorErrors = validationResult(req);
@@ -86,7 +85,6 @@ router.post(
       res.redirect("/");
     } else {
       const errors = validatorErrors.array().map((error) => error.msg);
-      console.log("ERRORS", errors)
       res.render("user-signup", {
         title: "Sign Up",
         user,

@@ -66,7 +66,6 @@ router.get(
 
 
     const customShelfAndCount = await customCounts(userId);
-    console.log("SHELVES & COUNTS", customShelfAndCount)
     const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render("my-game-guides", {
