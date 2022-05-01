@@ -14,7 +14,11 @@ async function findStatusShelfEntries(userId, statusId) {
             },
             {
                 model: db.GameGuide,
-                include: db.Review
+                include: {
+                    model: db.Review,
+                    where: {
+                        userId
+                    }}
             }
         ]
     })
@@ -49,7 +53,10 @@ async function findCustomShelfEntries(userId, name) {
             model: db.GameGuide,
             include: [
                 {
-                    model: db.Review
+                    model: db.Review,
+                    where: {
+                        userId
+                    }
                 },
                 {
                     model: db.StatusShelf,
@@ -150,7 +157,12 @@ async function allStatusShelfEntries(userId) {
             },
             {
                 model: db.GameGuide,
-                include: db.Review
+                include: {
+                    model: db.Review,
+                    where: {
+                        userId
+                    }
+                }
             }
         ]
     })
@@ -254,6 +266,17 @@ function makeRatingArrsForAllReviews(reviews) {
     return reviews;
 }
 
+function makeRatingArrsForGameGuideReviews(guides) {
+    for (let guide of guides) {
+        // console.log("GUUUIDE?? ------------", guide)
+        // if (guide.GameGuide.Reviews.length) {
+        //     let rating = guide.GameGuide.Reviews[0].rating
+        //     guide.GameGuide.Reviews[0].rating = makeRatingObj(rating)
+        // }
+    }
+    return guides;
+}
+
 module.exports = {
     addStatusShelfEntry,
     findStatusShelfEntries,
@@ -267,5 +290,6 @@ module.exports = {
     statusAndAllCounts,
     findAverageRating,
     makeRatingObj,
-    makeRatingArrsForAllReviews
+    makeRatingArrsForAllReviews,
+    makeRatingArrsForGameGuideReviews
 }

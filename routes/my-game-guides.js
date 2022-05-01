@@ -16,6 +16,7 @@ const {
     findAvgRating,
     customCounts,
     statusAndAllCounts,
+    makeRatingArrsForGameGuideReviews
 } = require("../creation");
 
 const router = express.Router();
@@ -48,21 +49,9 @@ router.get(
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-    // const reviews = await db.Review.findAll().filter((review) => review.gameGuideId === gameGuideId);
-
-    // If user does have review it will be set to userReview, and ratingArr will display true for each heart that is <= userReview[0].rating
-    // let userReview = false;
-    // let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
-
-    // let userReviewFind = reviews.filter((review) => review.userId === userId)
-    // if (userReviewFind.length) {
-    //   userReview = userReviewFind
-    //   for (let i = 1; i <= 5; i++) {
-    //     if (i <= userReview[0].rating) {
-    //       ratingArr[`${i}`] = true
-    //     }
-    //   }
-    // }
+    console.log("----------------------------------", guides)
+    const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
+    // console.log("HELL00000000O?", updatedGuides[0].GameGuide.Reviews[0].reviewText)
 
 
     const customShelfAndCount = await customCounts(userId);
@@ -71,7 +60,7 @@ router.get(
     res.render("my-game-guides", {
       url,
       userId,
-      guides,
+      updatedGuides,
       customShelfAndCount,
       all,
       one,
@@ -90,13 +79,15 @@ router.get(
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
+    const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
+    
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);
 
     res.render("my-game-guides", {
       url,
       userId,
-      guides,
+      updatedGuides,
       customShelfAndCount,
       all,
       one,
@@ -116,6 +107,7 @@ router.get(
         const shelfName = req.params.id;
 
         const guides = await findCustomShelfEntries(userId, shelfName);
+        const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
 
         const customShelfAndCount = await customCounts(userId);
         const { all, one, two, three } = await statusAndAllCounts(userId);
@@ -123,7 +115,7 @@ router.get(
         res.render("my-game-guides", {
             url,
             userId,
-            guides,
+            updatedGuides,
             shelfName,
             customShelfAndCount,
             all,
