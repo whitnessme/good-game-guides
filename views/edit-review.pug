@@ -8,12 +8,14 @@ append head
     script(src="/javascripts/reviews.js" type="module")
 
 block content
-    div(class='new-review-container')
-        h1 Leave a Review
+    div(class='edit-review-container')
+        div(class='delete-review-div')
+            button(type='button' class='delete-review-btn' data-review-id=reviewId data-game-guide-id=gameGuideId) X
+        h1 Edit Your Review
         if errors
             div(class='error-box')
                 +validationErrorSummary(errors)
-        form(method='post' action=`/game-guides/${gameGuideId}/reviews/new`)
+        form(method='post' action=`/game-guides/${gameGuideId}/reviews/${reviewId}/edit`)
             fieldset
                 input(type='hidden' name='_csrf' value=csrfToken)
 
@@ -26,7 +28,7 @@ block content
 
                 div(class="fieldEle")
                     label(for='reviewText') Review
-                    textarea(id='reviewText' name='reviewText' value=reviewText placeholder=`What would you like to say about ${gameGuide.title}?`)
+                    textarea(id='reviewText' name='reviewText' value=reviewText placeholder=`What would you like to say about ${gameGuide.title}?`) #{reviewText}
                 div(class="submitEle")
                     button(type='submit' class="submit-button") Submit
                     a(href=`/game-guides/${gameGuideId}` class="submit-button cancel-button") Cancel

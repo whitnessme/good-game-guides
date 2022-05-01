@@ -33,7 +33,7 @@ router.get(
     let avg = findAverageRating(reviews)
     let avgArr = makeRatingObj(avg)
     let updatedReviews = makeRatingArrsForAllReviews(reviews)
-    
+
     let filteredGuides = guides.filter((guide) => guide.id !== gameGuideId);
 
     let statusObj = {
@@ -41,24 +41,24 @@ router.get(
       2: "Currently Playing",
       3: "Played",
     };
-    
+
     if (req.session.auth) {
       const { userId } = req.session.auth;
 
       let userReview = false;
-      
+
       let userReviewFind = reviews.filter((review) => review.userId === userId)
       if (userReviewFind.length) {
         userReview = userReviewFind
       }
-      console.log(userReview[0])
+
       const guideStatusCheck = await db.StatusShelf.findAll({
         where: {
           gameGuideId,
           userId,
         },
       });
-      
+
       let activeCustomShelves = await db.CustomShelf.findAll({
         where: {
           userId,

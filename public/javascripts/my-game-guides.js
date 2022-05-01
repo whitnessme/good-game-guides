@@ -65,7 +65,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         let allCountATag = document.querySelector('.count-a-status-all')
         let currentAllNumber = parseInt(allCountATag.innerText.split('(')[1][0]) - 1
-        console.log(allCountATag, currentAllNumber)
 
         let selectedStatusShelfCountText = document.querySelector(`.count-a-status-${statusId}`)
         let currentNumber = parseInt(selectedStatusShelfCountText.innerText.split('(')[1][0]) - 1
@@ -79,7 +78,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
               e.path[2].remove();
               allCountATag.innerText = ` (${currentAllNumber})`
               selectedStatusShelfCountText.innerText = ` (${currentNumber})`
-          } 
+          }
         }
 
     };

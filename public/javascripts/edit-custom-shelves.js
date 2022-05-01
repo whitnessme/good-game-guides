@@ -102,8 +102,6 @@ window.addEventListener("DOMContentLoaded", (e) => {
   //   let renameUserShelfSpan = document.querySelector(`.renameUserShelf.${shelfName}`);
   //   let renameLink = document.querySelector(`.renameUserShelfLink.${shelfName}`);
 
-  //   console.log(renameLink);
-
   //   renameUserShelfSpan.style.display = 'none';
   //   renameLink.style.display = 'inline';
   // };

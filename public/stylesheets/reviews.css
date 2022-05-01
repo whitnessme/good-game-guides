@@ -3,7 +3,8 @@ body {
     font-family: monospace;
 }
 
-.new-review-container {
+.new-review-container,
+.edit-review-container {
     background-color: white;
     border: 1px solid #d0d0c8;
     border-radius: 4px;
@@ -12,6 +13,16 @@ body {
     padding: 28px 10px 34px 10px;
     text-align: center;
     width: 600px;
+}
+
+.delete-review-div {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 18px;
+}
+
+.delete-review-btn {
+    cursor: pointer;
 }
 
 h1 {

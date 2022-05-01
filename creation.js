@@ -113,8 +113,7 @@ async function checkCountOfShelfEntries(shelf, userId) {
                 name: shelf
             }
         })
-        
-        // console.log("LOOOOKIE", result.count, result.rows)
+
         if (result.count === 1) {
             const one = await db.CustomShelf.findOne({
                 where: {
@@ -219,7 +218,7 @@ async function statusAndAllCounts(userId) {
 }
 
 async function customCounts(userId) {
-    // returns objects in array with shelf.name and shelf.count 
+    // returns objects in array with shelf.name and shelf.count
     const customs = await countGuidesOnShelves(userId, 'customShelves')
     return customs
 }
@@ -234,15 +233,15 @@ function findAverageRating(reviews) {
     }
     return Math.round(sum / reviews.length)
   }
-  
+
   function makeRatingObj(rating) {
     let ratingArr = {1: false, 2: false, 3: false, 4: false, 5: false}
-  
+
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
         ratingArr[`${i}`] = true
       }
-    } 
+    }
     return ratingArr
   }
 
