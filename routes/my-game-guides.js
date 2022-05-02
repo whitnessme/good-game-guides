@@ -49,8 +49,8 @@ router.get(
     const { userId } = req.session.auth;
 
     const guides = await allStatusShelfEntries(userId);
-    console.log("----------------------------------", guides)
-    const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
+    const updatedGuides = makeRatingArrsForGameGuideReviews(guides, userId)
+    // console.log("----------------------------------", updatedGuides[0].GameGuide)
     // console.log("HELL00000000O?", updatedGuides[0].GameGuide.Reviews[0].reviewText)
 
 
@@ -79,7 +79,7 @@ router.get(
     const shelfId = parseInt(req.params.id, 10);
 
     const guides = await findStatusShelfEntries(userId, shelfId);
-    const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
+    const updatedGuides = makeRatingArrsForGameGuideReviews(guides, userId)
     
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);
@@ -107,7 +107,7 @@ router.get(
         const shelfName = req.params.id;
 
         const guides = await findCustomShelfEntries(userId, shelfName);
-        const updatedGuides = makeRatingArrsForGameGuideReviews(guides)
+        const updatedGuides = makeRatingArrsForGameGuideReviews(guides, userId)
 
         const customShelfAndCount = await customCounts(userId);
         const { all, one, two, three } = await statusAndAllCounts(userId);

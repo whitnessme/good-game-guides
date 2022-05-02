@@ -200,7 +200,7 @@ body {
 }
 
 td.rating {
-   
+   width: 20%;
     /* grid-template-rows: 45px 15px 45px; */
 }
 
