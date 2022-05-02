@@ -115,7 +115,7 @@ block content
                         tr
                           td(valign="top" class="my-review_label") Review
                           td(colspan="2")
-                            div #{userReview[0].reviewText}
+                            div.reviews-text #{userReview[0].reviewText}
                     div(class="edit-review-div")
                       a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview[0].id}/edit`) (Edit)
                   //- ------------IF THERE IS NOT A REVIEW FROM USER SHOW THIS --------------
@@ -164,7 +164,7 @@ block content
                           tr
                             td(valign="top" class="my-review_label") Review
                             td(colspan="2")
-                              div #{review.reviewText}
+                              div.reviews-text #{review.reviewText}
                       if review.userId === userId
                         div(class="edit-review-div")
                           a(class="smallText" href=`/game-guides/${gameGuide.id}/reviews/${userReview[0].id}/edit`) (Edit)

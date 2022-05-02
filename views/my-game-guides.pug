@@ -85,21 +85,29 @@ block content
                                     th(class='dateAdded') Date Added
                                     th(class='action')
                             tbody(id='guidesBody')
-                                if guides.length > 0
-                                    each guide in guides
+                                if updatedGuides.length > 0
+                                    each guide in updatedGuides
                                         if guide.GameGuide !== null
                                             tr(class='tableDataRow')
                                                 td(class='cover'): a(href=`/game-guides/${guide.GameGuide.id}`): img(src=guide.GameGuide.coverImg alt='Game Guide Cover Image')
                                                 td(class='title'): a(href=`/game-guides/${guide.GameGuide.id}`)= guide.GameGuide.title
                                                 td(class='author')= guide.GameGuide.author
                                                 td(class='rating'): div(class="stars")
-                                                    div(class='empty')
-                                                    div(class='star-rating')
-                                                        a(class="star" title="it was amazing" href="#") 5 of 5 stars
-                                                        a(class="star" title="really liked it" href="#") 4 of 5 stars
-                                                        a(class="star" title="liked it" href="#") 3 of 5 stars
-                                                        a(class="star" title="it was ok" href="#") 2 of 5 stars
-                                                        a(class="star" title="did not like it" href="#") 1 of 5 stars
+                                                    //- div(class='empty')
+                                                    if guide.GameGuide.Reviews
+                                                        div(class='heart-rating')
+                                                            a(class=`heart-${guide.GameGuide.Reviews.rating["1"]}` title="did not like it" href="#") 1 of 5 stars
+                                                            a(class=`heart-${guide.GameGuide.Reviews.rating["2"]}` title="it was ok" href="#") 2 of 5 stars
+                                                            a(class=`heart-${guide.GameGuide.Reviews.rating["3"]}` title="liked it" href="#") 3 of 5 stars
+                                                            a(class=`heart-${guide.GameGuide.Reviews.rating["4"]}` title="really liked it" href="#") 4 of 5 stars
+                                                            a(class=`heart-${guide.GameGuide.Reviews.rating["5"]}` title="it was amazing" href="#") 5 of 5 stars
+                                                    else
+                                                        div(class='star-rating')
+                                                            a(class="star" title="it was amazing" href=`/game-guides/${guide.GameGuide.id}/reviews/new/5`) 5 of 5 stars
+                                                            a(class="star" title="really liked it" href=`/game-guides/${guide.GameGuide.id}/reviews/new/4`) 4 of 5 stars
+                                                            a(class="star" title="liked it" href=`/game-guides/${guide.GameGuide.id}/reviews/new/3`) 3 of 5 stars
+                                                            a(class="star" title="it was ok" href=`/game-guides/${guide.GameGuide.id}/reviews/new/2`) 2 of 5 stars
+                                                            a(class="star" title="did not like it" href=`/game-guides/${guide.GameGuide.id}/reviews/new/1`) 1 of 5 stars
                                                     //- div(class='hide') Rating Feature Coming Soon!
                                                 if url === "/my-game-guides"
                                                     td(class='shelves'): a(href=`/my-game-guides/status-shelves/${guide.Status.id}`)= guide.Status.name
@@ -111,12 +119,15 @@ block content
                                                 //-     td(class='review')= guide.GameGuide.Reviews[0].reviewText
                                                 //- else
                                                 td(class='review')
-                                                    a(class="review-text" href=`/game-guides/${guide.GameGuide.id}/reviews/new/0`) Write a Review
+                                                    if guide.GameGuide.Reviews
+                                                        p(class="reviews-text")=guide.GameGuide.Reviews.reviewText
+                                                    else
+                                                        a(class="review-text" href=`/game-guides/${guide.GameGuide.id}/reviews/new/0`) Write a Review
                                                     //- div(class="hidden-review") Review Features Coming Soon!
                                                 td(class='dateAdded')= guide.createdAt.toDateString().slice(4)
                                                 if url.startsWith("/my-game-guides/custom-shelves/")
                                                     td(class='action'): button(type='button' class='removeCustomGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-game-guide-title=`${guide.GameGuide.title}` data-shelf-name=`${shelfName}`) X
                                                 else
                                                     td(class='action'): button(type='button' class='removeStatusGuideBtn' data-game-guide-id=`${guide.GameGuide.id}` data-game-guide-title=`${guide.GameGuide.title}` data-status-id=`${guide.Status.id}`) X
-                        if guides.length === 0 || guides[0].GameGuide === null
+                        if updatedGuides.length === 0 || updatedGuides[0].GameGuide === null
                             div(class='noContent') No guides have been added yet!

@@ -431,6 +431,14 @@ tr {
   width: 125px;
 }
 
+.reviews-text {
+  /* overflow: scroll; */
+ overflow-wrap: break-word;
+ word-break: break-all;
+ width: 100%;
+ height: 100%;
+}
+
 td {
   margin: 0;
 }
