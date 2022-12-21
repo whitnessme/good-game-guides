@@ -1,6 +1,14 @@
 "use strict";
+
+let options = {};
+options.tableName = 'CustomShelves';
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     return queryInterface.createTable("CustomShelves", {
       id: {
         allowNull: false,
@@ -29,9 +37,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    }, options);
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("CustomShelves");
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable(options, options);
   },
 };

@@ -1,7 +1,15 @@
 "use strict";
+
+let options = {};
+options.tableName = 'GameGuides';
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("GameGuides", {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.createTable("GameGuides", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -35,9 +43,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    }, options);
   },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("GameGuides");
+  async down (queryInterface, Sequelize){
+    await queryInterface.dropTable(options, options);
   },
 };
