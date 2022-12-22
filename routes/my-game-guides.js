@@ -50,9 +50,6 @@ router.get(
 
     const guides = await allStatusShelfEntries(userId);
     const updatedGuides = makeRatingArrsForGameGuideReviews(guides, userId)
-    // console.log("----------------------------------", updatedGuides[0].GameGuide)
-    // console.log("HELL00000000O?", updatedGuides[0].GameGuide.Reviews[0].reviewText)
-
 
     const customShelfAndCount = await customCounts(userId);
     const { all, one, two, three } = await statusAndAllCounts(userId);

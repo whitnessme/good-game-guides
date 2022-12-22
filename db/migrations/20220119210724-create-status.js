@@ -1,4 +1,12 @@
 "use strict";
+
+let options = {};
+options.tableName = 'Statuses';
+
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("Statuses", {
@@ -21,9 +29,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-    });
+    }, options);
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("Statuses");
+    return queryInterface.dropTable(options, options);
   },
 };

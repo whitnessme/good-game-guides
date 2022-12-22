@@ -259,7 +259,6 @@ function makeRatingArrsForAllReviews(reviews) {
 function makeRatingArrsForGameGuideReviews(guides, userId) {
     for (let guide of guides) {
         let reviews;
-        console.log(guide)
         if (guide.GameGuide.Reviews) {
             for (let review of guide.GameGuide.Reviews) {
                 if (review.userId === userId) {

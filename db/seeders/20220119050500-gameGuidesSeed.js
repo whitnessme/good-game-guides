@@ -1,9 +1,15 @@
 'use strict';
 
+let options = {};
+options.tableName = 'GameGuides';
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;
+}
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
 
-    return queryInterface.bulkInsert('GameGuides', [
+    return queryInterface.bulkInsert(options, [
       {title:'Spyro Reignited Trilogy: Latest Guide', author:'Angela Fregillana', releaseDate:'2021-07-12', publisher:'Independently published',
       summary:
       `If you want a blast from the past, Spyro: Reignited Trilogy will certainly stoke the fires of nostalgia. Thanks to its charming redesign and smooth controls, exploring Spyro's world is a rather magical experience for returning players, while its soft and welcoming aesthetics could make this a hit with a new generation of youngsters. And, importantly, it feels good to control.
@@ -41,12 +47,9 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      */
-    return queryInterface.bulkDelete('GameGuides', null, {});
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(options, {
+      title: { [Op.in]: ['Spyro Reignited Trilogy: Latest Guide', 'Horizon Zero Dawn Complete Edition: Official Game Guide', 'The Legend of Zelda: Breath of the Wild The Complete Official Guide: -Expanded Edition', 'Sims 4 Guide', 'Best Enchantments in Minecraft', 'Pokemon Diamond, Pearl and Platinum Wiki Guide'] }
+    }, {});
   }
 };
