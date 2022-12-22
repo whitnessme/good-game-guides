@@ -7,8 +7,8 @@
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www",
     "build": "node psql-setup-script.js",
-    "sequelize": "npm run sequelize",
-    "sequelize-cli": "npm run sequelize-cli"
+    "sequelize": "sequelize",
+    "sequelize-cli": "sequelize-cli"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
